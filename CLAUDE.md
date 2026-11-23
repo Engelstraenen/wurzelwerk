@@ -25,15 +25,19 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 3 Storyboards (Eugen wählt) → First Frames 4K → Video-Drafts gratis → Seite bauen → Storyboard-Abgleich → GitHub Pages.
 
 ## 7. Befehle
-(folgt mit dem ersten Code)
+- Vorschau: `python3 tools/serve.py 4430` → http://127.0.0.1:4430/ (Port 4430, vorher `<title>` per curl prüfen)
+- Bilder bauen: `python3 tools/assets.py` (Quellen assets-roh/4k/WW-*.png, Cache)
+- Prüfen: `python3 tools/check.py http://127.0.0.1:4430/ <ordner> 1440x900 zeitraffer:0,rasen:.4` (+ 390x844, 360x740, 430x932, 844x390)
+- Veröffentlichen: `git subtree split --prefix site -b gh-pages-tmp && git push -f origin gh-pages-tmp:gh-pages`
 
 ## 8. Offene Fragen
-- Wahl Mix A „Ein Garten“ oder Mix B „Rasen zuerst“ (konzepte/mix-a-*, mix-b-*); passt keiner → nur Storyboard 3.
+- (keine, Bauplan steht 23.11.2026)
 
 ## 9. Entschieden
 - 23.11.2026: Name WURZELWERK (Annahme), 3 Storyboard-Varianten in Arbeit.
 - 23.11.2026 (Eugen): Mix aus 1 Zeitraffer + 3 Rollrasen. Sieht der Mix nicht gut aus → nur 3. Look-Basis = 3 (Tannengrün/Off-White/Limette).
 - 23.11.2026: Bewertungen ohne erfundene Note; echte Werte erst bei echtem Kunden.
+- 23.11.2026 (Eugen, BAUPLAN): Seite = beste Teile aller drei Storyboards. (1) Start mit Scrollytelling-Zeitraffer aus Storyboard 1 (Panels 1–5: Vorher → Aushub → Unterbau → Pflaster+Rasen → Fertig, gleicher Garten, feste Kamera). (2) Aus Storyboard 2 der Gartenplaner mit Grundriss (Panel 6: Terrasse/Rasen/Hochbeet ziehen, Live-m², „Plan senden“). (3) ALLES aus Storyboard 3 komplett (Rollrasen rollt aus „Über Nacht grün.“, Handschuh drückt Naht + Buttons, Leistungen als Rasenstreifen, Vorher/Nachher-Slider Vorgarten, Angebot per Foto 36 m², Karriere-Duo mit Rollrasen + Kinetik-Typo, Swipe-Bewerbung „Was fährst du?“, Bewertungen + Footer). Look aus 3 (Tannengrün/Off-White/Limette). Mix-Storyboards A/B nur Zwischenstand.
 
 ## 10. Ablage
 Code: Dropbox/CLAUDE/Projekte/WURZELWERK · Storyboards: konzepte/

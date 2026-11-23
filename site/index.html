@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WURZELWERK · Garten- und Landschaftsbau</title>
+<meta name="description" content="Demo-Webseite für einen Garten- und Landschaftsbaubetrieb: Zeitraffer, Rollrasen, Gartenplaner, Angebot per Foto, Bewerbung in 60 Sekunden.">
+<meta name="theme-color" content="#0e2a1d">
+<link rel="preload" href="assets/fonts/grotesk.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/img.js"></script>
+</head>
+<body>
+
+<div class="demo">Demo-Webseite · erfundener Betrieb · Formulare senden nichts <span class="for" data-firma-wrap>· erstellt für <b data-firma></b></span></div>
+
+<header class="nav">
+  <a class="logo" href="#top" aria-label="WURZELWERK Startseite">WURZELWERK<small>Garten- und Landschaftsbau</small></a>
+  <nav class="links" aria-label="Hauptmenü">
+    <a href="#zeitraffer">Zeitraffer</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#planer">Gartenplaner</a>
+    <a href="#angebot">Angebot per Foto</a>
+    <a href="#karriere">Karriere</a>
+    <a href="#bewertungen">Bewertungen</a>
+  </nav>
+  <button class="btn lime sm" data-open="anfrage">Garten anfragen</button>
+  <button class="burger" aria-label="Menü öffnen" aria-expanded="false"><i></i><i></i></button>
+</header>
+<nav class="menu" aria-label="Menü">
+  <a href="#zeitraffer">Zeitraffer</a><a href="#rasen">Rollrasen</a><a href="#leistungen">Leistungen</a><a href="#vorher">Vorher / Nachher</a><a href="#planer">Gartenplaner</a><a href="#angebot">Angebot per Foto</a><a href="#karriere">Karriere</a><a href="#bewerben">Bewerben</a><a href="#bewertungen">Bewertungen</a>
+  <button class="btn lime" data-open="anfrage">Garten anfragen</button>
+</nav>
+<div class="dots" aria-hidden="true"></div>
+
+<main id="top">
+
+<!-- 1 ZEITRAFFER (Film, Scrollen spult) -->
+<section class="ch film" id="zeitraffer" style="--h:560vh">
+  <div class="stage">
+    <div class="media">
+      <img class="still" data-img="f1-vorher" alt="Verwilderter Garten hinter einem Einfamilienhaus, vor der Arbeit">
+      <video class="vid" data-src="assets/vid/zeitraffer" data-key="zeitraffer" muted playsinline preload="auto"></video>
+    </div>
+    <div class="shade"></div>
+    <div class="zr-text">
+      <h1 class="zr-h" data-step="0"><span>Vorher.</span> <span class="lime-t">Scroll mal.</span></h1>
+      <div class="zr-step" data-step="1"><b>1</b> Aushub<small>Minibagger holt Wurzeln, Schutt und alte Platten raus.</small></div>
+      <div class="zr-step" data-step="2"><b>2</b> Unterbau<small>Schotter in Lagen, jede Lage mit der Rüttelplatte verdichtet.</small></div>
+      <div class="zr-step" data-step="3"><b>3</b> Pflaster und Rasen<small>Platten mit der Verlegezange, Rollrasen Bahn an Bahn.</small></div>
+      <div class="zr-step" data-step="4"><b>4</b> Fertig<small>Ein Garten, der abends erst richtig anfängt.</small></div>
+    </div>
+    <div class="zr-bar"><i></i><span class="zr-pct">0 %</span></div>
+    <div class="scroll-hint">Scrollen</div>
+  </div>
+</section>
+
+<!-- 2 ROLLRASEN (Motion) -->
+<section class="ch" id="rasen" style="--h:340vh">
+  <div class="stage rs">
+    <img class="rs-soil" data-img="r1-erde" alt="">
+    <div class="rs-strip"><img data-img="r2-rasen" alt=""><h2 class="rs-h2">Über Nacht grün.</h2></div>
+    <img class="rs-roll" data-img="r3-rolle" data-png alt="">
+    <h2 class="rs-h1">Deine Oase.</h2>
+    <div class="rs-end">
+      <img data-img="r4-hand" alt="Handschuh drückt die Naht zwischen zwei Rasenbahnen an">
+      <div class="rs-cta">
+        <p class="eyebrow">Rollrasen · Pflaster · Mauern · Pflege</p>
+        <h2>Morgens Baustelle.<br>Abends Garten.</h2>
+        <div class="row"><button class="btn ghost" data-open="anfrage">Termin</button><a class="btn lime" href="#planer">Garten planen</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 LEISTUNGEN als Rasenstreifen -->
+<section class="sec dark" id="leistungen">
+  <div class="wrap">
+    <p class="eyebrow">Leistungen</p>
+    <h2 class="big">Alles aus einer Hand.<br><span class="lime-t">Vom Aushub bis zur Pflege.</span></h2>
+  </div>
+  <div class="strips">
+    <button class="strip" data-need="s1-pflaster"><img data-img="s1-pflaster" alt=""><span class="lbl">Pflaster</span><span class="txt">Terrassen, Wege, Einfahrten. Mit frostsicherem Unterbau, damit nichts absackt.</span></button>
+    <button class="strip" data-need="s2-rasen"><img data-img="s2-rasen" alt=""><span class="lbl">Rasen</span><span class="txt">Rollrasen an einem Tag, Fertigrasen statt Wartezeit. Boden vorbereitet, Bahnen dicht.</span></button>
+    <button class="strip" data-need="s3-mauern"><img data-img="s3-mauern" alt=""><span class="lbl">Mauern</span><span class="txt">Naturstein, Gabionen, Hochbeete. Mit Steinzange, Schnur und Wasserwaage gesetzt.</span></button>
+    <button class="strip" data-need="s4-bewaesserung"><img data-img="s4-bewaesserung" alt=""><span class="lbl">Bewässerung</span><span class="txt">Versenkregner und Tropfschlauch, per App gesteuert. Der Rasen bleibt grün, auch im August.</span></button>
+    <button class="strip" data-need="s5-pflege"><img data-img="s5-pflege" alt=""><span class="lbl">Pflege</span><span class="txt">Pflege-Abo übers Jahr: Hecke, Rasen, Laub, Winterdienst. Ein Ansprechpartner.</span></button>
+  </div>
+</section>
+
+<!-- 4 VORHER / NACHHER -->
+<section class="sec light" id="vorher">
+  <div class="wrap">
+    <p class="eyebrow">Vorher / Nachher</p>
+    <h2 class="big ink">Ziehen. Staunen.</h2>
+  </div>
+  <div class="ba" data-need="v1-nachher">
+    <img class="ba-b" data-img="v1-nachher" alt="Vorgarten nachher: Plattenweg, Rasen, Hecken">
+    <div class="ba-a"><img data-img="v0-vorher" alt="Derselbe Vorgarten vorher: matschig und kahl"></div>
+    <span class="ba-l">Vorher</span><span class="ba-r">Nachher</span>
+    <input class="ba-in" type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Regler">
+    <span class="ba-h" aria-hidden="true"><i></i></span>
+  </div>
+</section>
+
+<!-- 5 GARTENPLANER (aus Storyboard 2) -->
+<section class="sec paper" id="planer">
+  <div class="wrap pl">
+    <div class="pl-side">
+      <p class="eyebrow">Gartenplaner</p>
+      <h2 class="big ink">Plan dir deinen Garten.</h2>
+      <p class="lead">Ziehe Elemente auf den Grundriss. Wir sehen sofort, was du willst, und melden uns mit einem Vorschlag.</p>
+      <div class="pl-tools" aria-label="Elemente">
+        <button class="pt" data-t="terrasse" data-w="5" data-h="4">Terrasse</button>
+        <button class="pt" data-t="rasen" data-w="8" data-h="6">Rasen</button>
+        <button class="pt" data-t="hochbeet" data-w="3" data-h="1">Hochbeet</button>
+        <button class="pt" data-t="weg" data-w="1" data-h="6">Weg</button>
+        <button class="pt" data-t="teich" data-w="3" data-h="2">Teich</button>
+        <button class="pt" data-t="baum" data-w="2" data-h="2">Baum</button>
+      </div>
+      <p class="hint">Tippen fügt hinzu · ziehen verschiebt · Doppeltipp entfernt</p>
+    </div>
+    <div class="pl-board">
+      <div class="pl-dim pl-dw">16 m</div><div class="pl-dim pl-dh">10 m</div>
+      <div class="pl-plan" aria-label="Grundriss 16 mal 10 Meter"><div class="pl-house">Haus</div></div>
+      <div class="pl-foot">
+        <div><small>Fläche geplant</small><b><span class="pl-m2">0</span> m²</b></div>
+        <div class="pl-list"></div>
+        <button class="btn ink" data-open="anfrage" data-plan>Plan senden</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 ANGEBOT PER FOTO -->
+<section class="sec dark" id="angebot">
+  <div class="wrap af">
+    <div>
+      <p class="eyebrow">Angebot per Foto</p>
+      <h2 class="big">Foto schicken.<br><span class="lime-t">Keine Besichtigung nötig.</span></h2>
+      <ol class="af-steps">
+        <li><b>1</b> Foto vom Garten machen</li>
+        <li><b>2</b> Ecken der Fläche antippen</li>
+        <li><b>3</b> Rückmeldung in 24 Stunden</li>
+      </ol>
+      <p class="hint">Zieh die Ecken im Handy, die Fläche rechnet sich live.</p>
+    </div>
+    <div class="phone af-phone">
+      <div class="ph-screen">
+        <img data-img="p1-handyfoto" alt="Handyfoto eines Gartens">
+        <svg class="af-svg" viewBox="0 0 100 178" preserveAspectRatio="none"><polygon class="af-poly" points="18,96 82,92 92,150 8,154"/></svg>
+        <div class="af-m2"><b>0</b> m²</div>
+        <button class="btn lime af-send" data-open="anfrage">Foto senden</button>
+        <small class="af-note">Keine Besichtigung nötig</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 KARRIERE (Film/Foto + Kinetik-Typo) -->
+<section class="ch film" id="karriere" style="--h:420vh">
+  <div class="stage">
+    <div class="media"><img class="still" data-img="k1-karriere" alt="Zwei junge Landschaftsgärtner tragen lachend eine Rasenrolle"><video class="vid" data-src="assets/vid/karriere" data-key="karriere" muted playsinline preload="auto"></video></div>
+    <div class="shade side"></div>
+    <div class="kin">
+      <p class="eyebrow">Karriere</p>
+      <div class="k-w" data-k="0">Draußen.</div>
+      <div class="k-w" data-k="1">Im Team.</div>
+      <div class="k-w lime-t" data-k="2">Mit Sinn.</div>
+      <div class="k-b">
+        <div class="k-w2" data-k="3">Führerschein drin.</div>
+        <div class="k-w2" data-k="4">Bagger statt Büro.</div>
+        <div class="k-w2" data-k="5">Feste Crew.</div>
+        <div class="k-w2" data-k="6">Feierabend um vier.</div>
+      </div>
+      <a class="btn lime k-cta" href="#bewerben">In 60 Sekunden bewerben</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8 BEWERBEN (Swipe) -->
+<section class="sec green" id="bewerben">
+  <div class="wrap bw">
+    <div>
+      <p class="eyebrow">Bewerben</p>
+      <h2 class="big">Dein Traumjob.<br><span class="lime-t">60 Sekunden.</span></h2>
+      <p class="lead">Kein Anschreiben, kein Lebenslauf. Drei Fragen, deine Nummer, fertig. Wir rufen dich zurück.</p>
+      <div class="bw-bar"><i></i></div>
+    </div>
+    <div class="phone bw-phone">
+      <div class="ph-screen bw-screen">
+        <div class="bw-top"><span class="bw-clock"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"/><circle class="bw-ring" cx="18" cy="18" r="15"/></svg><b>60</b></span><span class="bw-n">1 / 4</span></div>
+        <div class="bw-cards"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 BEWERTUNGEN -->
+<section class="sec light" id="bewertungen">
+  <div class="wrap rv">
+    <p class="eyebrow">Bewertungen</p>
+    <div class="rv-top">
+      <div class="rv-stars" aria-label="Sterne-Animation, Beispiel"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="rv-src"><b>Google-Bewertungen</b><span>Hier zählt Ihre echte Note hoch, mit Anzahl, Link und Stand-Datum.</span></div>
+    </div>
+    <div class="rv-cards">
+      <article class="rv-card on"><p>„Bagger um sieben da, Rasen um fünf fertig. Und die Einfahrt war sauberer als vorher.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
+      <article class="rv-card"><p>„Angebot kam per Foto am nächsten Tag. Kein Termin, kein Warten.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
+      <article class="rv-card"><p>„Die Terrasse liegt seit drei Wintern bombenfest. Man sieht, dass unten ordentlich gearbeitet wurde.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
+    </div>
+  </div>
+  <div class="tick"><div>Pünktlich · Saubere Baustelle · Angebot per Foto · Feste Ansprechpartner · Rollrasen an einem Tag · Frostsicherer Unterbau · Pflege-Abo · Winterdienst · </div><div aria-hidden="true">Pünktlich · Saubere Baustelle · Angebot per Foto · Feste Ansprechpartner · Rollrasen an einem Tag · Frostsicherer Unterbau · Pflege-Abo · Winterdienst · </div></div>
+  <div class="tick rev"><div>Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · </div><div aria-hidden="true">Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · </div></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap ft">
+    <div><div class="logo big-logo">WURZELWERK</div><p>Garten- und Landschaftsbau<br>Musterstraße 1 · 12345 Musterstadt</p></div>
+    <div class="ft-links"><a href="#leistungen">Leistungen</a><a href="#planer">Gartenplaner</a><a href="#karriere">Karriere</a><a href="#bewertungen">Bewertungen</a><a href="#" data-open="impressum">Impressum</a><a href="#" data-open="impressum">Datenschutz</a></div>
+    <button class="btn lime" data-open="anfrage">Garten anfragen</button>
+  </div>
+  <p class="ft-demo">Demo von PROJEKT EX · erfundener Betrieb, alle Bilder generiert</p>
+</footer>
+
+<dialog id="m-anfrage" class="modal">
+  <form method="dialog">
+    <button class="x" value="x" aria-label="Schließen">×</button>
+    <h3>Garten anfragen</h3>
+    <p class="m-plan" hidden></p>
+    <label>Name<input name="n" autocomplete="name" required></label>
+    <label>Telefon oder E-Mail<input name="k" autocomplete="email" required></label>
+    <label>Was ist geplant?<textarea name="t" rows="3"></textarea></label>
+    <button class="btn lime" value="ok">Absenden</button>
+    <small>Demo: Es wird nichts gesendet.</small>
+  </form>
+</dialog>
+<dialog id="m-impressum" class="modal">
+  <form method="dialog"><button class="x" value="x" aria-label="Schließen">×</button><h3>Impressum</h3><p>Demo-Webseite eines erfundenen Betriebs. Kein echtes Unternehmen, keine echten Daten.</p></form>
+</dialog>
+<div class="toast" role="status" hidden></div>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -3,3 +3,4 @@ node_modules/
 assets-roh/
 *.mov
 .DS_Store
+.assets-cache.json
