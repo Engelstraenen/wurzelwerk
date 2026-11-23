@@ -28,10 +28,12 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 (folgt mit dem ersten Code)
 
 ## 8. Offene Fragen
-- Wahl der Variante: WWSB-1 Zeitraffer, WWSB-2 Unterbau, WWSB-3 Rollrasen (konzepte/).
+- Wahl Mix A „Ein Garten“ oder Mix B „Rasen zuerst“ (konzepte/mix-a-*, mix-b-*); passt keiner → nur Storyboard 3.
 
 ## 9. Entschieden
 - 23.11.2026: Name WURZELWERK (Annahme), 3 Storyboard-Varianten in Arbeit.
+- 23.11.2026 (Eugen): Mix aus 1 Zeitraffer + 3 Rollrasen. Sieht der Mix nicht gut aus → nur 3. Look-Basis = 3 (Tannengrün/Off-White/Limette).
+- 23.11.2026: Bewertungen ohne erfundene Note; echte Werte erst bei echtem Kunden.
 
 ## 10. Ablage
 Code: Dropbox/CLAUDE/Projekte/WURZELWERK · Storyboards: konzepte/
