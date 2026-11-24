@@ -107,13 +107,13 @@ a { color: inherit; }
 .stars i { width: 30px; height: 30px; background: rgba(var(--tx-rgb), .35); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); position: relative; overflow: hidden; }
 .stars i::after { content: ""; position: absolute; inset: 0; background: var(--or); transform: scaleX(var(--f, 0)); transform-origin: left; }
 .rnote { margin: 0 0 24px; font-size: 14px; color: var(--mute); text-shadow: 0 1px 10px rgba(0,0,0,.6); }
-.quotes { position: relative; width: 100%; min-height: 240px; }
+.quotes { position: relative; width: 100%; min-height: 330px; }
 .q { position: absolute; margin: 0; width: min(330px, 42%); padding: 22px 24px; border-radius: 18px; background: rgba(var(--or-rgb), .94); color: var(--on-or); text-align: left; box-shadow: 0 20px 50px rgba(0,0,0,.25); opacity: 0; transition: opacity .8s, transform .8s; transform: translateY(16px) rotate(var(--r, 0deg)); }
 .q.on { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)); }
 .q:nth-child(1) { left: 0; top: 0; --r: -2deg; }
 .q:nth-child(2) { right: 0; top: 0; --r: 2deg; }
-.q:nth-child(3) { left: 2%; top: 130px; --r: 1.5deg; }
-.q:nth-child(4) { right: 2%; top: 130px; --r: -1.5deg; }
+.q:nth-child(3) { left: 4%; top: 175px; --r: 1.5deg; }
+.q:nth-child(4) { right: 4%; top: 175px; --r: -1.5deg; }
 .q blockquote { margin: 0 0 10px; font: 400 18px/1.35 G, sans-serif; }
 .q figcaption { font-size: 14px; opacity: .75; }
 
@@ -186,7 +186,7 @@ a { color: inherit; }
   .kontakt .row { min-height: 46px; margin-top: 6px; }
   .fw { grid-template-columns: 1fr; gap: 26px; }
 }
-@media (max-width: 420px) { .swipe { display: none; } }
+
 @media (max-width: 900px) and (max-height: 520px) {
   /* Handy quer: Text links, Bild rechts frei */
   .sun { height: 52px; width: 44vw; top: calc(var(--demo-h) + 6px); }
@@ -217,4 +217,9 @@ a { color: inherit; }
   .kontakt .row { min-height: 44px; margin-top: 4px; }
   .kontakt .ct { display: none; }
   .side, .swipe { bottom: 14px; }
+}
+@media (max-width: 900px) and (min-height: 521px) and (max-height: 780px) {
+  #s8 .sub, #s2 .sub { display: none; }
+  .kontakt .ct { font-size: 22px; }
+  .kontakt .row { min-height: 44px; }
 }
