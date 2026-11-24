@@ -26,8 +26,8 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 
 ## 7. Befehle
 - Vorschau: `python3 tools/serve.py 4430` → http://127.0.0.1:4430/ (Port 4430, vorher `<title>` per curl prüfen)
-- Bilder bauen: `python3 tools/assets.py` (Quellen assets-roh/4k/WW-*.png, Cache)
-- Prüfen: `python3 tools/check.py http://127.0.0.1:4430/ <ordner> 1440x900 zeitraffer:0,rasen:.4` (+ 390x844, 360x740, 430x932, 844x390)
+- Bilder bauen: `python3 tools/rund_img.py` (Quellen assets-roh/4k/WWR-P*.png, Cache; Handy = Hochformat-Ausschnitt)
+- Prüfen: `python3 tools/check.py http://127.0.0.1:4430/ <ordner> 1440x900 s1:0,s3:.2,s7:.3` (+ 390x844, 360x740, 430x932, 844x390)
 - Veröffentlichen: `git subtree split --prefix site -b gh-pages-tmp && git push -f origin gh-pages-tmp:gh-pages`
 
 ## 8. Offene Fragen
@@ -41,6 +41,7 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 
 - 24.11.2026: Video-Drafts auf Dreamina Seedance 2.5 Unlimited (Masterfile V2.45). Z1 Zeitraffer (Start F1 + Ende F5, 8 s) und K1 Karriere (8 s) eingebaut; K1b-Variante gegen Rollen-Morph läuft.
 - 24.11.2026 (Eugen): Karriere-Film = Version 28 (K1b, Gesichter im Bild, Rolle rollt ohne Sprung aus), eingebaut.
+- 24.11.2026 (Hauptsitzung + Eugen): Standard-Schema weg. 3 Storyboards (37 Jahresuhr, 38 Rundgang, 39 Abreißkalender), Eugen wählt **2 Rundgang um den Baum**: Scrollen = Kamera kreist um den alten Apfelbaum, 8 Haltepunkte (N-Frühling, O-Frühling/Neuanlage, Angebot per Foto, S-Sommer, Bewertungen unterm Baum, W-Herbst, Karriere am Stamm, N-Winter/Kontakt). Navigation = Sonnenbahn oben (Punkt wandert, Jahreszeiten anklickbar) + Kompass. Farbwelt Olive #2f3a24 + Rosé #e8b4b0. Alte Seite (Zeitraffer, Rollrasen, Planer …) nur noch in Git-Historie. Dateien: site/index.html, assets/css/rund.css, assets/js/rund.js, Bilder tools/rund_img.py (WWR-P1…P8, GPT Image 2 4K = 3584×2016, Edits mit P1-Referenz).
 
 ## 10. Ablage
 Code: Dropbox/CLAUDE/Projekte/WURZELWERK · Storyboards: konzepte/

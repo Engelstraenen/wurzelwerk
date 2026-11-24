@@ -3,254 +3,209 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>WURZELWERK · Garten- und Landschaftsbau</title>
-<meta name="description" content="Demo-Webseite für einen Garten- und Landschaftsbaubetrieb: Zeitraffer, Rollrasen, Gartenplaner, Angebot per Foto, Bewerbung in 60 Sekunden.">
-<meta name="theme-color" content="#0e2a1d">
+<title>WURZELWERK · Ein Baum. Vier Seiten. Ein Jahr.</title>
+<meta name="description" content="Demo-Webseite für einen Garten- und Landschaftsbaubetrieb: ein Rundgang um einen Baum durch das ganze Gartenjahr.">
+<meta name="theme-color" content="#2f3a24">
 <link rel="preload" href="assets/fonts/grotesk.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/img.js"></script>
-<script src="assets/js/vid.js"></script>
+<link rel="stylesheet" href="assets/css/rund.css">
 </head>
 <body>
 
-<div class="demo">Demo-Webseite<span class="long">&nbsp;· erfundener Betrieb · Formulare senden nichts</span> <span class="for" data-firma-wrap>· erstellt für <b data-firma></b></span></div>
+<div class="demo">Demo-Webseite<span class="long">&nbsp;· erfundener Betrieb · Formulare senden nichts</span><span class="for" hidden>&nbsp;· erstellt für <b data-firma></b></span></div>
 
 <header class="nav">
-  <a class="logo" href="#top" aria-label="WURZELWERK Startseite">WURZELWERK<small>Garten- und Landschaftsbau</small></a>
-  <nav class="links" aria-label="Hauptmenü">
-    <a href="#zeitraffer">Zeitraffer</a>
-    <a href="#leistungen">Leistungen</a>
-    <a href="#planer">Gartenplaner</a>
-    <a href="#angebot">Angebot per Foto</a>
-    <a href="#karriere">Karriere</a>
-    <a href="#bewertungen">Bewertungen</a>
-  </nav>
-  <button class="btn lime sm" data-open="anfrage">Garten anfragen</button>
+  <a class="logo" href="#s1" aria-label="WURZELWERK, zum Anfang">WURZELWERK<small>Garten &amp; Landschaft</small></a>
   <button class="burger" aria-label="Menü öffnen" aria-expanded="false"><i></i><i></i></button>
 </header>
-<nav class="menu" aria-label="Menü">
-  <a href="#zeitraffer">Zeitraffer</a><a href="#rasen">Rollrasen</a><a href="#leistungen">Leistungen</a><a href="#vorher">Vorher / Nachher</a><a href="#planer">Gartenplaner</a><a href="#angebot">Angebot per Foto</a><a href="#karriere">Karriere</a><a href="#bewerben">Bewerben</a><a href="#bewertungen">Bewertungen</a>
-  <button class="btn lime" data-open="anfrage">Garten anfragen</button>
+
+<nav class="menu" aria-label="Hauptmenü">
+  <a href="#s2" data-go="1"><small>Frühling</small>Neu anlegen</a>
+  <a href="#s3" data-go="2"><small>Frühling</small>Angebot per Foto</a>
+  <a href="#s4" data-go="3"><small>Sommer</small>Rasen &amp; Pflege</a>
+  <a href="#s5" data-go="4"><small>Sommer</small>Bewertungen</a>
+  <a href="#s6" data-go="5"><small>Herbst</small>Gehölzschnitt</a>
+  <a href="#s7" data-go="6"><small>Herbst</small>Ausbildung &amp; Jobs</a>
+  <a href="#s8" data-go="7"><small>Winter</small>Planung &amp; Kontakt</a>
 </nav>
-<div class="dots" aria-hidden="true"></div>
 
-<main id="top">
+<!-- Sonnenbahn = Navigation durch das Jahr -->
+<div class="sun" aria-label="Jahreszeiten">
+  <svg viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
+    <path id="arc" d="M 40 138 Q 500 -30 960 138" fill="none" />
+    <path id="arcOn" d="M 40 138 Q 500 -30 960 138" fill="none" />
+  </svg>
+  <button class="sl" data-go="1" style="--x:18%;--y:62%">Frühling</button>
+  <button class="sl" data-go="3" style="--x:39%;--y:24%">Sommer</button>
+  <button class="sl" data-go="5" style="--x:61%;--y:24%">Herbst</button>
+  <button class="sl" data-go="7" style="--x:82%;--y:62%">Winter</button>
+  <i class="dot"></i>
+</div>
 
-<!-- 1 ZEITRAFFER (Film, Scrollen spult) -->
-<section class="ch film op" id="zeitraffer" style="--h:400vh">
-  <div class="stage">
-    <div class="media op-media">
-      <img class="still" data-img="o0-vorher" alt="Verwilderter Garten neben einem modernen Haus, vor der Arbeit">
-      <img class="still" data-img="o1-aushub" alt="Derselbe Garten ausgehoben, Schnurgerüst gespannt">
-      <img class="still" data-img="o2-unterbau" alt="Verdichteter Schotter-Unterbau">
-      <img class="still" data-img="o3-pflaster" alt="Fertige Natursteinterrasse, Boden bereit für Rollrasen">
-      <img class="still" data-img="o4-nachher" alt="Fertiger Garten zur blauen Stunde mit Licht">
-      <video class="vid" data-src="assets/vid/w1" data-key="w1" muted playsinline preload="auto"></video>
-      <video class="vid" data-src="assets/vid/w2" data-key="w2" muted playsinline preload="auto"></video>
-      <video class="vid" data-src="assets/vid/w3" data-key="w3" muted playsinline preload="metadata"></video>
-      <video class="vid" data-src="assets/vid/w4" data-key="w4" muted playsinline preload="metadata"></video>
-    </div>
+<main id="rund">
+  <div class="stage" aria-hidden="true">
+    <div class="pic" data-i="0"></div><div class="pic" data-i="1"></div><div class="pic" data-i="2"></div><div class="pic" data-i="3"></div>
+    <div class="pic" data-i="4"></div><div class="pic" data-i="5"></div><div class="pic" data-i="6"></div><div class="pic" data-i="7"></div>
     <div class="shade"></div>
-    <h1 class="op-h op-vor">Vorher.</h1>
-    <div class="op-tag"><b>1</b><span>Aushub</span></div>
-    <div class="op-tag"><b>2</b><span>Unterbau</span></div>
-    <div class="op-tag"><b>3</b><span>Pflaster</span></div>
-    <h2 class="op-h op-nach">Nachher.</h2>
-    <div class="op-cta"><p>In 14 Tagen vom Acker zum Garten</p><button class="btn lime" data-open="anfrage">Garten anfragen <span aria-hidden="true">→</span></button></div>
-    <div class="zr-bar"><i></i><span class="zr-pct">0 %</span></div>
-    <div class="scroll-hint">Scrollen</div>
+    <div class="compass"><b>N</b><span class="needle"></span></div>
   </div>
-</section>
 
-<!-- 2 ROLLRASEN (Motion) -->
-<section class="ch" id="rasen" style="--h:340vh">
-  <div class="stage rs">
-    <img class="rs-soil" data-img="r1-erde" alt="">
-    <div class="rs-strip"><img data-img="r2-rasen" alt=""></div>
-    <h2 class="rs-h2">Über Nacht grün.</h2>
-    <img class="rs-roll" data-img="r3-rolle" data-png alt="">
-    <h2 class="rs-h1">Deine Oase.</h2>
-    <div class="rs-end">
-      <img data-img="r4-hand" alt="Handschuh drückt die Naht zwischen zwei Rasenbahnen an">
-      <div class="rs-cta">
-        <p class="eyebrow">Rollrasen · Pflaster · Mauern · Pflege</p>
-        <h2>Morgens Baustelle.<br>Abends Garten.</h2>
-        <div class="row"><button class="btn ghost" data-open="anfrage">Termin</button><a class="btn lime" href="#planer">Garten planen</a></div>
-      </div>
+  <!-- 8 Haltepunkte; jeder ist eine Szene im Rundgang -->
+  <section class="stop" id="s1" data-side="Nordseite · März">
+    <div class="txt">
+      <h1 class="h">Ein Baum.<br>Vier Seiten.<br>Ein Jahr.</h1>
+      <p class="sub">Ein Garten. Echte Veränderung. Gehen Sie einmal um den Baum und sehen Sie, was entsteht.</p>
+      <a class="btn" href="#s2" data-go="1">Rundgang starten <span class="ar">↓</span></a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 3 LEISTUNGEN als Rasenstreifen -->
-<section class="sec dark" id="leistungen">
-  <div class="wrap">
-    <p class="eyebrow">Leistungen</p>
-    <h2 class="big">Alles aus einer Hand.<br><span class="lime-t">Vom Aushub bis zur Pflege.</span></h2>
-  </div>
-  <div class="strips">
-    <button class="strip" data-need="s1-pflaster"><img data-img="s1-pflaster" alt=""><span class="lbl">Pflaster</span><span class="txt">Terrassen, Wege, Einfahrten. Mit frostsicherem Unterbau, damit nichts absackt.</span></button>
-    <button class="strip" data-need="s2-rasen"><img data-img="s2-rasen" alt=""><span class="lbl">Rasen</span><span class="txt">Rollrasen an einem Tag, Fertigrasen statt Wartezeit. Boden vorbereitet, Bahnen dicht.</span></button>
-    <button class="strip" data-need="s3-mauern"><img data-img="s3-mauern" alt=""><span class="lbl">Mauern</span><span class="txt">Naturstein, Gabionen, Hochbeete. Mit Steinzange, Schnur und Wasserwaage gesetzt.</span></button>
-    <button class="strip" data-need="s4-bewaesserung"><img data-img="s4-bewaesserung" alt=""><span class="lbl">Bewässerung</span><span class="txt">Versenkregner und Tropfschlauch, per App gesteuert. Der Rasen bleibt grün, auch im August.</span></button>
-    <button class="strip" data-need="s5-pflege"><img data-img="s5-pflege" alt=""><span class="lbl">Pflege</span><span class="txt">Pflege-Abo übers Jahr: Hecke, Rasen, Laub, Winterdienst. Ein Ansprechpartner.</span></button>
-  </div>
-</section>
-
-<!-- 4 VORHER / NACHHER -->
-<section class="sec light" id="vorher">
-  <div class="wrap">
-    <p class="eyebrow">Vorher / Nachher</p>
-    <h2 class="big ink">Ziehen. Staunen.</h2>
-  </div>
-  <div class="ba" data-need="v0-vorher">
-    <img class="ba-b" data-img="v1-nachher" alt="Vorgarten nachher: Plattenweg, Rasen, Hecken">
-    <div class="ba-a"><img data-img="v0-vorher" alt="Derselbe Vorgarten vorher: matschig und kahl"></div>
-    <span class="ba-l">Vorher</span><span class="ba-r">Nachher</span>
-    <input class="ba-in" type="range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Regler">
-    <span class="ba-h" aria-hidden="true"><i></i></span>
-    <span class="ba-tag" aria-hidden="true">Vorher / Nachher</span>
-  </div>
-</section>
-
-<!-- 5 GARTENPLANER (aus Storyboard 2) -->
-<section class="sec paper" id="planer">
-  <div class="wrap pl">
-    <div class="pl-side">
-      <p class="eyebrow">Gartenplaner</p>
-      <h2 class="big ink">Plan dir deinen Garten.</h2>
-      <p class="lead">Ziehe Elemente auf den Grundriss. Wir sehen sofort, was du willst, und melden uns mit einem Vorschlag.</p>
-      <div class="pl-tools" aria-label="Elemente">
-        <button class="pt" data-t="terrasse" data-w="5" data-h="4">Terrasse</button>
-        <button class="pt" data-t="rasen" data-w="8" data-h="6">Rasen</button>
-        <button class="pt" data-t="hochbeet" data-w="3" data-h="1">Hochbeet</button>
-        <button class="pt" data-t="weg" data-w="1" data-h="6">Weg</button>
-        <button class="pt" data-t="teich" data-w="3" data-h="2">Teich</button>
-        <button class="pt" data-t="baum" data-w="2" data-h="2">Baum</button>
-      </div>
-      <p class="hint">Tippen fügt hinzu · ziehen verschiebt · Doppeltipp entfernt</p>
-    </div>
-    <div class="pl-board">
-      <div class="pl-dim pl-dw">16 m</div><div class="pl-dim pl-dh">10 m</div>
-      <div class="pl-plan" aria-label="Grundriss 16 mal 10 Meter"><div class="pl-house">Haus</div></div>
-      <div class="pl-foot">
-        <div><small>Fläche geplant</small><b><span class="pl-m2">0</span> m²</b></div>
-        <div class="pl-list"></div>
-        <button class="btn ink" data-open="anfrage" data-plan>Plan senden</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 6 ANGEBOT PER FOTO -->
-<section class="sec dark" id="angebot">
-  <div class="wrap af">
-    <div>
-      <p class="eyebrow">Angebot per Foto</p>
-      <h2 class="big">Foto schicken.<br><span class="lime-t">Keine Besichtigung nötig.</span></h2>
-      <ol class="af-steps">
-        <li><b>1</b> Foto vom Garten machen</li>
-        <li><b>2</b> Ecken der Fläche antippen</li>
-        <li><b>3</b> Rückmeldung in 24 Stunden</li>
+  <section class="stop" id="s2" data-side="Ostseite · April">
+    <div class="txt">
+      <p class="eye">Frühling</p>
+      <h2 class="h">Frühling.<br>Neu anlegen.</h2>
+      <p class="sub">Solide Grundlagen. Schöner wohnen.</p>
+      <ol class="steps">
+        <li><b>Aushub</b><span>Minibagger statt Schaufel, Boden raus, Höhen genau.</span></li>
+        <li><b>Unterbau</b><span>Schotter in Lagen, jede Lage verdichtet mit der Rüttelplatte.</span></li>
+        <li><b>Schnurgerüst</b><span>Gespannte Schnüre geben Gefälle und Kanten vor.</span></li>
+        <li><b>Terrasse</b><span>Großformat-Platten, verlegt mit Zange und Fugenkreuz.</span></li>
       </ol>
-      <p class="hint">Zieh die Ecken im Handy, die Fläche rechnet sich live.</p>
     </div>
-    <div class="phone af-phone">
-      <div class="ph-screen">
-        <img data-img="p1-handyfoto" alt="Handyfoto eines Gartens">
-        <svg class="af-svg" viewBox="0 0 100 178" preserveAspectRatio="none"><polygon class="af-poly" points="18,96 82,92 92,150 8,154"/></svg>
-        <div class="af-m2"><b>0</b> m²</div>
-        <button class="btn lime af-send" data-open="anfrage">Foto senden</button>
-        <small class="af-note">Keine Besichtigung nötig</small>
+  </section>
+
+  <section class="stop right" id="s3" data-side="Unter der Blüte · Mai">
+    <div class="card rose" id="angebot">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      <h2 class="ct">Foto schicken,<br>wir rechnen den Plan.</h2>
+      <p>Ein Foto von der Ecke, die schöner werden soll. Dazu die grobe Fläche. Wir melden uns mit einem Vorschlag, oft ohne Besichtigung.</p>
+      <form class="mini" data-demo="Demo: Ihr Foto wäre jetzt beim Team. Vorschlag in 48 Stunden.">
+        <label class="file"><input type="file" accept="image/*" capture="environment"><span>Foto wählen</span></label>
+        <label class="rng">Fläche <output>36</output> m²<input type="range" min="5" max="300" value="36" step="1" aria-label="Fläche in Quadratmetern"></label>
+        <button class="btn ink" type="submit">Jetzt Angebot anfordern</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="stop" id="s4" data-side="Südseite · Juli">
+    <div class="txt">
+      <p class="eye">Sommer</p>
+      <h2 class="h">Sommer.<br>Gepflegt,<br>nicht geplagt.</h2>
+      <ul class="kin">
+        <li>Rollrasen über Nacht.</li>
+        <li>Bewässerung, die mitdenkt.</li>
+        <li>Pflege im Abo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="stop wide" id="s5" data-side="Unter dem Baum · August">
+    <div class="rev" id="bewertungen">
+      <h2 class="ct">Google Bewertungen</h2>
+      <div class="stars" aria-label="Sterne füllen sich"><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="rnote">Note, Anzahl und Link kommen live aus dem Google-Profil des Betriebs.</p>
+      <div class="quotes">
+        <figure class="q"><blockquote>Von der Planung bis zur letzten Platte alles aus einer Hand. Und sauber hinterlassen.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+        <figure class="q"><blockquote>Das Foto geschickt, zwei Tage später lag der Plan im Postfach.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+        <figure class="q"><blockquote>Der Rasen kam morgens, abends haben wir darauf gegessen.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+        <figure class="q"><blockquote>Endlich Profis, die mitdenken und pünktlich sind.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 7 KARRIERE (Film/Foto + Kinetik-Typo) -->
-<section class="ch film" id="karriere" style="--h:420vh">
-  <div class="stage">
-    <div class="media"><img class="still" data-img="k1-karriere" alt="Zwei junge Landschaftsgärtner tragen lachend eine Rasenrolle"><video class="vid" data-src="assets/vid/karriere" data-key="karriere" muted playsinline preload="auto"></video></div>
-    <div class="shade side"></div>
-    <div class="kin">
-      <p class="eyebrow">Karriere</p>
-      <div class="k-w" data-k="0">Draußen.</div>
-      <div class="k-w" data-k="1">Im Team.</div>
-      <div class="k-w lime-t" data-k="2">Mit Sinn.</div>
-      <div class="k-b">
-        <div class="k-w2" data-k="3">Führerschein drin.</div>
-        <div class="k-w2" data-k="4">Bagger statt Büro.</div>
-        <div class="k-w2" data-k="5">Feste Crew.</div>
-        <div class="k-w2" data-k="6">Feierabend um vier.</div>
-      </div>
-      <a class="btn lime k-cta" href="#bewerben">In 60 Sekunden bewerben</a>
+  <section class="stop" id="s6" data-side="Westseite · Oktober">
+    <div class="txt">
+      <p class="eye">Herbst</p>
+      <h2 class="h">Herbst.<br>Komm ins Team.</h2>
+      <p class="sub">Gehölzschnitt, Laub, Winterfest machen. Jetzt beginnt die beste Zeit, bei uns anzufangen.</p>
+      <button class="btn" data-open="bewerbung">60-Sekunden-Bewerbung</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- 8 BEWERBEN (Swipe) -->
-<section class="sec green" id="bewerben">
-  <div class="wrap bw">
-    <div>
-      <p class="eyebrow">Bewerben</p>
-      <h2 class="big">Dein Traumjob.<br><span class="lime-t">60 Sekunden.</span></h2>
-      <p class="lead">Kein Anschreiben, kein Lebenslauf. Drei Fragen, deine Nummer, fertig. Wir rufen dich zurück.</p>
-      <div class="bw-bar"><i></i></div>
+  <section class="stop" id="s7" data-side="Am Stamm · November">
+    <div class="txt">
+      <p class="eye">Ausbildung &amp; Jobs</p>
+      <ul class="big-kin" aria-label="Was wir bieten">
+        <li>Führerschein.</li>
+        <li>Feste Crew.</li>
+        <li>Draußen.</li>
+      </ul>
+      <p class="sub">Wir suchen Menschen, die anpacken und bleiben wollen. Ausbildung Gärtner/in Garten- und Landschaftsbau, Quereinstieg, Vorarbeiter.</p>
+      <button class="btn" data-open="bewerbung">Mehr über uns · bewerben</button>
     </div>
-    <div class="phone bw-phone">
-      <div class="ph-screen bw-screen">
-        <div class="bw-top"><span class="bw-clock"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15"/><circle class="bw-ring" cx="18" cy="18" r="15"/></svg><b>60</b></span><span class="bw-n">1 / 4</span></div>
-        <div class="bw-cards"></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- 9 BEWERTUNGEN -->
-<section class="sec light" id="bewertungen">
-  <div class="wrap rv">
-    <p class="eyebrow">Bewertungen</p>
-    <div class="rv-top">
-      <div class="rv-stars" aria-label="Sterne-Animation, Beispiel"><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="rv-src"><b>Google-Bewertungen</b><span>Hier zählt Ihre echte Note hoch, mit Anzahl, Link und Stand-Datum.</span></div>
+  <section class="stop" id="s8" data-side="Nordseite · Januar">
+    <div class="txt">
+      <p class="eye">Winter</p>
+      <h2 class="h">Winter.<br>Wir planen<br>Ihren Frühling.</h2>
+      <p class="sub">Pflaster, Mauern, Wege: Im Winter wird geplant, damit im März der Bagger kommt.</p>
     </div>
-    <div class="rv-cards">
-      <article class="rv-card on"><p>„Bagger um sieben da, Rasen um fünf fertig. Und die Einfahrt war sauberer als vorher.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
-      <article class="rv-card"><p>„Angebot kam per Foto am nächsten Tag. Kein Termin, kein Warten.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
-      <article class="rv-card"><p>„Die Terrasse liegt seit drei Wintern bombenfest. Man sieht, dass unten ordentlich gearbeitet wurde.“</p><small>Beispiel · noch keine echte Bewertung</small></article>
+    <div class="card rose kontakt" id="kontakt">
+      <h2 class="ct">Lassen Sie uns etwas Schönes entstehen.</h2>
+      <button class="row" data-open="anfrage"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="1.5"/></svg>Planungstermin vereinbaren</button>
+      <a class="row" href="tel:+490000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Telefon (Demo)</a>
+      <a class="row" href="mailto:demo@example.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>E-Mail (Demo)</a>
     </div>
-  </div>
-  <div class="tick"><div>Pünktlich · Saubere Baustelle · Angebot per Foto · Feste Ansprechpartner · Rollrasen an einem Tag · Frostsicherer Unterbau · Pflege-Abo · Winterdienst · </div><div aria-hidden="true">Pünktlich · Saubere Baustelle · Angebot per Foto · Feste Ansprechpartner · Rollrasen an einem Tag · Frostsicherer Unterbau · Pflege-Abo · Winterdienst · </div></div>
-  <div class="tick rev"><div>Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · </div><div aria-hidden="true">Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · Google · Häufig erwähnt: Sauberkeit · Termintreue · Beratung · Preis-Leistung · </div></div>
-</section>
-
+  </section>
 </main>
 
+<div class="side" aria-live="polite"><span class="sideTxt"></span></div>
+<div class="swipe" aria-hidden="true">Wischen und den ganzen Garten entdecken <span>←→</span></div>
+
 <footer class="foot">
-  <div class="wrap ft">
-    <div><div class="logo big-logo">WURZELWERK</div><p>Garten- und Landschaftsbau<br>Musterstraße 1 · 12345 Musterstadt</p></div>
-    <div class="ft-links"><a href="#leistungen">Leistungen</a><a href="#planer">Gartenplaner</a><a href="#karriere">Karriere</a><a href="#bewertungen">Bewertungen</a><a href="#" data-open="impressum">Impressum</a><a href="#" data-open="impressum">Datenschutz</a></div>
-    <button class="btn lime" data-open="anfrage">Garten anfragen</button>
+  <div class="fw">
+    <div><b class="logo">WURZELWERK</b><p>Garten- und Landschaftsbau. Ein Baum, vier Seiten, ein Jahr: so arbeiten wir das ganze Jahr für Ihren Garten.</p></div>
+    <div><small>Leistungen</small><p>Neuanlage · Terrassen &amp; Pflaster · Mauern · Rollrasen · Bewässerung · Gehölzschnitt · Pflege-Abo · Winterdienst</p></div>
+    <div><small>Kontakt</small><p><button class="lnk" data-open="anfrage">Planungstermin anfragen</button><br><button class="lnk" data-open="bewerbung">Bewerben in 60 Sekunden</button><br><button class="lnk" data-open="impressum">Impressum &amp; Datenschutz</button></p></div>
   </div>
-  <p class="ft-demo">Demo von PROJEKT EX · erfundener Betrieb, alle Bilder generiert</p>
+  <p class="fine">Demo-Webseite · erfundener Betrieb · keine echten Kontaktdaten · Formulare senden nichts</p>
 </footer>
 
 <dialog id="m-anfrage" class="modal">
-  <form method="dialog">
+  <form method="dialog" data-demo="Demo: Anfrage wäre jetzt beim Team. Rückmeldung in 24 Stunden.">
     <button class="x" value="x" aria-label="Schließen">×</button>
-    <h3>Garten anfragen</h3>
-    <p class="m-plan" hidden></p>
-    <label>Name<input name="n" autocomplete="name" required></label>
-    <label>Telefon oder E-Mail<input name="k" autocomplete="email" required></label>
-    <label>Was ist geplant?<textarea name="t" rows="3"></textarea></label>
-    <button class="btn lime" value="ok">Absenden</button>
-    <small>Demo: Es wird nichts gesendet.</small>
+    <p class="eye">Planungstermin</p>
+    <h2 class="ct">Was soll im Frühling entstehen?</h2>
+    <div class="chips" role="group" aria-label="Wunsch">
+      <label><input type="checkbox"><span>Terrasse</span></label><label><input type="checkbox"><span>Rasen</span></label><label><input type="checkbox"><span>Mauer</span></label>
+      <label><input type="checkbox"><span>Wege</span></label><label><input type="checkbox"><span>Bepflanzung</span></label><label><input type="checkbox"><span>Pflege</span></label>
+    </div>
+    <label class="fld">Name<input autocomplete="name" required></label>
+    <label class="fld">Telefon oder E-Mail<input autocomplete="email" required></label>
+    <button class="btn ink" value="ok">Termin anfragen</button>
   </form>
 </dialog>
-<dialog id="m-impressum" class="modal">
-  <form method="dialog"><button class="x" value="x" aria-label="Schließen">×</button><h3>Impressum</h3><p>Demo-Webseite eines erfundenen Betriebs. Kein echtes Unternehmen, keine echten Daten.</p></form>
-</dialog>
-<div class="toast" role="status" hidden></div>
 
-<script src="assets/js/app.js"></script>
+<dialog id="m-bewerbung" class="modal">
+  <form method="dialog" class="swipe-app" data-demo="Demo: Bewerbung wäre jetzt beim Team. Wir rufen innerhalb von 24 Stunden an.">
+    <button class="x" value="x" aria-label="Schließen">×</button>
+    <div class="bar"><i></i></div>
+    <div class="cards">
+      <fieldset class="sc on"><legend class="ct">Was fährst du?</legend>
+        <label class="opt"><input type="radio" name="f" value="b"><span>Auto (B)</span></label>
+        <label class="opt"><input type="radio" name="f" value="be"><span>Mit Anhänger (BE)</span></label>
+        <label class="opt"><input type="radio" name="f" value="k"><span>Noch nichts, Führerschein zahlen wir mit</span></label></fieldset>
+      <fieldset class="sc"><legend class="ct">Was passt zu dir?</legend>
+        <label class="opt"><input type="radio" name="a" value="az"><span>Ausbildung</span></label>
+        <label class="opt"><input type="radio" name="a" value="qe"><span>Quereinstieg</span></label>
+        <label class="opt"><input type="radio" name="a" value="pr"><span>Gelernt, mit Erfahrung</span></label></fieldset>
+      <fieldset class="sc"><legend class="ct">Wie erreichen wir dich?</legend>
+        <label class="fld">Vorname<input autocomplete="given-name"></label>
+        <label class="fld">Handynummer<input type="tel" autocomplete="tel"></label>
+        <button class="btn ink" value="ok">Abschicken</button></fieldset>
+    </div>
+    <p class="hint">Antippen geht direkt weiter · keine Unterlagen nötig</p>
+  </form>
+</dialog>
+
+<dialog id="m-impressum" class="modal">
+  <form method="dialog">
+    <button class="x" value="x" aria-label="Schließen">×</button>
+    <h2 class="ct">Impressum &amp; Datenschutz</h2>
+    <p>Dies ist eine Demo-Webseite für einen erfundenen Garten- und Landschaftsbaubetrieb. Es gibt keinen echten Betrieb, keine echten Kontaktdaten, und Formulare senden nichts. Es werden keine Cookies gesetzt und keine Daten übertragen.</p>
+  </form>
+</dialog>
+
+<div class="toast" hidden role="status"></div>
+<script src="assets/js/rund.js"></script>
 </body>
 </html>
