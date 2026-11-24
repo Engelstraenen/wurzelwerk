@@ -3,7 +3,9 @@
 und p#-m.webp (Hochformat-Ausschnitt fürs Handy, volle Höhe). Cache: nur Geändertes neu.
 Start: python3 tools/rund_img.py"""
 import json, os
-from PIL import Image
+from PIL import Image, ImageFilter
+# Masterfile V2.65: lokal nachschärfen vor dem WebP-Export (Originale bleiben unverändert)
+USM = dict(radius=1.6, percent=70, threshold=2)
 
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(R, "assets-roh", "4k")
@@ -17,11 +19,11 @@ for n in range(1, 9):
     src = os.path.join(SRC, "WWR-P%d.png" % n)
     if not os.path.exists(src):
         print("fehlt", n); continue
-    key = "%d|%d|%s" % (os.path.getmtime(src), os.path.getsize(src), CX[n])
+    key = "%d|%d|%s|%s" % (os.path.getmtime(src), os.path.getsize(src), CX[n], USM)
     d, m = os.path.join(OUT, "p%d.webp" % n), os.path.join(OUT, "p%d-m.webp" % n)
     if cache.get(str(n)) == key and os.path.exists(d) and os.path.exists(m):
         continue
-    im = Image.open(src).convert("RGB")
+    im = Image.open(src).convert("RGB").filter(ImageFilter.UnsharpMask(**USM))
     w, h = im.size
     im.save(d, "WEBP", quality=80, method=5)
     cw = int(h * .62); x = int(min(max(CX[n] * w - cw / 2, 0), w - cw))

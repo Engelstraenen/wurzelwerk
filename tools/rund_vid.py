@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rundgang-Clips: assets-roh/vid/WWC<n>.mp4 (Dreamina 720P) -> site/assets/vid/rund/c<n>.mp4 (quer, volle Breite)
+"""Rundgang-Clips (nachgeschärft unsharp=5:5:0.7, Masterfile V2.65): assets-roh/vid/WWC<n>.mp4 (Dreamina 720P) -> site/assets/vid/rund/c<n>.mp4 (quer, volle Breite)
 und c<n>-p.mp4 (Handy hochkant, Ausschnitt in voller Höhe). Kurze GOP (6) für ruckelfreies Scroll-Spulen.
 Nie hochskalieren. Start: python3 tools/rund_vid.py"""
 import os, subprocess
@@ -13,7 +13,7 @@ os.makedirs(OUT, exist_ok=True)
 
 
 def run(src, dst, vf):
-    subprocess.check_call(["ffmpeg", "-y", "-v", "error", "-i", src, "-an", "-vf", vf + ",fps=30,format=yuv420p",
+    subprocess.check_call(["ffmpeg", "-y", "-v", "error", "-i", src, "-an", "-vf", vf + ",unsharp=5:5:0.7,fps=30,format=yuv420p",
                            "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-g", "6", "-keyint_min", "6",
                            "-sc_threshold", "0", "-movflags", "+faststart", dst])
 
