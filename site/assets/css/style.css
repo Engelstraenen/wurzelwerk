@@ -8,7 +8,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { overflow-x: clip; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body { background: var(--fir); color: #fff; font: 400 16px/1.5 I, system-ui, sans-serif; overflow-x: hidden; }
+body { background: var(--fir); color: #fff; font: 400 16px/1.5 I, system-ui, sans-serif; }
 img { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
@@ -107,6 +107,7 @@ h1, h2, h3, .big, .logo, .btn, .k-w, .k-w2, .eyebrow { font-family: G, I, sans-s
 .sec.dark { background: var(--fir); }
 .sec.green { background: var(--fir2); }
 .sec.light { background: var(--off); color: var(--ink); }
+#bewertungen { overflow: hidden; }
 .sec.paper { background: var(--paper); color: var(--ink); }
 
 /* 3 Leistungen */
