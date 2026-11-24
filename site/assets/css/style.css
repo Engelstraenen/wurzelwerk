@@ -267,3 +267,10 @@ h1, h2, h3, .big, .logo, .btn, .k-w, .k-w2, .eyebrow { font-family: G, I, sans-s
 .toast { position: fixed; z-index: 90; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--ink); color: #fff; padding: 14px 20px; border-radius: 14px; font-size: 15px; max-width: calc(100vw - 32px); }
 @media (prefers-reduced-motion: reduce) { .tick div, .scroll-hint { animation: none; } html { scroll-behavior: auto; } }
 .bw-card small, .bw-card p { font-size: 14px; }
+
+.bw-card .opt .ic { width: 26px; height: 26px; fill: none; stroke: var(--fir); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.bw-card .opt.sel .ic { stroke: var(--ink); }
+.bw-pb { margin-top: auto; height: 5px; border-radius: 5px; background: #e6e6df; overflow: hidden; }
+.bw-pb i { display: block; height: 100%; background: var(--lime2); border-radius: 5px; }
+.ba-tag { position: absolute; left: var(--p); bottom: 18px; transform: translateX(-50%); background: var(--lime); color: var(--ink); font: 700 14px I, sans-serif; padding: 6px 14px; border-radius: 99px; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+@media (max-width: 700px) { .ba-tag { bottom: 54px; } }

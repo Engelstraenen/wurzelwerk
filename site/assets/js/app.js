@@ -227,7 +227,10 @@
 
   /* 8 Bewerben in 60 Sekunden */
   var Q = [
-    { h: 'Was fährst du?', o: ['Bagger', 'Radlader', 'Noch nichts'] },
+    { h: 'Was fährst du?', o: ['Bagger', 'Radlader', 'Noch nichts'], ic: [
+      '<path d="M2 19h12M3 21.5h10a1.5 1.5 0 0 0 0-3H3a1.5 1.5 0 0 0 0 3zM4 18v-5h6l1 5M6 13V9h4l1 4M10 11l5-6 5 3-2 4M18 12l2 3h-3"/>',
+      '<circle cx="6" cy="18" r="2.6"/><circle cx="16" cy="18" r="2.6"/><path d="M3 15V9h5l2 4h6v5M8.6 18h4.8M16 13l3-4h2.5v4H19"/>',
+      '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'] },
     { h: 'Azubi oder Profi?', o: ['Ausbildung', 'Schon Profi', 'Quereinstieg'] },
     { h: 'Ab wann?', o: ['Sofort', 'In 3 Monaten', 'Nächstes Ausbildungsjahr'] }
   ];
@@ -236,7 +239,7 @@
     var cards = [], step = 0, left = 60, timer = null;
     Q.forEach(function (q) {
       var c = document.createElement('div'); c.className = 'bw-card';
-      c.innerHTML = '<span class="stamp">OK</span><h4>' + q.h + '</h4>' + q.o.map(function (o) { return '<button class="opt">' + o + '<span>›</span></button>'; }).join('');
+      c.innerHTML = '<span class="stamp">OK</span><h4>' + q.h + '</h4>' + q.o.map(function (o, k) { return '<button class="opt">' + o + (q.ic ? '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">' + q.ic[k] + '</svg>' : '<span>›</span>') + '</button>'; }).join('') + '<div class="bw-pb"><i style="width:' + (cards.length + 1) * 25 + '%"></i></div>';
       cards.push(c);
     });
     var form = document.createElement('form'); form.className = 'bw-card';
