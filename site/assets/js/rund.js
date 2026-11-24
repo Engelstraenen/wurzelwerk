@@ -88,7 +88,9 @@
       var inn = sec.firstChild; inn.style.opacity = vis.toFixed(3); inn.style.visibility = vis < .01 ? 'hidden' : 'visible';
       inn.style.transform = 'translateY(' + ((1 - vis) * 24).toFixed(1) + 'px)';
       var p = i === 0 ? 0 : o.q + (1 - o.enter) * -.2;
-      $$('.steps li', sec).forEach(function (li, k) { li.classList.toggle('on', p >= k * .1 - .04); });
+      var sl2 = $$('.steps li', sec), nowK = -1;
+      sl2.forEach(function (li, k) { var on = p >= k * .1 - .04; li.classList.toggle('on', on); if (on) nowK = k; });
+      sl2.forEach(function (li, k) { li.classList.toggle('now', k === nowK); });
       $$('.kin li', sec).forEach(function (li, k) { show(li, eout(seg(p, -.1 + k * .1, k * .1)), -60, 0); });
       $$('.big-kin li', sec).forEach(function (li, k) { show(li, eout(seg(p, -.12 + k * .12, k * .12 + .02)), -140, 0); });
       $$('.stars i', sec).forEach(function (st, k) { st.style.setProperty('--f', seg(p, -.1 + k * .05, -.04 + k * .05).toFixed(3)); });

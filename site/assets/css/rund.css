@@ -171,7 +171,8 @@ a { color: inherit; }
   .steps { gap: 0; }
   .steps li { padding: 8px 0; }
   .steps b { font-size: 17px; }
-  .steps span { font-size: 14px; }
+  .steps span { font-size: 14px; display: none; }
+  .steps li.now span { display: block; }
   .card { width: 100%; padding: 20px; border-radius: 18px; }
   .card p { font-size: 14px; margin-bottom: 12px; }
   .ct { font-size: 26px; }
@@ -195,7 +196,10 @@ a { color: inherit; }
   .h { font-size: 30px; margin-bottom: 8px; }
   .sub { font-size: 14px; margin-bottom: 10px; }
   .txt { max-width: 52%; }
-  .steps li:not(.on) { display: none; }
+  .steps { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+  .steps li { display: block; border: 0; padding: 2px 0; }
+  .steps li::before { margin-right: 6px; }
+  .steps li.now span { display: none; }
   .card { width: 46%; padding: 14px; }
   .card p, .card .ic { display: none; }
   .ct { font-size: 20px; margin-bottom: 8px; }
