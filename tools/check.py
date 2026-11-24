@@ -20,7 +20,7 @@ with sync_playwright() as p:
     pg = b.new_page(viewport={"width": w, "height": h}, device_scale_factor=1, is_mobile=w < 600, has_touch=w < 600)
     pg.on("console", lambda m: errs.append(m.type + ": " + m.text) if m.type in ("error", "warning") else None)
     pg.on("pageerror", lambda e: errs.append("pageerror: " + str(e)))
-    pg.goto(url, wait_until="networkidle")
+    pg.goto(url, wait_until="domcontentloaded", timeout=60000); pg.wait_for_timeout(1500)
     pg.add_style_tag(content="html{scroll-behavior:auto!important}"); pg.wait_for_timeout(600)
     for s in spots:
         ch, f = s.split(":")
