@@ -27,6 +27,7 @@ NAMES = {
     "WW-R3": "r3-rolle", "WW-R4": "r4-hand", "WW-V1": "v1-nachher", "WW-V0": "v0-vorher",
     "WW-S1": "s1-pflaster", "WW-S2": "s2-rasen", "WW-S3": "s3-mauern", "WW-S4": "s4-bewaesserung",
     "WW-S5": "s5-pflege", "WW-P1": "p1-handyfoto",
+    "WW-O0": "o0-vorher", "WW-O1": "o1-aushub", "WW-O2": "o2-unterbau", "WW-O3": "o3-pflaster", "WW-O4": "o4-nachher",
 }
 PNG = {"r3-rolle"}
 

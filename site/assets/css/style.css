@@ -275,3 +275,18 @@ h1, h2, h3, .big, .logo, .btn, .k-w, .k-w2, .eyebrow { font-family: G, I, sans-s
 .ba-tag { position: absolute; left: var(--p); bottom: 18px; transform: translateX(-50%); background: var(--lime); color: var(--ink); font: 700 14px I, sans-serif; padding: 6px 14px; border-radius: 99px; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
 @media (max-width: 700px) { .ba-tag { bottom: 54px; } }
 @media (max-width: 900px) { #zeitraffer .media img.still, #zeitraffer .media video { object-position: 50% 50%; } }
+
+/* Einstieg C: Werkzeug über die Linse */
+.op-media img.still { opacity: 0; transition: opacity .25s; }
+.op-media img.still.on { opacity: 1; }
+.op-media video.vid { opacity: 0; transition: none; }
+.op-media video.vid.on { opacity: 1; }
+.op .shade { background: linear-gradient(0deg, rgba(5,15,10,.55) 0%, rgba(5,15,10,0) 45%); }
+.op-h { position: absolute; left: var(--pad); bottom: 120px; font: 800 clamp(56px, 10vw, 168px)/.92 G, sans-serif; letter-spacing: -.04em; color: var(--off); will-change: opacity, transform; }
+.op-tag { position: absolute; left: var(--pad); bottom: 120px; display: inline-flex; align-items: stretch; background: var(--lime); color: var(--ink); font: 800 clamp(26px, 3.4vw, 48px)/1 G, sans-serif; letter-spacing: -.02em; border-radius: 6px; overflow: hidden; opacity: 0; will-change: opacity, transform; }
+.op-tag b { display: grid; place-items: center; padding: .28em .5em; border-right: 2px solid rgba(10,18,13,.25); }
+.op-tag span { padding: .28em .55em; }
+.op-cta { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 24px; text-align: center; opacity: 0; pointer-events: none; padding: 0 var(--pad); }
+.op-cta.show { pointer-events: auto; }
+.op-cta p { font: 600 clamp(20px, 2.4vw, 32px)/1.25 I, sans-serif; color: var(--off); }
+@media (max-width: 700px) { .op-h, .op-tag { bottom: 104px; } }

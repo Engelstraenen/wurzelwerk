@@ -37,20 +37,26 @@
 <main id="top">
 
 <!-- 1 ZEITRAFFER (Film, Scrollen spult) -->
-<section class="ch film" id="zeitraffer" style="--h:560vh">
+<section class="ch film op" id="zeitraffer" style="--h:400vh">
   <div class="stage">
-    <div class="media">
-      <img class="still" data-img="f1-vorher" alt="Verwilderter Garten hinter einem Einfamilienhaus, vor der Arbeit">
-      <video class="vid" data-src="assets/vid/zeitraffer" data-key="zeitraffer" muted playsinline preload="auto"></video>
+    <div class="media op-media">
+      <img class="still" data-img="o0-vorher" alt="Verwilderter Garten neben einem modernen Haus, vor der Arbeit">
+      <img class="still" data-img="o1-aushub" alt="Derselbe Garten ausgehoben, Schnurgerüst gespannt">
+      <img class="still" data-img="o2-unterbau" alt="Verdichteter Schotter-Unterbau">
+      <img class="still" data-img="o3-pflaster" alt="Fertige Natursteinterrasse, Boden bereit für Rollrasen">
+      <img class="still" data-img="o4-nachher" alt="Fertiger Garten zur blauen Stunde mit Licht">
+      <video class="vid" data-src="assets/vid/w1" data-key="w1" muted playsinline preload="auto"></video>
+      <video class="vid" data-src="assets/vid/w2" data-key="w2" muted playsinline preload="auto"></video>
+      <video class="vid" data-src="assets/vid/w3" data-key="w3" muted playsinline preload="metadata"></video>
+      <video class="vid" data-src="assets/vid/w4" data-key="w4" muted playsinline preload="metadata"></video>
     </div>
     <div class="shade"></div>
-    <div class="zr-text">
-      <h1 class="zr-h" data-step="0"><span>Vorher.</span> <span class="lime-t">Scroll mal.</span></h1>
-      <div class="zr-step" data-step="1"><b>1</b> Aushub<small>Minibagger holt Wurzeln, Schutt und alte Platten raus.</small></div>
-      <div class="zr-step" data-step="2"><b>2</b> Unterbau<small>Schotter in Lagen, jede Lage mit der Rüttelplatte verdichtet.</small></div>
-      <div class="zr-step" data-step="3"><b>3</b> Pflaster und Rasen<small>Platten mit der Verlegezange, Rollrasen Bahn an Bahn.</small></div>
-      <div class="zr-step" data-step="4"><b>4</b> Fertig<small>Ein Garten, der abends erst richtig anfängt.</small></div>
-    </div>
+    <h1 class="op-h op-vor">Vorher.</h1>
+    <div class="op-tag"><b>1</b><span>Aushub</span></div>
+    <div class="op-tag"><b>2</b><span>Unterbau</span></div>
+    <div class="op-tag"><b>3</b><span>Pflaster</span></div>
+    <h2 class="op-h op-nach">Nachher.</h2>
+    <div class="op-cta"><p>In 14 Tagen vom Acker zum Garten</p><button class="btn lime" data-open="anfrage">Garten anfragen <span aria-hidden="true">→</span></button></div>
     <div class="zr-bar"><i></i><span class="zr-pct">0 %</span></div>
     <div class="scroll-hint">Scrollen</div>
   </div>

@@ -84,19 +84,52 @@
     };
   }
 
-  /* 1 Zeitraffer */
-  var Z = $('#zeitraffer'), zf = Film(Z), zh = $('.zr-h', Z), zs = $$('.zr-step', Z), zbar = $('.zr-bar i', Z), zpct = $('.zr-pct', Z), zhint = $('.scroll-hint', Z);
-  var ZB = [[.1, .27], [.27, .47], [.47, .76], [.76, .9]];
+  /* 1 Einstieg: Werkzeug über die Linse (4 Wisch-Clips, Standbilder als Rückfall) */
+  var Z = $('#zeitraffer'), zm = $('.op-media', Z), zst = $$('img.still', Z), zv = $$('video.vid', Z), zbar = $('.zr-bar i', Z), zpct = $('.zr-pct', Z), zhint = $('.scroll-hint', Z);
+  var zVor = $('.op-vor', Z), zNach = $('.op-nach', Z), zTags = $$('.op-tag', Z), zCta = $('.op-cta', Z);
+  var ZW = [[.05, .22], [.29, .46], [.53, .7], [.77, .92]];
+  var zOk = [], zCur = [0, 0, 0, 0], zWant = [0, 0, 0, 0], zRun = false, ZV = window.WW_VID || {};
+  zv.forEach(function (v, i) {
+    var key = v.getAttribute('data-key'); zOk[i] = false;
+    if (!ZV[key]) return;
+    var s = document.createElement('source');
+    s.src = v.getAttribute('data-src') + (mobile() ? (innerWidth / innerHeight <= .75 ? '-p' : '-m') : '') + '.mp4?v=' + (ZV._v || 1); s.type = 'video/mp4'; v.appendChild(s);
+    v.addEventListener('loadeddata', function () { zOk[i] = true; if (window.WWreq) window.WWreq(); });
+    v.load();
+  });
+  function zStep() {
+    var more = false;
+    zv.forEach(function (v, i) {
+      if (!zOk[i] || !v.duration) return;
+      zCur[i] += (zWant[i] - zCur[i]) * .4;
+      if (Math.abs(zWant[i] - zCur[i]) < .01) zCur[i] = zWant[i]; else more = true;
+      if (Math.abs(v.currentTime - zCur[i]) > .015) v.currentTime = zCur[i];
+    });
+    if (more) requestAnimationFrame(zStep); else zRun = false;
+  }
   function zeit() {
-    var p = prog(Z), q = clamp(p / .9, 0, 1);
-    var dive = eio(seg(p, .9, 1));
-    zf(q, 1 + dive * 1.6);
-    show(zh, 1 - seg(p, .08, .15), -40);
-    zs.forEach(function (el, i) { show(el, band(p, ZB[i][0], i === 3 ? .97 : ZB[i][1], .04), 30); });
-    zbar.style.width = (q * 100).toFixed(1) + '%';
-    zpct.textContent = Math.round(q * 100) + ' %';
+    var p = prog(Z), k = 0;
+    for (var i = 0; i < 4; i++) if (p >= ZW[i][0]) k = i;
+    var t = clamp((p - ZW[k][0]) / (ZW[k][1] - ZW[k][0]), 0, 1);
+    var useVid = zOk[k];
+    zv.forEach(function (v, i) {
+      v.classList.toggle('on', useVid && i === k);
+      if (zOk[i] && v.duration) zWant[i] = i < k ? v.duration - .04 : i > k ? 0 : Math.min(v.duration - .04, v.duration * t);
+    });
+    if (!zRun) { zRun = true; requestAnimationFrame(zStep); }
+    var si = k + (t > .5 ? 1 : 0);
+    zst.forEach(function (im, i) { im.classList.toggle('on', !useVid && i === si); });
+    show(zVor, 1 - seg(p, .035, .08), -40);
+    show(zTags[0], band(p, .2, .31, .025), 30);
+    show(zTags[1], band(p, .44, .55, .025), 30);
+    show(zTags[2], band(p, .68, .79, .025), 30);
+    show(zNach, band(p, .9, .965, .025), 40);
+    var c = seg(p, .955, .99);
+    zCta.style.opacity = c.toFixed(3); zCta.classList.toggle('show', c > .5);
+    zm.style.filter = c > 0 ? 'blur(' + (c * 10).toFixed(1) + 'px) brightness(' + (1 - c * .35).toFixed(2) + ')' : '';
+    zbar.style.width = (p * 100).toFixed(1) + '%';
+    zpct.textContent = Math.round(p * 100) + ' %';
     zhint.style.opacity = p < .03 ? .7 : 0;
-    $('.stage', Z).style.opacity = 1 - seg(p, .97, 1) * .6;
   }
 
   /* 2 Rollrasen */
@@ -142,6 +175,7 @@
     nav.classList.toggle('solid', scrollY > 40 && !light);
   }
   function req() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
+  window.WWreq = req;
   addEventListener('scroll', req, { passive: true });
   addEventListener('resize', req);
   frame();
