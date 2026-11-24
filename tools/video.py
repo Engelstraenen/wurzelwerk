@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Baut die Scroll-Videos für ein Filmkapitel, OHNE Verkleinern (volle 2K-Auflösung).
 
-Start: python3 tools/video.py <roh.mp4> <kapitel> [--t <sekunden>]   (kapitel = fassade | raum | karriere)
+Start: python3 tools/video.py <roh.mp4> <kapitel> [--t <sekunden>]   (kapitel = zeitraffer | karriere)
 Ziel:  site/assets/vid/<kapitel>.mp4    Desktop: volle Quellauflösung (2560x1440), All-Intra
        site/assets/vid/<kapitel>-p.mp4  Handy hochkant: Ausschnitt in voller Quellhöhe (1080x1440),
                                          Lage = object-position des Kapitels, darum gleicher Bildausschnitt
        site/assets/vid/<kapitel>-m.mp4  Handy quer: ganzes Bild 1280 breit
-Trägt das Kapitel in tools/geo.json unter "vid" ein und baut img.js neu (Versionsstempel).
+Schreibt site/assets/js/vid.js (window.WW_VID + Versionsstempel), app.js liest es.
 All-Intra = jedes Bild ein Keyframe, damit Scrollen vor und zurück ohne Ruckeln springt.
 Nie hochskalieren. 20.11.2026: Eugen sah unscharfe Videos, weil die Seite 2K auf 1920/720 verkleinert hat.
 """
@@ -15,12 +15,13 @@ import os
 import shutil
 import subprocess
 import sys
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "site", "assets", "vid")
 RAW = os.path.join(ROOT, "assets-roh", "vid")
 # object-position (x) der Kapitel auf dem Handy, siehe style.css @media (max-width:900px)
-POS = {"fassade": 0.5, "raum": 0.76, "karriere": 0.6}
+POS = {"zeitraffer": 0.62, "karriere": 0.62}
 
 
 def size(src):
@@ -66,12 +67,15 @@ def main():
     s3 = enc(src, os.path.join(OUT, ch + "-m.mp4"), "scale=%d:-2:flags=lanczos" % min(w, 1280), 21, t)
     print("quelle %dx%d -> %s.mp4 %dx%d %.1f MB | -p %dx%d (x0 %d) %.1f MB | -m %.1f MB"
           % (w, h, ch, w, h, s1 / 1e6, cw, h, x0, s2 / 1e6, s3 / 1e6))
-    gp = os.path.join(ROOT, "tools", "geo.json")
-    geo = json.load(open(gp)) if os.path.exists(gp) else {}
-    geo.setdefault("vid", {})[ch] = 1
-    json.dump(geo, open(gp, "w"), indent=1, ensure_ascii=False)
-    subprocess.check_call([sys.executable, os.path.join(ROOT, "tools", "assets.py")])
-
+    js = os.path.join(ROOT, "site", "assets", "js", "vid.js")
+    vid = {}
+    if os.path.exists(js):
+        txt = open(js).read()
+        vid = json.loads(txt[txt.index("=") + 1:].strip().rstrip(";"))
+    vid[ch] = 1
+    vid["_v"] = int(time.time())
+    open(js, "w").write("window.WW_VID=" + json.dumps(vid) + ";\n")
+    print("vid.js:", vid)
 
 if __name__ == "__main__":
     main()
