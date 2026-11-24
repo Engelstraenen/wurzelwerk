@@ -40,6 +40,7 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 - 23.11.2026 (Eugen, BAUPLAN): Seite = beste Teile aller drei Storyboards. (1) Start mit Scrollytelling-Zeitraffer aus Storyboard 1 (Panels 1–5: Vorher → Aushub → Unterbau → Pflaster+Rasen → Fertig, gleicher Garten, feste Kamera). (2) Aus Storyboard 2 der Gartenplaner mit Grundriss (Panel 6: Terrasse/Rasen/Hochbeet ziehen, Live-m², „Plan senden“). (3) ALLES aus Storyboard 3 komplett (Rollrasen rollt aus „Über Nacht grün.“, Handschuh drückt Naht + Buttons, Leistungen als Rasenstreifen, Vorher/Nachher-Slider Vorgarten, Angebot per Foto 36 m², Karriere-Duo mit Rollrasen + Kinetik-Typo, Swipe-Bewerbung „Was fährst du?“, Bewertungen + Footer). Look aus 3 (Tannengrün/Off-White/Limette). Mix-Storyboards A/B nur Zwischenstand.
 
 - 24.11.2026: Video-Drafts auf Dreamina Seedance 2.5 Unlimited (Masterfile V2.45). Z1 Zeitraffer (Start F1 + Ende F5, 8 s) und K1 Karriere (8 s) eingebaut; K1b-Variante gegen Rollen-Morph läuft.
+- 24.11.2026 (Eugen): Karriere-Film = Version 28 (K1b, Gesichter im Bild, Rolle rollt ohne Sprung aus), eingebaut.
 
 ## 10. Ablage
 Code: Dropbox/CLAUDE/Projekte/WURZELWERK · Storyboards: konzepte/
