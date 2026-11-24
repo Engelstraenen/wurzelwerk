@@ -100,8 +100,9 @@
     var p = prog(R), u = eio(seg(p, .1, .5)), w = eio(seg(p, .52, .68));
     var sx = (mobile() ? 14 : 31) * (1 - w);
     rStrip.style.setProperty('--sx', sx + '%');
-    rStrip.style.setProperty('--sb', ((1 - u) * 100).toFixed(2) + '%');
-    rRoll.style.setProperty('--ry', (u * innerHeight).toFixed(1) + 'px');
+    var y0 = 26 + 64 + rRoll.offsetHeight * .5, ry = y0 + u * (innerHeight - y0);
+    rStrip.style.setProperty('--sb', (u > 0 ? innerHeight - ry : innerHeight).toFixed(1) + 'px');
+    rRoll.style.setProperty('--ry', ry.toFixed(1) + 'px');
     rRoll.style.opacity = 1 - seg(p, .5, .56);
     rRoll.style.width = ((mobile() ? 78 : 42) * (1 - u * .25) * (1 + w * .6)) + '%';
     show(rH1, 1 - seg(p, .08, .16), -30);
