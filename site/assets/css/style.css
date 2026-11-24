@@ -274,3 +274,4 @@ h1, h2, h3, .big, .logo, .btn, .k-w, .k-w2, .eyebrow { font-family: G, I, sans-s
 .bw-pb i { display: block; height: 100%; background: var(--lime2); border-radius: 5px; }
 .ba-tag { position: absolute; left: var(--p); bottom: 18px; transform: translateX(-50%); background: var(--lime); color: var(--ink); font: 700 14px I, sans-serif; padding: 6px 14px; border-radius: 99px; pointer-events: none; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
 @media (max-width: 700px) { .ba-tag { bottom: 54px; } }
+@media (max-width: 900px) { #zeitraffer .media img.still, #zeitraffer .media video { object-position: 50% 50%; } }

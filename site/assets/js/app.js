@@ -67,13 +67,18 @@
       v.addEventListener('loadeddata', function () { ok = true; box.classList.add('has-vid'); });
       v.load(); var pr = v.play && v.play(); if (pr && pr.then) pr.then(function () { v.pause(); }).catch(function () {});
     }
-    var cur = 0;
+    var cur = 0, want = 0, run = false;
+    function step() {
+      cur += (want - cur) * .35;
+      if (Math.abs(want - cur) < .01) cur = want;
+      if (Math.abs(v.currentTime - cur) > .02 || cur === want) v.currentTime = cur;
+      if (cur !== want) requestAnimationFrame(step); else run = false;
+    }
     return function (p, z) {
       if (z != null) box.style.setProperty('--z', z);
       if (ok && v.duration) {
-        var want = Math.min(v.duration - .05, v.duration * p);
-        cur += (want - cur) * .35;
-        if (Math.abs(v.currentTime - cur) > .02) v.currentTime = cur;
+        want = Math.min(v.duration - .05, v.duration * p);
+        if (!run) { run = true; requestAnimationFrame(step); }
       }
       return ok;
     };
@@ -81,7 +86,7 @@
 
   /* 1 Zeitraffer */
   var Z = $('#zeitraffer'), zf = Film(Z), zh = $('.zr-h', Z), zs = $$('.zr-step', Z), zbar = $('.zr-bar i', Z), zpct = $('.zr-pct', Z), zhint = $('.scroll-hint', Z);
-  var ZB = [[.16, .36], [.36, .56], [.56, .76], [.76, .9]];
+  var ZB = [[.1, .27], [.27, .47], [.47, .76], [.76, .9]];
   function zeit() {
     var p = prog(Z), q = clamp(p / .9, 0, 1);
     var dive = eio(seg(p, .9, 1));

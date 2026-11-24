@@ -21,7 +21,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "site", "assets", "vid")
 RAW = os.path.join(ROOT, "assets-roh", "vid")
 # object-position (x) der Kapitel auf dem Handy, siehe style.css @media (max-width:900px)
-POS = {"zeitraffer": 0.62, "karriere": 0.62}
+POS = {"zeitraffer": 0.5, "karriere": 0.62}
 
 
 def size(src):
