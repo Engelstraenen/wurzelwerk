@@ -37,6 +37,26 @@
   }
   function use(i) { for (var d = 0; d < N; d++) { if (have[i - d]) return i - d; if (have[i + d]) return i + d; } return -1; }
 
+  /* Übergangs-Clips: Film von Seite n zu Seite n+1, Scrollen spult. Fehlt ein Clip, bleibt die Wischblende. */
+  var clips = [], stage = $('.stage');
+  function loadClips() {
+    var m = mob() && innerHeight > innerWidth;
+    var list = window.WW_CLIPS || [];
+    for (var i = 0; i < N - 1; i++) {
+      if (list.indexOf(i + 1) < 0) continue;
+      var src = 'assets/vid/rund/c' + (i + 1) + (m ? '-p' : '') + '.mp4', c = clips[i];
+      if (c && c.src === src) continue;
+      if (!c) { var v = document.createElement('video'); v.className = 'clip'; v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; stage.insertBefore(v, $('.shade')); c = clips[i] = { v: v, ok: false }; }
+      c.src = src; c.ok = false;
+      (function (c) {
+        c.v.onloadeddata = function () { c.ok = true; req(); };
+        c.v.onerror = function () { c.ok = false; };
+        c.v.src = src; c.v.load();
+        var pr = c.v.play && c.v.play(); if (pr && pr.then) pr.then(function () { c.v.pause(); }).catch(function () {});
+      })(c);
+    }
+  }
+
   /* Haltepunkte: Inhalt in eine klebende Ebene legen */
   var stops = $$('.stop');
   stops.forEach(function (s) { var w = document.createElement('div'); w.className = 'in'; while (s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
@@ -58,13 +78,25 @@
 
     /* Bilder: alte Seite dreht nach links weg, neue kommt von rechts (Kamera kreist um den Baum) */
     var a = use(cur), b = use(cur + 1), mv = mob() ? 6 : 9;
+    var cl = clips[cur], film = cl && cl.ok && a === cur && b === cur + 1 && t > 0 && t < 1;
+    clips.forEach(function (c, i) {
+      if (!c) return;  // Lücken im Array überspringen
+      var on = film && i === cur;
+      if (on) {
+        var d = c.v.duration || 5, want = clamp(t, 0, 1) * (d - .05);
+        if (Math.abs(c.v.currentTime - want) > .02 && !c.v.seeking) c.v.currentTime = want;
+        c.v.style.opacity = (seg(t, 0, .07) * (1 - seg(t, .93, 1))).toFixed(3);
+        c.v.style.transform = 'translate3d(' + (-q * 2 * (1 - t)).toFixed(2) + '%,0,0) scale(1.05)';
+      } else c.v.style.opacity = 0;
+    });
+    var tp = film ? (t < .5 ? 0 : 1) : t;   // unter dem Film keine Wischblende: erst Seite n, dann n+1
     pics.forEach(function (el, i) {
       var o = 0, tx = 0, sc = 1.05, z = 1;
-      if (i === a) { o = 1; tx = -q * 2 - t * mv; sc = 1.05 + (1 - intro) * .1 + t * .03; }
-      var wipe = i === b && b !== a && t > 0;
-      if (wipe) { o = 1; tx = (1 - t) * mv; sc = 1.08 - t * .03; z = 2; el.style.setProperty('--w', ((1 - t) * 114).toFixed(2) + '%'); }
+      if (i === a) { o = 1; tx = -q * 2 - tp * mv; sc = 1.05 + (1 - intro) * .1 + tp * .03; }
+      var wipe = i === b && b !== a && tp > 0;
+      if (wipe) { o = 1; tx = (1 - tp) * mv; sc = 1.08 - tp * .03; z = 2; el.style.setProperty('--w', ((1 - tp) * 114).toFixed(2) + '%'); }
       el.classList.toggle('in2', wipe);
-      if (i === a && t > 0) el.style.filter = 'brightness(' + (1 - t * .35).toFixed(3) + ')'; else el.style.filter = '';
+      if (i === a && tp > 0 && !film) el.style.filter = 'brightness(' + (1 - tp * .35).toFixed(3) + ')'; else el.style.filter = '';
       el.style.opacity = o; el.style.zIndex = z;
       if (o > 0) el.style.transform = 'translate3d(' + tx.toFixed(2) + '%,0,0) scale(' + sc.toFixed(4) + ')';
     });
@@ -106,8 +138,8 @@
   var tick = false;
   function req() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', function () { loadPics(); req(); });
-  loadPics(); req();
+  addEventListener('resize', function () { loadPics(); loadClips(); req(); });
+  loadPics(); loadClips(); req();
 
   /* Sprünge: Sonnenbahn, Menü, Knöpfe */
   function go(i) { var s = stops[clamp(i, 0, N - 1)]; scrollTo({ top: s.offsetTop + (i ? innerHeight * .05 : 0), behavior: 'smooth' }); }

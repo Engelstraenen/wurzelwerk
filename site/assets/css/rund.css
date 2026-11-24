@@ -44,6 +44,7 @@ a { color: inherit; }
 .stage { position: fixed; inset: 0; z-index: 0; overflow: hidden; background: var(--bg2); }
 .pic { position: absolute; inset: -2%; background-size: cover; background-position: var(--px, 50%) 50%; opacity: 0; will-change: transform, opacity; }
 .pic.in2 { -webkit-mask-image: linear-gradient(90deg, transparent calc(var(--w) - 14%), #000 var(--w)); mask-image: linear-gradient(90deg, transparent calc(var(--w) - 14%), #000 var(--w)); }
+.clip { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; z-index: 3; opacity: 0; pointer-events: none; will-change: transform, opacity; }
 .shade { position: absolute; inset: 0; z-index: 3; background:
   linear-gradient(90deg, rgba(var(--bg-rgb), .9) 0%, rgba(var(--bg-rgb), .66) 30%, rgba(var(--bg-rgb), .18) 52%, rgba(var(--bg-rgb), 0) 66%),
   linear-gradient(180deg, rgba(20,24,14,.62) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 72%, rgba(0,0,0,.45) 100%),
