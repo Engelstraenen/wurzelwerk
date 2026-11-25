@@ -53,7 +53,7 @@ PAGES = [
        ("Wann kann ich die Terrasse benutzen?", "Bei ungebundener Fuge direkt nach dem Abrütteln und Einkehren. Bei Fugenmörtel nach Herstellerangabe, oft nach etwa einem Tag begehbar."),
        ("Brauche ich eine Genehmigung?", "Ebenerdige Terrassen sind in den meisten Bundesländern verfahrensfrei. Bebauungsplan und Abstandsflächen prüfen wir trotzdem mit Ihnen.")]),
 
- dict(slug="angebot", back="b2a", eye="Angebot per Foto", title="Ein Foto statt<br>drei Termine.",
+ dict(slug="angebot", back="s4", eye="Angebot per Foto", title="Ein Foto statt<br>drei Termine.",
   lead="Vieles sehen wir schon auf einem guten Foto: Fläche, Gefälle, Zufahrt, alter Belag. So kommen wir nur noch, wenn es wirklich nötig ist.",
   hero="sa3", hero_alt="p3", hero_desc="Hand hält ein Handy mit dem Foto einer Gartenecke vor der echten Gartenecke",
   layers=[
