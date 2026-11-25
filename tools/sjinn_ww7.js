@@ -64,7 +64,7 @@ W.loop = async () => { const id = W.runId;
     if (J.every(j => W.got[j.id])) { W.log.push('ALL DONE ' + new Date().toLocaleTimeString()); break; }
     const running = Object.keys(W.sent).filter(k => !W.got[k]).length;
     const next = J.find(j => !W.got[j.id] && !W.sent[j.id]);
-    if (next && running < 2) { const okk = await send(next); await sleep(okk ? 3000 : 90000); continue; }
+    if (next && running < (window.WW_MAX || 2)) { const okk = await send(next); await sleep(okk ? 3000 : 90000); continue; }
     await sleep(30000);
   } };
 W.loop();
