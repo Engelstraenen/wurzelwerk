@@ -24,6 +24,17 @@ VARIANT "Eine Kamerafahrt": the whole page is ONE unbroken camera move orbiting 
 7 "Push-in zum Stamm": the camera glides close to the trunk where a young apprentice holds a crate of apples, big kinetic words "Führerschein. Feste Crew. Draußen.".
 8 "Schneetreiben": snowfall sweeps across the lens and the full circle closes at the north side in blue hour, lit stone wall, rosé contact card.
 9 "Handy": two smartphones in portrait showing the same continuous film, a thin sun-path arc at the top, a finger swiping.` }
+ ,{ id: 'WWU-C', p: `WWU-C ${BASE}
+VARIANT "Durch die Wurzeln": every season change happens UNDERGROUND. The camera dives down along the trunk into a photoreal cross-section of the soil (roots of the apple tree, gravel and sand layers of the professional sub-base, irrigation pipes, earthworms, dew), travels sideways under the garden and rises up again into the next season, like a cut through the earth seen from the side.
+1 "Start": spring garden at ground level with the bare tree and mini excavator, the lower third already shows a clean soil cross-section with roots, headline "Ein Baum. Vier Seiten. Ein Jahr.".
+2 "Abtauchen": the camera sinks along the trunk into the earth, roots glowing in soft light, layered gravel and sand sub-base of the new terrace visible in section.
+3 "Unterbau": cross-section of a terrace: compacted gravel layers, grit bed, porcelain slabs on top, a landscaper's boots and plate compactor above ground, labels in rosé.
+4 "Auftauchen im Sommer": camera rises through fresh rolled turf, grass blades in macro, irrigation pipe in the soil spraying the sprinkler above, summer lawn.
+5 "Abendtafel": friends at the table under the tree at sunset, the roots below visible in section like a stage, rosé review cards.
+6 "Wurzeln im Herbst": roots in section, fallen orange leaves and apples above ground, ladder and pruning shears.
+7 "Azubi": young apprentice kneeling at a planting pit holding a young tree with root ball, big words "Führerschein. Feste Crew. Draußen.".
+8 "Frost": frozen soil in section with frost crystals, snow on top, lit stone wall and path, rosé contact card "Winter. Wir planen Ihren Frühling.".
+9 "Handy": two smartphones in portrait showing the vertical dive from garden into soil and back up, a finger swiping.` }
 ];
 const W = window.WWQ5 = { sent: {}, got: {}, log: [], limN: 0, runId: Date.now() };
 new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (/maximum limit|concurrent task/i.test(n.textContent || '')) W.limN++; }).observe(document.body, { childList: true, subtree: true });
@@ -33,15 +44,16 @@ const scan = () => { for (const im of document.querySelectorAll('img')) { const 
 W.loop = async () => { const id = W.runId;
   for (let i = 0; i < 120 && W.runId === id; i++) {
     scan(); if (JOBS.every(j => W.got[j.id])) { W.log.push('ALL DONE'); break; }
+    const running = Object.keys(W.sent).filter(k => !W.got[k]).length;
     const next = JOBS.find(j => !W.sent[j.id]);
-    if (next) {
+    if (next && running < 2) {
       const ta = document.querySelector('textarea'); const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
       set.call(ta, ''); ta.dispatchEvent(new Event('input', { bubbles: true })); set.call(ta, next.p); ta.dispatchEvent(new Event('input', { bubbles: true }));
       await sleep(900);
       if (!ok()) { W.log.push('NOT-OK'); await sleep(45000); continue; }
       const g = [...document.querySelectorAll('button')].find(b => b.textContent.trim() === 'Generate'); if (!g || g.disabled) { await sleep(45000); continue; }
       const l0 = W.limN; g.click(); await sleep(20000);
-      if (W.limN > l0) { W.log.push('LIMIT ' + next.id); await sleep(45000); continue; }
+      if (W.limN > l0) { W.log.push('LIMIT ' + next.id); await sleep(90000); continue; }
       W.sent[next.id] = Date.now(); W.log.push('SENT ' + next.id + ' ' + new Date().toLocaleTimeString());
       set.call(ta, ''); ta.dispatchEvent(new Event('input', { bubbles: true })); await sleep(3000); continue;
     }

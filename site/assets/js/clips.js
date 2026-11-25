@@ -1,1 +1,1 @@
-window.WW_CLIPS=[];
+window.WW_CLIPS=[1];
