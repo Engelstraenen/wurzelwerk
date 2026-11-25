@@ -100,7 +100,7 @@ rep("""  if (autoBloom){
   }""", "")
 rep("buildGarden(currentURL(), true);", "buildGarden('', true);")
 # Kamera etwas näher und ruhiger, Platz für Text links
-rep("camera.setViewOffset(w, h, 0, (uiH - topPad) / 2, w, h);", "camera.setViewOffset(w, h, w > 900 ? w * 0.2 : 0, (uiH - topPad) / 2 + (w <= 900 ? h * 0.14 : 0), w, h);")
+rep("camera.setViewOffset(w, h, 0, (uiH - topPad) / 2, w, h);", "const wide = w > 900 || w / h > 1.3; camera.setViewOffset(w, h, wide ? w * 0.2 : 0, (uiH - topPad) / 2 + (!wide ? h * 0.14 : 0), w, h);")
 rep("frame.isoR = Math.max(4.9 * k / t, 5.0 / (t * aspect));", "frame.isoR = Math.max(4.6 * k / t, 4.7 / (t * aspect)) * (aspect < .8 ? 1.05 : 1);")
 
 html = open(os.path.join(R, "tools", "sakura_page.html")).read()
