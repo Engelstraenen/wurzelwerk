@@ -24,6 +24,18 @@
      clip = Film spult (Kamera kreist) · iris = Zoom in ein Objekt, Kreis öffnet die nächste Szene ·
      rect = Handy-Display wächst zur nächsten Szene · veil = Kamera fährt durch Nebel/Sprühnebel/Schnee ·
      fade = weicher Übergang mit Partikel-Brücke (Tropfen werden Lichter, Atem wird Schnee). */
+  /* Ansicht: ?v=natur (Version 1: nur Natur-Brücken) · ?v=kamera (Version 2: eine Kamerafahrt durch Schleier)
+     · ?v=kombi (beides zusammen). Ohne Angabe: natur. */
+  var VIEW = ({ natur: 1, kamera: 1, kombi: 1 })[qs.get('v')] ? qs.get('v') : 'natur';
+  root.dataset.view = VIEW;
+  $$('.views a').forEach(function (a) { var v = a.getAttribute('data-v'); a.classList.toggle('on', v === VIEW); a.href = '?v=' + v + (qs.get('firma') ? '&firma=' + encodeURIComponent(qs.get('firma')) : ''); });
+  /* Version 2 zeigt die Brücken-Szenen nicht: sie werden aus der Szenenliste genommen */
+  if (VIEW === 'kamera') $$('.stop.bridge').forEach(function (b) { b.parentNode.removeChild(b); });
+  /* Version 1: jeder Wechsel bekommt eine Natur-Brücke (keine Schleier, kein Kamera-Film) */
+  var NATUR = { s1: { tr: 'fade' }, s4: { tr: 'fade' }, s6: { tr: 'iris', cx: 62, cy: 26 }, b5: { tr: 'fade' } };
+  if (VIEW === 'natur') Object.keys(NATUR).forEach(function (id) { var el = document.getElementById(id), o = NATUR[id]; if (!el) return; el.dataset.tr = o.tr; if (o.cx) { el.dataset.cx = o.cx; el.dataset.cy = o.cy; } delete el.dataset.clip; });
+  /* Version 2: jeder Wechsel ist eine Kamerafahrt durch einen Schleier, zwischen Nord und Ost der echte Film */
+  if (VIEW === 'kamera') $$('.stop').forEach(function (el) { if (el.dataset.tr && el.dataset.tr !== 'clip') el.dataset.tr = 'veil'; });
   var stops = $$('.stop'), N = stops.length, stage = $('.stage');
   var SC = stops.map(function (s) {
     var r = (s.dataset.r || '').split(',').map(Number);

@@ -255,3 +255,9 @@ a { color: inherit; }
 }
 
 .past #s8 .in { opacity: 0 !important; transition: opacity .3s; }
+
+/* Ansicht-Umschalter in der Demo-Leiste (Version 1 / 2 / 1+2 zum Vergleichen) */
+.views { display: inline-flex; gap: 4px; margin-left: 14px; }
+.views a { display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; border-radius: 999px; color: var(--mute); text-decoration: none; font-weight: 600; }
+.views a.on { background: var(--or); color: var(--on-or); }
+@media (max-width: 900px) { .views { margin-left: 6px; gap: 2px; } .views a { padding: 0 7px; } .demo { font-size: 11px; } }
