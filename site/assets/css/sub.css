@@ -188,3 +188,6 @@ footer { padding: 28px var(--gut) 40px; color: var(--mute); font-size: 13px; tex
 .logo { min-height: 44px; display: flex; flex-direction: column; justify-content: center; }
 .back { min-width: 44px; justify-content: center; }
 @media (max-width: 760px) { .hint { display: none; } }
+/* Lupe: 2,2-fache Vergrößerung (Lupe ist 34 % der Bildbreite) */
+.lens { background-size: 650%; background-position: 50% 55%; }
+@media (max-width: 760px) { .lens { background-size: 360%; } }
