@@ -18,7 +18,7 @@ def run(src, dst, vf):
                            "-sc_threshold", "0", "-movflags", "+faststart", dst])
 
 
-for n in range(1, 10):
+for n in range(1, 24):
     src = os.path.join(SRC, "WWC%d.mp4" % n)
     if not os.path.exists(src):
         continue
@@ -34,6 +34,6 @@ for n in range(1, 10):
     print("c%d" % n, w, "x", h, os.path.getsize(d) // 1024, "KB | p", cw, "x", h, os.path.getsize(p) // 1024, "KB")
 
 # Liste der vorhandenen Clips für die Seite (keine 404-Anfragen auf fehlende Clips)
-have = [n for n in range(1, 10) if os.path.exists(os.path.join(OUT, "c%d.mp4" % n))]
+have = [n for n in range(1, 24) if os.path.exists(os.path.join(OUT, "c%d.mp4" % n))]
 open(os.path.join(R, "site", "assets", "js", "clips.js"), "w").write("window.WW_CLIPS=%s;\n" % have)
 print("clips.js", have)

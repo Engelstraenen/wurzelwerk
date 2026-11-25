@@ -39,7 +39,7 @@
   var stops = $$('.stop'), N = stops.length, stage = $('.stage');
   var SC = stops.map(function (s) {
     var r = (s.dataset.r || '').split(',').map(Number);
-    return { img: (function () { var h = window.WW_IMGS || [], a = s.dataset.img, b = s.dataset.alt; return h.indexOf(a) >= 0 || !b ? a : b; })(), se: +s.dataset.se, tr: s.dataset.tr || 'veil', cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: +(s.dataset.clip || 0), trf: s.dataset.trf || 'veil', rev: s.dataset.rev === '1' };
+    return { img: (function () { var h = window.WW_IMGS || [], a = s.dataset.img, b = s.dataset.alt; return h.indexOf(a) >= 0 || !b ? a : b; })(), se: +s.dataset.se, tr: (function () { var k = +(s.dataset.chain || 0); return k && (window.WW_CLIPS || []).indexOf(k) >= 0 ? 'clip' : (s.dataset.tr || 'veil'); })(), cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: (function () { var k = +(s.dataset.chain || 0); return k && (window.WW_CLIPS || []).indexOf(k) >= 0 ? k : +(s.dataset.clip || 0); })(), trf: s.dataset.trf || s.dataset.tr || 'veil', rev: s.dataset.rev === '1' };  /* data-chain: Anschluss-Clip Bild n → n+1 (ein durchgehender Film), sobald vorhanden */
   });
   var pics = SC.map(function (o) { var d = document.createElement('div'); d.className = 'pic'; stage.insertBefore(d, $('.shade')); return d; });
   var have = [];
