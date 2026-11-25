@@ -319,3 +319,51 @@ a { color: inherit; }
   linear-gradient(90deg, rgba(20,24,14,.55) 0%, rgba(20,24,14,.25) 32%, rgba(20,24,14,0) 55%),
   linear-gradient(180deg, rgba(20,24,14,.45) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 80%, rgba(0,0,0,.3) 100%) !important; }
 @media (max-width: 900px) { .shade { background: linear-gradient(180deg, rgba(20,24,14,.5) 0%, rgba(0,0,0,0) 22%, rgba(20,24,14,0) 45%, rgba(20,24,14,.55) 70%, rgba(20,24,14,.85) 100%) !important; } }
+
+/* Erzähl-Ebene: Beats laufen beim Scrollen ein, Zahlen zählen mit, Grafiken wachsen (story.js-Teil in rund.js) */
+.stop.story { height: 250vh; }
+.stop.bridge.story { height: 210vh; }
+.story-txt { display: grid; gap: 18px; max-width: 520px; }
+.kick { margin: 0; font: 600 12px/1 I, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--or); text-shadow: 0 1px 12px rgba(0,0,0,.5); }
+.beat { opacity: 0; color: #fff; text-shadow: 0 1px 16px rgba(0,0,0,.6); }
+.bh { margin: 0 0 6px; font: 400 clamp(30px, 3.4vw, 52px)/1.04 S, Georgia, serif; }
+.beat p { margin: 0; font: 400 clamp(15px, 1.2vw, 18px)/1.45 I, sans-serif; color: rgba(255,255,255,.9); max-width: 44ch; }
+.beat.num { display: grid; grid-template-columns: auto 1fr; gap: 4px 18px; align-items: baseline; }
+.beat.num b { font: 400 clamp(40px, 4.6vw, 72px)/1 S, Georgia, serif; color: var(--or); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.beat.num .rbtn { grid-column: 1 / -1; justify-self: start; margin-top: 8px; }
+.sh + .beat { margin-top: 10px; }
+.txt .beat + .beat { margin-top: 0; }
+.stack { display: flex; height: 54px; width: min(460px, 100%); border-radius: 4px; overflow: hidden; background: rgba(0,0,0,.25); margin-bottom: 14px; }
+.stack i { width: 0; background: var(--c); position: relative; transition: none; overflow: hidden; }
+.stack em { position: absolute; left: 8px; bottom: 6px; font: 600 11px/1.2 I, sans-serif; font-style: normal; color: #1f2617; text-shadow: none; white-space: nowrap; }
+.bars { display: flex; align-items: flex-end; gap: 10px; height: 140px; width: min(420px, 100%); }
+.bars i { flex: 1; height: 0; background: rgba(var(--or-rgb), .92); border-radius: 3px 3px 0 0; position: relative; }
+.bars em { position: absolute; top: -20px; left: 0; right: 0; text-align: center; font: 600 13px/1 I, sans-serif; font-style: normal; color: #fff; }
+.bars s { position: absolute; bottom: -20px; left: 0; right: 0; text-align: center; font: 500 12px/1 I, sans-serif; text-decoration: none; color: rgba(255,255,255,.85); }
+.bars + .src { margin-top: 30px; }
+.src { font-size: 13px !important; color: rgba(255,255,255,.75) !important; margin: 10px 0 14px !important; }
+.cal { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; width: min(460px, 100%); }
+.cal i { height: 40px; display: grid; place-items: center; font: 600 13px/1 I, sans-serif; font-style: normal; border-radius: 3px; background: rgba(255,255,255,.14); color: #fff; }
+.cal i.y { background: rgba(var(--or-rgb), calc(var(--a, 0) * .95)); color: var(--on-or); }
+.steps-calc { display: grid; gap: 4px; margin: 14px 0; font-size: 13px; }
+.steps-calc input { width: 100%; accent-color: var(--bg); height: 32px; }
+.sc-res { margin: 4px 0 0; font-size: 15px; }
+.sc-res b { font: 400 26px/1 S, Georgia, serif; }
+.sc-res small { opacity: .75; }
+@media (max-width: 760px) {
+  .stop.story { height: 230vh; }
+  .story-txt { display: grid; gap: 10px; max-width: none; }
+  .story-txt .beat { grid-area: 2 / 1; align-self: end; }
+  .story-txt .kick { grid-area: 1 / 1; }
+  .bh { font-size: 30px; }
+  .beat.num b { font-size: 44px; }
+  .stop.right.story .in { justify-content: flex-end; }
+  .stop.right.story .rcard, .stop.right.story .rev { display: none; }
+  .stop.right.story.cards .rcard, .stop.right.story.cards .rev { display: block; }
+  .bars { height: 100px; }
+}
+
+/* Film-Stationen brauchen Scrollweg, damit der Clip sichtbar spult */
+.stop[data-tr="clip"] { height: 280vh; }
+.bars { margin-top: 28px; }
+@media (max-width: 760px) { .bars { height: 80px; margin-top: 30px; } .story-txt .kick { margin-bottom: 6px; } }

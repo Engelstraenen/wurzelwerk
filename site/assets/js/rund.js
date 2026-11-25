@@ -76,6 +76,10 @@
     });
   }
 
+  /* Schritte-Rechner in der Foto-Karte: Schritte -> m² (1 Schritt ≈ 0,75 m) */
+  (function () { var l = document.getElementById('sc-l'), b = document.getElementById('sc-b'), r = $('[data-sc]'); if (!l || !b || !r) return;
+    function upd() { $('output[for=sc-l]').textContent = l.value; $('output[for=sc-b]').textContent = b.value; r.textContent = Math.round(l.value * b.value * .5625).toLocaleString('de-DE'); }
+    l.addEventListener('input', upd); b.addEventListener('input', upd); upd(); })();
   stops.forEach(function (s) { var w = document.createElement('div'); w.className = 'in'; while (s.firstChild) w.appendChild(s.firstChild); s.appendChild(w); });
 
   var sideTxt = $('.sideTxt'), needle = $('.needle'), veil = $('.veil'), ind = $('.seasons .ind'), seBtns = $$('.seasons .se');
@@ -103,7 +107,11 @@
     var A = use(cur), B = use(cur + 1), o = SC[cur], tr = o.tr, mv = mob() ? 6 : 9;
     if (B === A) t = 0;
     var last = cur === N - 1, tt = last ? q : t;  /* letzte Station: Film läuft beim Lesen (Winter, Kontakt) */
-    var cl = clips[cur], film = tr === 'clip' && cl && cl.ok && tt > 0 && tt < 1;
+    var cl = clips[cur], isClip = tr === 'clip' && cl && cl.ok;
+    /* Film-Station: der Clip läuft über die GANZE Station und spult mit dem Scrollen (Bild 0 = Storyboard-Foto),
+       erst am Ende blendet er in die nächste Szene. So bleibt die Kamera in Bewegung statt Fotos zu zeigen. */
+    if (isClip) tt = last ? q : clamp(q / .92, 0, 1);
+    var film = isClip && tt < 1;
     if (tr === 'clip' && !film) tr = o.trf;  /* Clip fehlt noch: Übergang aus dem Storyboard A */
     var drift = -q * 2;   // leichte Kamerabewegung in jeder Szene, damit nie Stillstand ist
 
@@ -112,7 +120,7 @@
       if (film && i === cur) {
         var d = c.v.duration || 5, want = (o.rev ? 1 - tt : tt) * (d - .05);  /* rev: Film endet genau auf dem Storyboard-Foto der nächsten Station */
         if (Math.abs(c.v.currentTime - want) > .02 && !c.v.seeking) c.v.currentTime = want;
-        c.v.style.opacity = (last ? seg(tt, 0, .07) : seg(t, 0, .07) * (1 - seg(t, .93, 1))).toFixed(3);
+        c.v.style.opacity = (last ? 1 : 1 - seg(tt, .9, 1)).toFixed(3);
         c.v.style.transform = 'translate3d(' + (drift * (1 - tt)).toFixed(2) + '%,0,0) scale(1.05)';
       } else c.v.style.opacity = 0;
     });
@@ -122,6 +130,7 @@
       el.style.transformOrigin = '';
       if (i !== A && i !== B) { setPic(el, 0, 1, '', '', '', ''); return; }
       var isA = i === A, sc0 = 1.05 + (isA && cur === 0 ? (1 - intro) * .1 : 0) + (isA ? q * (stops[cur].classList.contains('bridge') ? .22 : .06) : 0);
+      if (isClip && !last && B !== A) { var fo = seg(tt, .9, 1); setPic(el, isA ? 1 - fo : fo, 1, 'scale(1.05)'); return; }
       if (B === A || t <= 0) { if (isA) setPic(el, 1, 1, 'translate3d(' + drift + '%,0,0) scale(' + sc0 + ')'); else setPic(el, 0, 1, ''); return; }
       if (tr === 'clip') { /* Film deckt den Wechsel ab */
         var vis = isA ? (t < .5 ? 1 : 0) : (t >= .5 ? 1 : 0);
@@ -183,6 +192,20 @@
       $$('.kin li', sec).forEach(function (li, k) { show(li, eout(seg(p, -.1 + k * .1, k * .1)), -60, 0); });
       $$('.big-kin li', sec).forEach(function (li, k) { show(li, eout(seg(p, -.12 + k * .12, k * .12 + .02)), -140, 0); });
       $$('.stars i', sec).forEach(function (st, k) { st.style.setProperty('--f', seg(p, -.1 + k * .05, -.04 + k * .05).toFixed(3)); });
+      /* Erzähl-Ebene: Beats nacheinander (Handy: immer nur der aktuelle), Zahlen und Grafiken laufen mit dem Scrollen */
+      var bs = $$('.beat', sec), nb = bs.length, M = mob() && sec.classList.contains('story');
+      if (nb) {
+        var span = sec.classList.contains('story') ? .4 : .3, aa = bs.map(function (b, k) { return eout(seg(p, k * span / nb - .03, k * span / nb + .05)); });
+        bs.forEach(function (b, k) {
+          var a2 = M && k < nb - 1 ? aa[k] * (1 - seg(aa[k + 1], 0, .35)) : aa[k];
+          show(b, a2, 0, 26);
+          $$('.cnt', b).forEach(function (c) { var to = +c.dataset.to, d = +(c.dataset.d || 0); c.textContent = (to * aa[k]).toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d }); });
+          $$('[data-w]', b).forEach(function (e, n) { e.style.width = (+e.dataset.w * eout(seg(aa[k], n * .2, n * .2 + .6))) + '%'; });
+          $$('[data-h]', b).forEach(function (e, n) { e.style.height = (+e.dataset.h * eout(seg(aa[k], n * .1, n * .1 + .5))) + '%'; });
+          $$('.cal i.y', b).forEach(function (e, n) { e.style.setProperty('--a', eout(seg(aa[k], n * .12, n * .12 + .4)).toFixed(3)); });
+        });
+        if (mob() && sec.classList.contains('right')) sec.classList.toggle('cards', aa[nb - 1] > .95 && p > span + .02);
+      }
       var qq = $$('.q', sec);
       if (qq.length) {
         if (mob()) { var k1 = Math.floor(clamp(p, 0, .999) / .1) % qq.length; qq.forEach(function (e, k) { e.classList.toggle('on', k === k1 && vis > .3); }); }
