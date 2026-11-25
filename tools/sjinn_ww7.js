@@ -85,7 +85,7 @@ const send = async j => {
 W.loop = async () => { const id = W.runId;
   while (W.runId === id) {
     scan();
-    for (const k of Object.keys(W.sent)) if (!W.got[k] && Date.now() - W.sent[k] > 50 * 60000) { W.log.push('TIMEOUT ' + k); delete W.sent[k]; }
+    for (const k of Object.keys(W.sent)) if (!W.got[k] && Date.now() - W.sent[k] > 90 * 60000) { W.log.push('TIMEOUT ' + k); delete W.sent[k]; }
     if (J.every(j => W.got[j.id])) { W.log.push('ALL DONE ' + new Date().toLocaleTimeString()); break; }
     const running = Object.keys(W.sent).filter(k => !W.got[k]).length;
     const next = J.find(j => !W.got[j.id] && !W.sent[j.id]);
