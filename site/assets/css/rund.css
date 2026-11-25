@@ -261,3 +261,61 @@ a { color: inherit; }
 .views a { display: inline-flex; align-items: center; min-height: 24px; padding: 0 10px; border-radius: 999px; color: var(--mute); text-decoration: none; font-weight: 600; }
 .views a.on { background: var(--or); color: var(--on-or); }
 @media (max-width: 900px) { .views { margin-left: 6px; gap: 2px; } .views a { padding: 0 7px; } .demo { font-size: 11px; } }
+
+/* ===== Storyboard-Look 1:1 (25.11.2026): Sonnenbahn, Serifen-Headlines, rosa Karten ===== */
+@font-face { font-family: S; src: url(../fonts/serif.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+.seasons.sunarc { position: fixed; z-index: 52; top: calc(var(--demo-h) + 6px); left: 50%; transform: translateX(-50%); width: min(58vw, 860px); height: 92px; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; display: block; pointer-events: none; }
+.sunarc svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.sunarc #arc { stroke: rgba(255,255,255,.55); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.sunarc .ind { display: none; }
+.sunarc .se { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -115%); min-height: 44px; padding: 0 8px; background: none; font: 500 11px/1 I, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85); text-shadow: 0 1px 10px rgba(0,0,0,.5); pointer-events: auto; }
+.sunarc .se .sym { display: none; }
+.sunarc .se.on { color: var(--or); background: none; }
+.sundot { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--or); box-shadow: 0 0 0 5px rgba(var(--or-rgb), .25), 0 0 22px rgba(var(--or-rgb), .9); left: 6%; top: 85%; transition: left .15s linear, top .15s linear; }
+.sh { margin: 0 0 22px; font: 400 clamp(46px, 6.2vw, 104px)/1.02 S, Georgia, serif; letter-spacing: -.005em; color: #fff; text-shadow: 0 2px 40px rgba(0,0,0,.35); }
+.sh em { font-style: normal; color: var(--or); }
+.sh.small { font-size: clamp(40px, 4.6vw, 76px); }
+.stop .in { align-items: flex-end; }
+.lowleft { max-width: 640px; padding-bottom: 4vh; }
+.cap { margin: 0 0 18px; font: 400 clamp(17px, 1.4vw, 21px)/1.45 I, sans-serif; color: rgba(255,255,255,.9); text-shadow: 0 1px 16px rgba(0,0,0,.6); max-width: 520px; }
+.stop.right .in { align-items: center; }
+.rcard { width: min(340px, 100%); padding: 30px 28px 28px; border-radius: 8px; background: rgba(var(--or-rgb), .93); color: var(--on-or); box-shadow: 0 30px 80px rgba(0,0,0,.28); }
+.rcard.small { width: min(300px, 100%); }
+.rt { margin: 0 0 18px; font: 500 21px/1.2 I, sans-serif; letter-spacing: .05em; text-transform: uppercase; }
+.rcard p { margin: 0 0 22px; font-size: 15px; line-height: 1.55; opacity: .85; }
+.rlist { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 10px; font-size: 15px; }
+.rlist span { display: inline-block; width: 26px; }
+.rbtn { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 46px; padding: 0 18px; border: 1px solid currentColor; border-radius: 4px; background: none; color: var(--on-or); font: 600 12px/1 I, sans-serif; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background .2s, color .2s; }
+.rbtn span { font-size: 15px; letter-spacing: 0; }
+.rbtn:hover { background: var(--on-or); color: var(--or); }
+.rbtn.light { color: #fff; border-color: rgba(255,255,255,.8); text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+.rbtn.light:hover { background: #fff; color: var(--on-or); text-shadow: none; }
+.rev { display: grid; gap: 12px; width: min(300px, 100%); justify-items: stretch; }
+.rq { margin: 0; padding: 18px 20px; border-radius: 8px; background: rgba(var(--or-rgb), .93); color: var(--on-or); box-shadow: 0 20px 50px rgba(0,0,0,.25); }
+.rq blockquote { margin: 0 0 8px; font: 400 15px/1.45 I, sans-serif; }
+.rq figcaption { font-size: 12px; opacity: .7; }
+.compass { display: none; }
+@media (max-width: 900px) {
+  .seasons.sunarc { top: calc(var(--demo-h) + var(--nav-h) - 4px); width: calc(100vw - 24px); height: 70px; }
+  .sunarc .se { font-size: 10px; letter-spacing: .12em; padding: 0 4px; }
+  .sh { font-size: clamp(42px, 12vw, 58px); }
+  .stop.right .in { align-items: stretch; justify-content: flex-end; }
+  .rcard, .rcard.small, .rev { width: 100%; padding: 22px; }
+  .rev { padding: 0; }
+  .rt { font-size: 18px; }
+}
+@media (max-width: 900px) and (max-height: 520px) {
+  .seasons.sunarc { top: calc(var(--demo-h) + 2px); width: 46vw; height: 50px; left: auto; right: 70px; transform: none; }
+  .sh { font-size: 34px; margin-bottom: 10px; }
+  .rcard, .rcard.small { width: 46%; padding: 14px; }
+  .rcard p { display: none; }
+  .rev { width: 46%; } .rq figcaption { display: none; } .rq { padding: 10px 14px; }
+  .rev .rq:nth-child(3) { display: none; }
+  .stop.right .in { align-items: flex-end; justify-content: flex-end; }
+}
+/* Storyboard: Beschriftung unter der Bahn, Fotos heller (Storyboard-Licht nicht abdunkeln) */
+.sunarc .se { transform: translate(-50%, 20%); }
+.shade { background:
+  linear-gradient(90deg, rgba(20,24,14,.55) 0%, rgba(20,24,14,.25) 32%, rgba(20,24,14,0) 55%),
+  linear-gradient(180deg, rgba(20,24,14,.45) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 80%, rgba(0,0,0,.3) 100%) !important; }
+@media (max-width: 900px) { .shade { background: linear-gradient(180deg, rgba(20,24,14,.5) 0%, rgba(0,0,0,0) 22%, rgba(20,24,14,0) 45%, rgba(20,24,14,.55) 70%, rgba(20,24,14,.85) 100%) !important; } }

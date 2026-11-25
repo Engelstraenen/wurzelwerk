@@ -6,12 +6,13 @@
 <title>WURZELWERK · Ein Baum. Vier Seiten. Ein Jahr.</title>
 <meta name="description" content="Demo-Webseite für einen Garten- und Landschaftsbaubetrieb: ein Rundgang um einen Baum durch das ganze Gartenjahr.">
 <meta name="theme-color" content="#2f3a24">
+<link rel="preload" href="assets/fonts/serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/grotesk.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/rund.css">
 </head>
 <body>
 
-<div class="demo">Demo-Webseite<span class="long">&nbsp;· erfundener Betrieb · Formulare senden nichts</span><span class="for" hidden>&nbsp;· erstellt für <b data-firma></b></span><span class="views" aria-label="Ansicht wählen"><a data-v="natur" href="?v=natur">1 Natur-Brücken</a><a data-v="kamera" href="?v=kamera">2 Kamerafahrt</a><a data-v="kombi" href="?v=kombi">1+2</a><a href="sakura/">3D-Baum</a></span></div>
+<div class="demo">Demo-Webseite<span class="long">&nbsp;· erfundener Betrieb · Formulare senden nichts</span><span class="for" hidden>&nbsp;· erstellt für <b data-firma></b></span></div>
 
 <header class="nav">
   <a class="logo" href="#s1" aria-label="WURZELWERK, zum Anfang">WURZELWERK<small>Garten &amp; Landschaft</small></a>
@@ -28,13 +29,15 @@
   <a href="#s8" data-goid="s8"><small>Winter</small>Planung &amp; Kontakt</a>
 </nav>
 
-<!-- Jahreszeiten-Schalter = Navigation durch das Jahr -->
-<nav class="seasons" aria-label="Jahreszeit wählen">
+<!-- Sonnenbahn wie im Storyboard: Punkt wandert durchs Jahr, Jahreszeiten antippbar -->
+<nav class="seasons sunarc" aria-label="Jahreszeit wählen">
+  <svg viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true"><path id="arc" d="M 20 110 Q 500 -40 980 110" fill="none"/></svg>
   <i class="ind" aria-hidden="true"></i>
-  <button class="se" data-goid="s1" data-se="0"><span class="sym" aria-hidden="true">✿</span>Frühling</button>
-  <button class="se" data-goid="s4" data-se="1"><span class="sym" aria-hidden="true">☀</span>Sommer</button>
-  <button class="se" data-goid="s6" data-se="2"><span class="sym" aria-hidden="true">❦</span>Herbst</button>
-  <button class="se" data-goid="s8" data-se="3"><span class="sym" aria-hidden="true">❄</span>Winter</button>
+  <button class="se" data-goid="s1" data-se="0" style="--x:16%;--y:58%">Frühling</button>
+  <button class="se" data-goid="s4" data-se="1" style="--x:39%;--y:22%">Sommer</button>
+  <button class="se" data-goid="s6" data-se="2" style="--x:61%;--y:22%">Herbst</button>
+  <button class="se" data-goid="s8" data-se="3" style="--x:84%;--y:58%">Winter</button>
+  <i class="sundot" aria-hidden="true"></i>
 </nav>
 
 <main id="rund">
@@ -42,114 +45,82 @@
     <div class="shade"></div>
     <div class="veil"></div>
     <canvas class="fx"></canvas>
-    <div class="compass"><b>N</b><span class="needle"></span></div>
   </div>
 
-  <!-- 8 Haltepunkte; jeder ist eine Szene im Rundgang -->
-  <section class="stop" id="s1" data-img="p1" data-se="0" data-tr="clip" data-clip="1" data-side="Nordseite · März">
-    <div class="txt">
-      <h1 class="h">Ein Baum.<br>Vier Seiten.<br>Ein Jahr.</h1>
-      <p class="sub">Ein Garten. Echte Veränderung. Gehen Sie einmal um den Baum und sehen Sie, was entsteht.</p>
-      <a class="btn" href="#s2" data-goid="s2">Rundgang starten <span class="ar">↓</span></a>
+  <!-- Storyboard „Eine Kamerafahrt“ (B) + „Natur-Brücken“ (A), Panel für Panel -->
+  <section class="stop" id="s1" data-img="sb1" data-alt="p1" data-se="0" data-tr="clip" data-clip="1" data-side="Nordseite · März">
+    <div class="txt lowleft">
+      <h1 class="sh">Ein Baum.<br>Vier Seiten.<br><em>Ein Jahr.</em></h1>
     </div>
   </section>
 
-  <section class="stop" id="s2" data-img="p2" data-se="0" data-tr="iris" data-cx="36" data-cy="22" data-side="Ostseite · April">
-    <div class="txt">
-      <p class="eye">Frühling</p>
-      <h2 class="h">Frühling.<br>Neu anlegen.</h2>
-      <p class="sub">Solide Grundlagen. Schöner wohnen.</p>
-      <ol class="steps">
-        <li><b>Aushub</b><span>Minibagger statt Schaufel, Boden raus, Höhen genau.</span></li>
-        <li><b>Unterbau</b><span>Schotter in Lagen, jede Lage verdichtet mit der Rüttelplatte.</span></li>
-        <li><b>Schnurgerüst</b><span>Gespannte Schnüre geben Gefälle und Kanten vor.</span></li>
-        <li><b>Terrasse</b><span>Großformat-Platten, verlegt mit Zange und Fugenkreuz.</span></li>
-      </ol>
+  <section class="stop" id="s2" data-img="sb2" data-alt="p2" data-se="0" data-tr="veil" data-side="Ostseite · April">
+    <div class="txt lowleft"><p class="cap">Morgens kommt der Bagger, mittags stehen die Schnüre: so beginnt jeder neue Garten.</p></div>
+  </section>
+
+  <section class="stop right" id="s3" data-img="sb3" data-alt="p3" data-se="0" data-tr="iris" data-cx="50" data-cy="40" data-side="Durch die Blüten · Mai">
+    <div class="rcard">
+      <h2 class="rt">Garten<br>neu gestalten</h2>
+      <p>Individuelle Planung.<br>Sorgfältige Ausführung.<br>Mit Wurzelwerk.</p>
+      <a class="rbtn" href="leistungen/neuanlage.html">Mehr erfahren <span>→</span></a>
     </div>
   </section>
 
-  <section class="stop bridge" id="b1" data-img="b1" data-se="0" data-tr="iris" data-cx="50" data-cy="50" data-side="Ganz nah · Mai"></section>
+  <section class="stop bridge" id="b1" data-img="sa2" data-alt="b1" data-se="0" data-tr="iris" data-cx="50" data-cy="50" data-side="Blüte wird Bildschirm"></section>
 
-  <section class="stop right" id="s3" data-img="p3" data-se="0" data-tr="rect" data-r="13.5,48,40.5,74" data-side="Unter der Blüte · Mai">
-    <div class="card rose" id="angebot">
-      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-      <h2 class="ct">Foto schicken,<br>wir rechnen den Plan.</h2>
-      <p>Ein Foto von der Ecke, die schöner werden soll. Dazu die grobe Fläche. Wir melden uns mit einem Vorschlag, oft ohne Besichtigung.</p>
-      <form class="mini" data-demo="Demo: Ihr Foto wäre jetzt beim Team. Vorschlag in 48 Stunden.">
-        <label class="file"><input type="file" accept="image/*" capture="environment"><span>Foto wählen</span></label>
-        <label class="rng">Fläche <output>36</output> m²<input type="range" min="5" max="300" value="36" step="1" aria-label="Fläche in Quadratmetern"></label>
-        <button class="btn ink" type="submit">Jetzt Angebot anfordern</button>
-      </form>
+  <section class="stop right" id="b2a" data-img="sa3" data-alt="p3" data-se="0" data-tr="rect" data-r="17,24,47,66" data-side="Foto wird Garten">
+    <div class="rcard small" id="angebot">
+      <h2 class="rt">Foto schicken</h2>
+      <p>Drei Fotos von Ihrer Ecke. Wir melden uns mit einem Vorschlag, oft ohne Besichtigung.</p>
+      <a class="rbtn" href="leistungen/angebot.html">Mehr erfahren <span>→</span></a>
     </div>
   </section>
 
-  <section class="stop" id="s4" data-img="p4" data-se="1" data-tr="veil" data-side="Südseite · Juli">
-    <div class="txt">
-      <p class="eye">Sommer</p>
-      <h2 class="h">Sommer.<br>Gepflegt,<br>nicht geplagt.</h2>
-      <ul class="kin">
-        <li>Rollrasen über Nacht.</li>
-        <li>Bewässerung, die mitdenkt.</li>
-        <li>Pflege im Abo.</li>
-      </ul>
-    </div>
+  <section class="stop" id="s4" data-img="sb4" data-alt="p4" data-se="1" data-tr="fade" data-side="Durch den Sprühnebel · Juli">
+    <div class="txt lowleft"><p class="cap">Wasser, Licht und der Sommer dahinter.</p>
+      <a class="rbtn light" href="leistungen/rasen.html">Rasen &amp; Bewässerung <span>→</span></a></div>
   </section>
 
-  <section class="stop bridge" id="b2" data-img="b2" data-se="1" data-tr="fade" data-side="Im Sprühnebel · August"></section>
+  <section class="stop bridge" id="b2" data-img="sa4" data-alt="b2" data-se="1" data-tr="fade" data-side="Tropfen werden Lichter"></section>
 
-  <section class="stop wide" id="s5" data-img="p5" data-se="1" data-tr="fade" data-side="Unter dem Baum · August">
+  <section class="stop right" id="s5" data-img="sb5" data-alt="p5" data-se="1" data-tr="fade" data-side="Abendlicht · August">
     <div class="rev" id="bewertungen">
-      <h2 class="ct">Google Bewertungen</h2>
-      <div class="stars" aria-label="Sterne füllen sich"><i></i><i></i><i></i><i></i><i></i></div>
-      <p class="rnote">Note, Anzahl und Link kommen live aus dem Google-Profil des Betriebs.</p>
-      <div class="quotes">
-        <figure class="q"><blockquote>Von der Planung bis zur letzten Platte alles aus einer Hand. Und sauber hinterlassen.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
-        <figure class="q"><blockquote>Das Foto geschickt, zwei Tage später lag der Plan im Postfach.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
-        <figure class="q"><blockquote>Der Rasen kam morgens, abends haben wir darauf gegessen.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
-        <figure class="q"><blockquote>Endlich Profis, die mitdenken und pünktlich sind.</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
-      </div>
+      <figure class="rq"><blockquote>„Von der Planung bis zum letzten Detail – ein echtes Team.“</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+      <figure class="rq"><blockquote>„Unser Garten ist jetzt unser Lieblingsort.“</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+      <figure class="rq"><blockquote>„Zuverlässig, kreativ und einfach sympathisch.“</blockquote><figcaption>Beispiel · noch keine echte Bewertung</figcaption></figure>
+      <a class="rbtn light" href="leistungen/pflege.html">Pflege-Abo <span>→</span></a>
     </div>
   </section>
 
-  <section class="stop bridge" id="b3" data-img="b3" data-se="2" data-tr="iris" data-cx="50" data-cy="50" data-side="Das erste Blatt · September"></section>
+  <section class="stop bridge" id="b3" data-img="sa6" data-alt="b3" data-se="2" data-tr="iris" data-cx="50" data-cy="50" data-side="Blatt färbt sich"></section>
 
-  <section class="stop" id="s6" data-img="p6" data-se="2" data-tr="veil" data-side="Westseite · Oktober">
-    <div class="txt">
-      <p class="eye">Herbst</p>
-      <h2 class="h">Herbst.<br>Komm ins Team.</h2>
-      <p class="sub">Gehölzschnitt, Laub, Winterfest machen. Jetzt beginnt die beste Zeit, bei uns anzufangen.</p>
-      <button class="btn" data-open="bewerbung">60-Sekunden-Bewerbung</button>
+  <section class="stop" id="s6" data-img="sb6" data-alt="p6" data-se="2" data-tr="iris" data-cx="50" data-cy="70" data-side="Herbstnebel · Oktober">
+    <div class="txt lowleft"><p class="cap">Herbstnebel: Farben ziehen durch den Garten. Jetzt ist Zeit für den Gehölzschnitt.</p>
+      <a class="rbtn light" href="leistungen/gehoelzschnitt.html">Gehölzschnitt &amp; Laub <span>→</span></a></div>
+  </section>
+
+  <section class="stop bridge" id="b4" data-img="sa7" data-alt="b4" data-se="2" data-tr="iris" data-cx="45" data-cy="70" data-side="Apfel fällt in die Kiste"></section>
+
+  <section class="stop" id="s7" data-img="sb7" data-alt="p7" data-se="2" data-tr="fade" data-side="Am Stamm · November">
+    <div class="txt lowleft">
+      <h2 class="sh">Führerschein.<br>Feste Crew.<br><em>Draußen.</em></h2>
+      <button class="rbtn light" data-open="bewerbung">60-Sekunden-Bewerbung <span>→</span></button>
     </div>
   </section>
 
-  <section class="stop bridge" id="b4" data-img="b4" data-se="2" data-tr="iris" data-cx="50" data-cy="72" data-side="Ernte · Oktober"></section>
+  <section class="stop bridge" id="b5" data-img="sa8" data-alt="b5" data-se="3" data-tr="veil" data-side="Atem wird Schnee">
+    <div class="txt lowleft"><h2 class="sh small">Winter.<br>Wir planen<br>Ihren Frühling.</h2></div>
+  </section>
 
-  <section class="stop" id="s7" data-img="p7" data-se="2" data-tr="fade" data-side="Am Stamm · November">
-    <div class="txt">
-      <p class="eye">Ausbildung &amp; Jobs</p>
-      <ul class="big-kin" aria-label="Was wir bieten">
-        <li>Führerschein.</li>
-        <li>Feste Crew.</li>
-        <li>Draußen.</li>
+  <section class="stop right" id="s8" data-img="sb8" data-alt="p8" data-se="3" data-side="Schneetreiben · Januar">
+    <div class="rcard" id="kontakt">
+      <h2 class="rt">Lassen Sie<br>uns sprechen.</h2>
+      <ul class="rlist">
+        <li><span aria-hidden="true">☏</span>Telefon (Demo)</li>
+        <li><span aria-hidden="true">✉</span>E-Mail (Demo)</li>
+        <li><span aria-hidden="true">⌖</span>Ihre Stadt &amp; Umgebung</li>
       </ul>
-      <p class="sub">Wir suchen Menschen, die anpacken und bleiben wollen. Ausbildung Gärtner/in Garten- und Landschaftsbau, Quereinstieg, Vorarbeiter.</p>
-      <button class="btn" data-open="bewerbung">Mehr über uns · bewerben</button>
-    </div>
-  </section>
-
-  <section class="stop bridge" id="b5" data-img="b5" data-se="3" data-tr="veil" data-side="Erster Frost · Dezember"></section>
-
-  <section class="stop" id="s8" data-img="p8" data-se="3" data-side="Nordseite · Januar">
-    <div class="txt">
-      <p class="eye">Winter</p>
-      <h2 class="h">Winter.<br>Wir planen<br>Ihren Frühling.</h2>
-      <p class="sub">Pflaster, Mauern, Wege: Im Winter wird geplant, damit im März der Bagger kommt.</p>
-    </div>
-    <div class="card rose kontakt" id="kontakt">
-      <h2 class="ct">Lassen Sie uns etwas Schönes entstehen.</h2>
-      <button class="row" data-open="anfrage"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="1.5"/></svg>Planungstermin vereinbaren</button>
-      <a class="row" href="tel:+490000000000"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h4l2 5-3 2a11 11 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Telefon (Demo)</a>
-      <a class="row" href="mailto:demo@example.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>E-Mail (Demo)</a>
+      <button class="rbtn" data-open="anfrage">Projekt anfragen <span>→</span></button>
     </div>
   </section>
 </main>
@@ -212,6 +183,7 @@
 </dialog>
 
 <div class="toast" hidden role="status"></div>
+<script src="assets/js/imgs.js"></script>
 <script src="assets/js/clips.js"></script>
 <script src="assets/js/rund.js"></script>
 </body>

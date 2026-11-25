@@ -26,7 +26,7 @@
      fade = weicher Übergang mit Partikel-Brücke (Tropfen werden Lichter, Atem wird Schnee). */
   /* Ansicht: ?v=natur (Version 1: nur Natur-Brücken) · ?v=kamera (Version 2: eine Kamerafahrt durch Schleier)
      · ?v=kombi (beides zusammen). Ohne Angabe: natur. */
-  var VIEW = ({ natur: 1, kamera: 1, kombi: 1 })[qs.get('v')] ? qs.get('v') : 'natur';
+  var VIEW = ({ natur: 1, kamera: 1, kombi: 1 })[qs.get('v')] ? qs.get('v') : 'kombi';   // Storyboard = Kamerafahrt + Natur-Brücken
   root.dataset.view = VIEW;
   $$('.views a').forEach(function (a) { var v = a.getAttribute('data-v'); a.classList.toggle('on', v === VIEW); a.href = '?v=' + v + (qs.get('firma') ? '&firma=' + encodeURIComponent(qs.get('firma')) : ''); });
   /* Version 2 zeigt die Brücken-Szenen nicht: sie werden aus der Szenenliste genommen */
@@ -39,7 +39,7 @@
   var stops = $$('.stop'), N = stops.length, stage = $('.stage');
   var SC = stops.map(function (s) {
     var r = (s.dataset.r || '').split(',').map(Number);
-    return { img: s.dataset.img, se: +s.dataset.se, tr: s.dataset.tr || 'veil', cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: +(s.dataset.clip || 0) };
+    return { img: (function () { var h = window.WW_IMGS || [], a = s.dataset.img, b = s.dataset.alt; return h.indexOf(a) >= 0 || !b ? a : b; })(), se: +s.dataset.se, tr: s.dataset.tr || 'veil', cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: +(s.dataset.clip || 0) };
   });
   var pics = SC.map(function (o) { var d = document.createElement('div'); d.className = 'pic'; stage.insertBefore(d, $('.shade')); return d; });
   var have = [];
@@ -160,9 +160,10 @@
     if (se !== curSe) { curSe = se; root.dataset.season = se; }
     seBtns.forEach(function (b, i) { b.classList.toggle('on', i === se); b.setAttribute('aria-pressed', i === se); });
     var b0 = seBtns[Math.floor(seF)], b1 = seBtns[Math.min(Math.ceil(seF), 3)], fr = seF - Math.floor(seF);
-    if (b0 && b1) { ind.style.width = (b0.offsetWidth + (b1.offsetWidth - b0.offsetWidth) * fr) + 'px'; ind.style.transform = 'translateX(' + (b0.offsetLeft + (b1.offsetLeft - b0.offsetLeft) * fr) + 'px)'; }
+    var sd = $('.sundot'); if (sd) { var uu = .06 + seF / 3 * .88, aa = 1 - uu; sd.style.left = ((aa * aa * 20 + 2 * aa * uu * 500 + uu * uu * 980) / 10) + '%'; sd.style.top = ((aa * aa * 110 + 2 * aa * uu * -40 + uu * uu * 110) / 1.2) + '%'; }
+    if (b0 && b1 && !$('.sunarc')) { ind.style.width = (b0.offsetWidth + (b1.offsetWidth - b0.offsetWidth) * fr) + 'px'; ind.style.transform = 'translateX(' + (b0.offsetLeft + (b1.offsetLeft - b0.offsetLeft) * fr) + 'px)'; }
     var ang = (ANG[o.img] || 0) + ((ANG[SC[Math.min(cur + 1, N - 1)].img] || 0) - (ANG[o.img] || 0)) * t;
-    needle.style.setProperty('--rot', ang + 'deg');
+    if (needle) needle.style.setProperty('--rot', ang + 'deg');
     var st = SC[t > .5 ? Math.min(cur + 1, N - 1) : cur].side;
     if (sideTxt.textContent !== st) sideTxt.textContent = st;
     FX.set(seF, (tr === 'fade' || tr === 'iris' || tr === 'veil') && t > 0 ? Math.sin(Math.PI * t) : 0, vel);
@@ -260,11 +261,11 @@
   $$('dialog form[data-demo]').forEach(function (f) { f.addEventListener('submit', function (e) { if (e.submitter && e.submitter.value === 'ok') toast(f.getAttribute('data-demo')); }); });
   $$('dialog').forEach(function (d) { d.addEventListener('click', function (e) { if (e.target === d) d.close(); }); });
   var mini = $('.mini');
-  mini.addEventListener('submit', function (e) { e.preventDefault(); toast(mini.getAttribute('data-demo')); });
+  if (mini) mini.addEventListener('submit', function (e) { e.preventDefault(); toast(mini.getAttribute('data-demo')); });
   var fi = $('.file input'), fs = $('.file span');
-  fi.addEventListener('change', function () { if (fi.files[0]) { fs.textContent = '✓ ' + fi.files[0].name.slice(0, 28); fi.parentNode.classList.add('has'); } });
+  if (fi) fi.addEventListener('change', function () { if (fi.files[0]) { fs.textContent = '✓ ' + fi.files[0].name.slice(0, 28); fi.parentNode.classList.add('has'); } });
   var rg = $('.rng input'), ro = $('.rng output');
-  rg.addEventListener('input', function () { ro.textContent = rg.value; });
+  if (rg) rg.addEventListener('input', function () { ro.textContent = rg.value; });
 
   /* 60-Sekunden-Bewerbung: Antippen = nächste Karte */
   function resetApp(d) { if (d.id !== 'm-bewerbung') return; setCard(0); }
