@@ -1,0 +1,72 @@
+[
+ {
+  "id": "s1",
+  "panel": "B1",
+  "name": "Nordseite · Frühling"
+ },
+ {
+  "id": "s2",
+  "panel": "B2",
+  "name": "Frühlingsnebel"
+ },
+ {
+  "id": "s3",
+  "panel": "B3",
+  "name": "Ostseite · Garten neu gestalten"
+ },
+ {
+  "id": "b1",
+  "panel": "A2",
+  "name": "Brücke: Blüte wird Handy"
+ },
+ {
+  "id": "b2a",
+  "panel": "A3",
+  "name": "Brücke: Foto wird Garten"
+ },
+ {
+  "id": "s4",
+  "panel": "B4",
+  "name": "Südseite · Sommer"
+ },
+ {
+  "id": "b2",
+  "panel": "A4",
+  "name": "Brücke: Tropfen werden Lichter"
+ },
+ {
+  "id": "s5",
+  "panel": "B5",
+  "name": "Sommerabend · Bewertungen"
+ },
+ {
+  "id": "b3",
+  "panel": "A6",
+  "name": "Brücke: Blatt färbt sich"
+ },
+ {
+  "id": "s6",
+  "panel": "B6",
+  "name": "Westseite · Herbst"
+ },
+ {
+  "id": "b4",
+  "panel": "A7",
+  "name": "Brücke: Apfel fällt in die Kiste"
+ },
+ {
+  "id": "s7",
+  "panel": "B7",
+  "name": "Karriere am Stamm"
+ },
+ {
+  "id": "b5",
+  "panel": "A8",
+  "name": "Brücke: Atem wird Schnee"
+ },
+ {
+  "id": "s8",
+  "panel": "B8",
+  "name": "Nordseite · Winter · Kontakt"
+ }
+]

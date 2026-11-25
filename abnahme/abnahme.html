@@ -1,0 +1,130 @@
+<title>WURZELWERK Abnahme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: eine Spalte, je Kapitel ein Band: Storyboard | Seite Laptop | Seite Handy. Farbwelt der Seite: Olive + Rosé */
+:root{
+  --bg:#f3f1ea; --panel:#e7e9dc; --line:#cfd3bf; --fg:#1f2617; --mut:#5c6452; --acc:#b5605a; --acc-bg:#e8b4b0; --on-acc:#2a2420;
+  --f-d:"DM Serif Display",Georgia,serif; --f-b:Inter,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#232c1b;--panel:#2f3a24;--line:#45523a;--fg:#f4efe6;--mut:#b9bfae;--acc:#e8b4b0;--acc-bg:#e8b4b0;--on-acc:#2a2420;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#232c1b;--panel:#2f3a24;--line:#45523a;--fg:#f4efe6;--mut:#b9bfae;--acc:#e8b4b0;--acc-bg:#e8b4b0;--on-acc:#2a2420;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b);margin:0}
+.wrap{max-width:1500px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2{font-family:var(--f-d);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:clamp(36px,5vw,64px);line-height:1}
+h2{font-size:clamp(22px,2.4vw,32px);line-height:1.1}
+.top{display:grid;gap:18px}
+.status{display:flex;flex-wrap:wrap;gap:10px}
+.pill{border:1px solid var(--line);background:var(--panel);padding:8px 12px;font-size:14px;font-weight:500;border-radius:999px}
+.pill b{color:var(--acc);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--acc-bg);color:var(--on-acc);font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font-size:14px;border:0;border-radius:6px;cursor:pointer;font-family:var(--f-b)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+code.url{font-size:14px;color:var(--mut);word-break:break-all}
+.ch{display:grid;gap:14px;padding-top:28px;border-top:1px solid var(--line)}
+.ch-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ch-h .n{font-family:var(--f-d);font-size:clamp(28px,3vw,40px);color:var(--acc);line-height:1;font-variant-numeric:tabular-nums}
+.tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.grid{display:grid;grid-template-columns:1fr 1fr .3fr;gap:14px;align-items:start}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--line);cursor:zoom-in;background:var(--panel);border-radius:4px}
+figcaption{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.note{font-size:15px;color:var(--fg);background:var(--panel);border-left:3px solid var(--acc);padding:10px 14px;max-width:80ch;margin:0}
+.note.ok{border-left-color:var(--line);color:var(--mut)}
+pre{background:var(--panel);border:1px solid var(--line);padding:14px;overflow-x:auto;font-size:13.5px;margin:0;white-space:pre-wrap;word-break:break-all}
+.box{display:grid;gap:12px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:80ch}
+.lb{position:fixed;inset:0;background:rgba(10,12,8,.94);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:20;cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;object-fit:contain}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.grid figure:nth-child(3){grid-column:span 2;max-width:260px}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.grid figure:nth-child(3){grid-column:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>WURZELWERK · Abnahme</h1>
+    <div class="status">
+      <span class="pill"><b>Online</b> · GitHub Pages</span>
+      <span class="pill">Storyboard B „Kamerafahrt“ + A „Natur-Brücken“</span>
+      <span class="pill">15 von 15 Storyboard-Fotos eingebaut</span>
+      <span class="pill">3 Umrund-Clips · Entwürfe 720P</span>
+      <span class="pill">Geprüft: Laptop, 3 Handys, quer · 0 Fehler · kein Querscroll</span>
+      <span class="pill">6 Abweichungen markiert</span>
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://engelstraenen.github.io/wurzelwerk/" target="_blank" rel="noopener">Seite öffnen</a>
+      <code class="url">https://engelstraenen.github.io/wurzelwerk/</code>
+    </div>
+    <p class="note ok">Je Kapitel: links das Storyboard, Mitte die fertige Seite am Laptop, rechts am Handy. Bild antippen = groß. Rosa Linie = Abweichung vom Storyboard.</p>
+  </header>
+
+  <section class="ch"><div class="ch-h"><span class="n">1</span><h2>Nordseite · Frühling</h2><span class="tag">Panel B1</span></div>
+    <div class="grid"><figure><img src="img/s1-sb.jpg" alt="Storyboard Nordseite · Frühling" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s1-lap.jpg" alt="Seite Nordseite · Frühling Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s1-mob.jpg" alt="Seite Nordseite · Frühling Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard: Nebel am Morgen, Bagger, Sonnenbahn oben.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">2</span><h2>Frühlingsnebel</h2><span class="tag">Panel B2</span></div>
+    <div class="grid"><figure><img src="img/s2-sb.jpg" alt="Storyboard Frühlingsnebel" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s2-lap.jpg" alt="Seite Frühlingsnebel Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s2-mob.jpg" alt="Seite Frühlingsnebel Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">3</span><h2>Ostseite · Garten neu gestalten</h2><span class="tag">Panel B3</span></div>
+    <div class="grid"><figure><img src="img/s3-sb.jpg" alt="Storyboard Ostseite · Garten neu gestalten" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s3-lap.jpg" alt="Seite Ostseite · Garten neu gestalten Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s3-mob.jpg" alt="Seite Ostseite · Garten neu gestalten Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard: Blüten im Vordergrund, rosa Karte mit Knopf zur Unterseite.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">4</span><h2>Brücke: Blüte wird Handy</h2><span class="tag">Panel A2</span></div>
+    <div class="grid"><figure><img src="img/b1-sb.jpg" alt="Storyboard Brücke: Blüte wird Handy" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b1-lap.jpg" alt="Seite Brücke: Blüte wird Handy Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b1-mob.jpg" alt="Seite Brücke: Blüte wird Handy Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Abweichung: Im Storyboard zeigt das Handy die WURZELWERK-App mit Text. Auf der Seite zeigt es den Garten, weil Schrift im Foto falsch erzeugt würde.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">5</span><h2>Brücke: Foto wird Garten</h2><span class="tag">Panel A3</span></div>
+    <div class="grid"><figure><img src="img/b2a-sb.jpg" alt="Storyboard Brücke: Foto wird Garten" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b2a-lap.jpg" alt="Seite Brücke: Foto wird Garten Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b2a-mob.jpg" alt="Seite Brücke: Foto wird Garten Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard: Das Handy-Display öffnet sich beim Scrollen zum Sommergarten.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">6</span><h2>Südseite · Sommer</h2><span class="tag">Panel B4</span></div>
+    <div class="grid"><figure><img src="img/s4-sb.jpg" alt="Storyboard Südseite · Sommer" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s4-lap.jpg" alt="Seite Südseite · Sommer Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s4-mob.jpg" alt="Seite Südseite · Sommer Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie Storyboard. Beim Weiterscrollen läuft der Umrund-Clip Sommer; die Kamera dreht sich dort nur ein kleines Stück.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">7</span><h2>Brücke: Tropfen werden Lichter</h2><span class="tag">Panel A4</span></div>
+    <div class="grid"><figure><img src="img/b2-sb.jpg" alt="Storyboard Brücke: Tropfen werden Lichter" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b2-lap.jpg" alt="Seite Brücke: Tropfen werden Lichter Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b2-mob.jpg" alt="Seite Brücke: Tropfen werden Lichter Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Abweichung: Das Storyboard zeigt die Regner-Tropfen ganz nah. Das Foto steht weiter weg (Regner mit Lichterkette).</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">8</span><h2>Sommerabend · Bewertungen</h2><span class="tag">Panel B5</span></div>
+    <div class="grid"><figure><img src="img/s5-sb.jpg" alt="Storyboard Sommerabend · Bewertungen" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s5-lap.jpg" alt="Seite Sommerabend · Bewertungen Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s5-mob.jpg" alt="Seite Sommerabend · Bewertungen Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Abweichung: Bewertungen als „Beispiel“-Karten ohne Sterne und Namen, weil echte Bewertungen erst beim echten Kunden kommen.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">9</span><h2>Brücke: Blatt färbt sich</h2><span class="tag">Panel A6</span></div>
+    <div class="grid"><figure><img src="img/b3-sb.jpg" alt="Storyboard Brücke: Blatt färbt sich" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b3-lap.jpg" alt="Seite Brücke: Blatt färbt sich Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b3-mob.jpg" alt="Seite Brücke: Blatt färbt sich Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard. Auf dem Handy sitzt der Ausschnitt jetzt auf dem Blatt.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">10</span><h2>Westseite · Herbst</h2><span class="tag">Panel B6</span></div>
+    <div class="grid"><figure><img src="img/s6-sb.jpg" alt="Storyboard Westseite · Herbst" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s6-lap.jpg" alt="Seite Westseite · Herbst Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s6-mob.jpg" alt="Seite Westseite · Herbst Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie Storyboard. Danach läuft der Umrund-Clip Herbst; das Haus wirkt am Ende des Clips etwas höher.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">11</span><h2>Brücke: Apfel fällt in die Kiste</h2><span class="tag">Panel A7</span></div>
+    <div class="grid"><figure><img src="img/b4-sb.jpg" alt="Storyboard Brücke: Apfel fällt in die Kiste" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b4-lap.jpg" alt="Seite Brücke: Apfel fällt in die Kiste Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b4-mob.jpg" alt="Seite Brücke: Apfel fällt in die Kiste Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard. Die Schrift „Führerschein …“ steht auf der Seite eine Station später, am Stamm.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">12</span><h2>Karriere am Stamm</h2><span class="tag">Panel B7</span></div>
+    <div class="grid"><figure><img src="img/s7-sb.jpg" alt="Storyboard Karriere am Stamm" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s7-lap.jpg" alt="Seite Karriere am Stamm Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s7-mob.jpg" alt="Seite Karriere am Stamm Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard: Karriere am Stamm mit Knopf zur Bewerbung.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">13</span><h2>Brücke: Atem wird Schnee</h2><span class="tag">Panel A8</span></div>
+    <div class="grid"><figure><img src="img/b5-sb.jpg" alt="Storyboard Brücke: Atem wird Schnee" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/b5-lap.jpg" alt="Seite Brücke: Atem wird Schnee Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/b5-mob.jpg" alt="Seite Brücke: Atem wird Schnee Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Abweichung: Im Storyboard steht hier schon die Kontaktkarte. Auf der Seite kommt sie eine Station später im Winter-Garten.</p></section>
+  <section class="ch"><div class="ch-h"><span class="n">14</span><h2>Nordseite · Winter · Kontakt</h2><span class="tag">Panel B8</span></div>
+    <div class="grid"><figure><img src="img/s8-sb.jpg" alt="Storyboard Nordseite · Winter · Kontakt" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/s8-lap.jpg" alt="Seite Nordseite · Winter · Kontakt Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/s8-mob.jpg" alt="Seite Nordseite · Winter · Kontakt Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie Storyboard. Beim Lesen der Kontaktkarte kreist die Kamera durch den verschneiten Garten (Umrund-Clip Winter).</p></section>
+
+  <section class="ch box"><h2>Zum Einbetten</h2>
+    <pre id="emb">&lt;iframe src="https://engelstraenen.github.io/wurzelwerk/" width="100%" height="800" style="border:0" loading="lazy" title="WURZELWERK Demo"&gt;&lt;/iframe&gt;</pre>
+    <div class="actions"><button class="btn ghost" id="copy" type="button">Code kopieren</button><span id="copied" class="url" hidden>Kopiert</span></div>
+  </section>
+
+  <section class="ch box"><h2>Offen</h2>
+    <ul>
+      <li>Unterseiten im Stil „Schnitt durch den Boden“ sind online. Die eigenen Schnitt-Fotos (Terrasse, Rasen, Baum mit Wurzeln, Beet, Fuge, 5 Arbeitstage) rendern noch; bis dahin stehen dort Fotos der Hauptseite.</li>
+      <li>Die 3 Umrund-Clips sind kostenlose 720P-Entwürfe. Hochskalieren oder 2K/4K erst nach deinem OK (kostet Credits).</li>
+    </ul>
+  </section>
+</div>
+
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
+<script>
+const lb=document.getElementById('lb'),li=document.getElementById('lbImg');
+document.querySelectorAll('figure img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.hidden=false;}));
+lb.addEventListener('click',()=>{lb.hidden=true;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true;});
+document.getElementById('copy').addEventListener('click',()=>{const t=document.getElementById('emb').textContent;const ok=()=>{const c=document.getElementById('copied');c.hidden=false;setTimeout(()=>c.hidden=true,2000);};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('emb'));const s=getSelection();s.removeAllRanges();s.addRange(r);};
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,sel);}else sel();});
+</script>
