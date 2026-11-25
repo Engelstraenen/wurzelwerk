@@ -14,7 +14,7 @@ Probleme, die die Seite löst: Fachkräfte/Azubis (eigenes Kapitel, 60-s-Bewerbu
 - (Eugen 25.11.2026) Scrollytelling = durchdachte Story: jede Station kurz erklärt mit echten GaLaBau-Daten + Knopf zu einer detaillierten Unterseite mit starken Visuals; Seiten-Fotos aus den bestätigten Storyboard-Panels (Storyboard als Referenz), Kamerafahrt um den Baum als echter Film Clip an Clip.
 - Keine echten Firmen, keine Preise/Euro, kein Wort „KI“, Demo-Hinweis, Formulare senden nichts.
 - Alle Seiten mobil-optimiert (4 Größen + Kopfzeile 1081–1600 px).
-- Bilder für die Seite 4K, Storyboards 2K nur zum Ansehen. Endvideos MiniMax H3 2K nur nach Kosten-OK.
+- Bilder für die Seite 2K + Nachschärfen (Unsharp r1.6 p70 t2), 4K nur auf Eugens ausdrücklichen Wunsch (V2.73, 25.11.2026). Endvideos MiniMax H3 2K nur nach Kosten-OK.
 
 ## 4. Skills, Plugins, Agenten, MCP
 Keine zusätzlichen nötig.

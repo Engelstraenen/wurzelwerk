@@ -1,5 +1,5 @@
 // WURZELWERK: Storyboard-Panels als eigene 4K-Fotos, Storyboard-Blatt als Referenz (Masterfile V2.68).
-// sjinn GPT Image 2, 16:9, 4K, Unlimited, max. 2 eigene Aufträge. Referenzen: localStorage.WW7_REF = {A:url, B:url}
+// sjinn GPT Image 2, 16:9, 2K (V2.73), Unlimited, max. 2 eigene Aufträge. Referenzen: localStorage.WW7_REF = {A:url, B:url}
 (() => {
 const REF = JSON.parse(localStorage.WW7_REF || '{}');
 const T = (n, title, extra) => `Recreate panel ${n} (titled "${title}") of the reference storyboard sheet as ONE standalone full-frame photograph. Keep exactly the composition, camera angle, subject, people, colors and light of that panel, the same old apple tree with a gnarled trunk forking into three limbs, the same modern white house and hornbeam hedge. ${extra || ''} Remove ALL user interface: no headline, no text, no letters, no captions, no buttons, no cards, no sun arc, no numbers, no logo, no grid lines, no panel borders. Photorealistic photograph, 16:9, natural light, ultra detailed, sharp, true-to-life colors, not CGI.`;
@@ -41,7 +41,7 @@ new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) i
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const bar = () => [...document.querySelectorAll('button')].map(b => b.innerText.trim()).filter(t => /GPT Image|16:9|4K|2K|1K|Unlimited/.test(t)).join(' | ') + ' | ' + (document.body.innerText.match(/\b\d+ credits/) || [''])[0];
 W.bar = bar;
-const ok = () => { const b = bar(); return /GPT Image 2/.test(b) && /Unlimited · On/.test(b) && /\b0 credits/.test(b) && /16:9/.test(b) && /4K/.test(b); };
+const ok = () => { const b = bar(); return /GPT Image 2/.test(b) && /Unlimited · On/.test(b) && /\b0 credits/.test(b) && /16:9/.test(b) && /2K/.test(b); };
 const scan = () => { for (const im of document.querySelectorAll('img')) { const a = im.alt || ''; for (const j of J) if (a.startsWith(j.id + ' ') && !W.got[j.id] && im.src.includes('/result/')) W.got[j.id] = im.src.split('?')[0]; } localStorage.WW7_GOT = JSON.stringify(W.got); };
 const btn = t => [...document.querySelectorAll('button,[role=button]')].find(b => ((b.getAttribute('aria-label') || '') + '|' + b.innerText).toLowerCase().includes(t.toLowerCase()));
 const clearRefs = async () => { for (let k = 0; k < 6; k++) { const b = [...document.querySelectorAll('button')].find(b => /^Remove Image/.test(b.getAttribute('aria-label') || '')); if (!b) break; b.click(); await sleep(500); } };
