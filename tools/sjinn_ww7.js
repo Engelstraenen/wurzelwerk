@@ -1,0 +1,71 @@
+// WURZELWERK: Storyboard-Panels als eigene 4K-Fotos, Storyboard-Blatt als Referenz (Masterfile V2.68).
+// sjinn GPT Image 2, 16:9, 4K, Unlimited, max. 2 eigene Aufträge. Referenzen: localStorage.WW7_REF = {A:url, B:url}
+(() => {
+const REF = JSON.parse(localStorage.WW7_REF || '{}');
+const T = (n, title, extra) => `Recreate panel ${n} (titled "${title}") of the reference storyboard sheet as ONE standalone full-frame photograph. Keep exactly the composition, camera angle, subject, people, colors and light of that panel, the same old apple tree with a gnarled trunk forking into three limbs, the same modern white house and hornbeam hedge. ${extra || ''} Remove ALL user interface: no headline, no text, no letters, no captions, no buttons, no cards, no sun arc, no numbers, no logo, no grid lines, no panel borders. Photorealistic photograph, 16:9, natural light, ultra detailed, sharp, true-to-life colors, not CGI.`;
+const J = [
+ { id: 'WWU-U1', ref: '', p: 'Photorealistic website storyboard sheet, 16:9, 3x3 grid of nine photorealistic panels with thin gutters on deep olive green (#2f3a24), rosé (#e8b4b0) accents, each panel numbered with a short German caption. Detail subpage "Terrasse & Pflaster" of a German garden and landscaping company WURZELWERK, told as a construction diary of ONE real terrace job day by day while scrolling. 1 "Hero": full-bleed photo of a finished grey porcelain terrace under the old apple tree at golden hour, big headline "Terrasse & Pflaster", a rosé back link "← zurück zum Rundgang". 2 "Tag 1 · Aushub": mini excavator digging, a big number "40 cm" floating as kinetic type. 3 "Tag 2 · Frostschutz": gravel layers being compacted with a plate compactor, data label "0/32 Schotter · 30 cm · verdichtet". 4 "Tag 3 · Schnurgerüst": taut string lines and a laser level, label "2 % Gefälle vom Haus weg". 5 "Tag 4 · Splittbett": raking grit bed, label "Splitt 2/5 · 4 cm". 6 "Tag 5 · Verlegen": two landscapers placing large slabs with a vacuum lifter, label "60 × 60 cm · 3 cm". 7 "Material": three material cards side by side (porcelain, natural stone, concrete paver) as real photos with short pros. 8 "Fragen": clean FAQ accordion over a soft blurred garden photo. 9 "Handy": two smartphones showing the diary vertically with a sticky day counter. Photoreal photography, modern premium web UI, no prices, no clichés, readable German text.' },
+ { id: 'WWU-U2', ref: '', p: 'Photorealistic website storyboard sheet, 16:9, 3x3 grid of nine photorealistic panels with thin gutters on deep olive green (#2f3a24), rosé (#e8b4b0) accents, each panel numbered with a short German caption. Detail subpage "Terrasse & Pflaster" of WURZELWERK where the hero is a huge photoreal cross-section cut through a finished terrace, seen from the side like a museum cutaway, and scrolling peels the layers one by one. 1 "Hero": the terrace surface with the old apple tree and house, the ground below cut open revealing all layers, headline "Was unter Ihrer Terrasse liegt.", rosé back link. 2 "Ebene 1 · Boden": raw subsoil layer highlighted, callout "tragfähiger Untergrund, geprüft". 3 "Ebene 2 · Frostschutz": thick gravel layer highlighted, callout "30–40 cm · 0/32 · lagenweise verdichtet". 4 "Ebene 3 · Tragschicht": callout "Schotter 0/45 · 15 cm". 5 "Ebene 4 · Bettung": thin grit bed glowing, callout "Splitt 2/5 · 3–5 cm". 6 "Ebene 5 · Belag": porcelain slabs with joint detail macro, callout "Fuge 3–5 mm · 2 % Gefälle". 7 "Warum das zählt": side-by-side photos of a sunken cheap terrace vs a perfect one. 8 "Ablauf in 5 Tagen": horizontal timeline with small photos. 9 "Handy": two smartphones showing the cross-section scrolling vertically, layers stacking. Photoreal, premium, no prices, no clichés, readable German text.' },
+ { id: 'WWU-U3', ref: '', p: 'Photorealistic website storyboard sheet, 16:9, 3x3 grid of nine photorealistic panels with thin gutters on deep olive green (#2f3a24), rosé (#e8b4b0) accents, each panel numbered with a short German caption. Detail subpage "Terrasse & Pflaster" of WURZELWERK built around the real professional tools laid out from above on a dark workshop floor; each tool is a hotspot that opens its chapter. 1 "Hero": top-down flat lay of mini excavator bucket, plate compactor, laser level, string line reel, slab vacuum lifter, rubber mallet, headline "Unser Werkzeug. Ihre Terrasse.", rosé back link. 2 "Hotspot Minibagger": the bucket glows, a panel opens with a photo of the dig and data "40 cm Aushub". 3 "Hotspot Rüttelplatte": photo of compaction with data "Verdichtung Ev2 ≥ 120 MN/m²". 4 "Hotspot Laser": rotating laser on a tripod, data "2 % Gefälle, auf den Millimeter". 5 "Hotspot Vakuumheber": two landscapers lift a 60×60 slab. 6 "Vorher/Nachher": before/after slider of the same garden corner. 7 "Pflege": photo of joint sand being swept, care tips. 8 "Kontakt": rosé card "Foto schicken – Angebot in 48 h" over the finished terrace. 9 "Handy": two smartphones with the tool wall as a swipeable carousel. Photoreal, premium, no prices, no clichés, readable German text.' },
+ { id: 'WWS-B1', ref: 'B', p: T(1, 'Start', 'Low camera at the north side of the garden, spring morning mist lifting off the dug-up soil, the blossoming apple tree in the center, mini excavator.') },
+ { id: 'WWS-B2', ref: 'B', p: T(2, 'Kamera kreist', 'Camera at the east side, slight motion blur of an orbiting camera, the mini excavator leaving the frame, landscapers with string lines.') },
+ { id: 'WWS-B3', ref: 'B', p: T(3, 'Durch die Blüten', 'The camera pushes through a curtain of blossoming branches, blossoms soft in front of the lens, the garden behind.') },
+ { id: 'WWS-B4', ref: 'B', p: T(4, 'Durch den Sprühnebel', 'Backlit sprinkler spray with a rainbow, the summer lawn and the tree behind.') },
+ { id: 'WWS-B5', ref: 'B', p: T(5, 'Abendlicht', 'Golden summer evening under the tree, friends at a wooden table, string lights in the branches.') },
+ { id: 'WWS-B6', ref: 'B', p: T(6, 'Herbstnebel', 'Autumn fog drifting across, the tree with red apples, ladder and leaf blower.') },
+ { id: 'WWS-B7', ref: 'B', p: T(7, 'Push-in zum Stamm', 'Close to the trunk, a young apprentice in dark olive-green workwear holding a wooden crate of red apples, face visible and friendly.') },
+ { id: 'WWS-B8', ref: 'B', p: T(8, 'Schneetreiben', 'Blue hour winter at the north side, snowfall, bare tree with snow, curved granite path, dry stone wall with warm LED lights.') },
+ { id: 'WWS-A2', ref: 'A', p: T(2, 'Blüte wird Bildschirm', 'Extreme close-up of a single apple blossom filling the frame, its center turning into a glowing smartphone screen.') },
+ { id: 'WWS-A3', ref: 'A', p: T(3, 'Foto wird Garten', 'A hand holds a phone with a photo of a bare garden corner; the photo expands beyond the phone edges and becomes the real summer lawn behind it.') },
+ { id: 'WWS-A4', ref: 'A', p: T(4, 'Tropfen werden Lichter', 'Glittering sprinkler water drops hanging in the air turning into the warm bulbs of a string light at dusk.') },
+ { id: 'WWS-A6', ref: 'A', p: T(6, 'Blatt färbt sich', 'Macro of one apple leaf turning orange from the edge while falling, autumn garden blurred behind.') },
+ { id: 'WWS-A7', ref: 'A', p: T(7, 'Apfel fällt in die Kiste', 'A red apple falling in motion blur into the wooden crate of a young apprentice.') },
+ { id: 'WWS-A8', ref: 'A', p: T(8, 'Atem wird Schnee', 'The breath of the apprentice in the cold air dissolving into falling snowflakes over the winter garden with the lit stone wall.') }
+];
+for (const j of J) j.p = j.id + ' ' + j.p;
+const W = window.WWQ7 = { sent: JSON.parse(localStorage.WW7_SENT || '{}'), got: JSON.parse(localStorage.WW7_GOT || '{}'), log: [], limN: 0, runId: Date.now() };
+new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (/maximum limit|concurrent task/i.test(n.textContent || '')) W.limN++; }).observe(document.body, { childList: true, subtree: true });
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const bar = () => [...document.querySelectorAll('button')].map(b => b.innerText.trim()).filter(t => /GPT Image|16:9|4K|2K|1K|Unlimited/.test(t)).join(' | ') + ' | ' + (document.body.innerText.match(/\b\d+ credits/) || [''])[0];
+W.bar = bar;
+const ok = () => { const b = bar(); return /GPT Image 2/.test(b) && /Unlimited · On/.test(b) && /\b0 credits/.test(b) && /16:9/.test(b) && /4K/.test(b); };
+const scan = () => { for (const im of document.querySelectorAll('img')) { const a = im.alt || ''; for (const j of J) if (a.startsWith(j.id + ' ') && !W.got[j.id] && im.src.includes('/result/')) W.got[j.id] = im.src.split('?')[0]; } localStorage.WW7_GOT = JSON.stringify(W.got); };
+const btn = t => [...document.querySelectorAll('button,[role=button]')].find(b => ((b.getAttribute('aria-label') || '') + '|' + b.innerText).toLowerCase().includes(t.toLowerCase()));
+const clearRefs = async () => { for (let k = 0; k < 6; k++) { const b = [...document.querySelectorAll('button')].find(b => /^Remove Image/.test(b.getAttribute('aria-label') || '')); if (!b) break; b.click(); await sleep(500); } };
+const setRef = async src => {
+  if (!document.querySelector('[role=dialog]')) { const b = btn('Add reference'); if (!b) return 'NOADD'; b.click(); await sleep(2200); }
+  const dlg = document.querySelector('[role=dialog]'); if (!dlg) return 'NODLG';
+  const clr = [...dlg.querySelectorAll('button')].find(b => /Clear selection/i.test(b.innerText)); if (clr) { clr.click(); await sleep(600); }
+  const key = src.split('/').pop().split('.')[0];
+  let img = [...dlg.querySelectorAll('img')].find(i => i.src.includes(key));
+  for (let k = 0; !img && k < 8; k++) { const lm = [...dlg.querySelectorAll('button')].find(b => /Load more/i.test(b.innerText)); if (!lm) break; lm.click(); await sleep(2500); img = [...dlg.querySelectorAll('img')].find(i => i.src.includes(key)); }
+  if (img) { let c = img; for (let k = 0; k < 7; k++) { c = c.parentElement; const sb = c && c.querySelector('button[aria-label^="Select image"]'); if (sb) { sb.click(); break; } } await sleep(600); }
+  const use = [...dlg.querySelectorAll('button')].find(b => /^Use \d+ image|Apply selection/i.test(b.innerText.trim()));
+  if (img && use && !use.disabled) { use.click(); await sleep(1200); return 'ok'; }
+  const x = [...dlg.querySelectorAll('button')].find(b => b.innerText.trim() === 'Cancel' || b.getAttribute('aria-label') === 'Close'); x && x.click(); await sleep(600); return img ? 'NOUSE' : 'NOIMG';
+};
+const send = async j => {
+  await clearRefs();
+  if (j.ref) { const r = await setRef(REF[j.ref]); if (r !== 'ok') { W.log.push('REF ' + r + ' ' + j.id); return false; } }
+  const ta = document.querySelector('textarea'); const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+  set.call(ta, ''); ta.dispatchEvent(new Event('input', { bubbles: true })); set.call(ta, j.p); ta.dispatchEvent(new Event('input', { bubbles: true }));
+  await sleep(1000);
+  if (!ok()) { W.log.push('NOT-OK ' + bar()); return false; }
+  const g = [...document.querySelectorAll('button')].find(b => b.textContent.trim() === 'Generate'); if (!g || g.disabled) { W.log.push('NOBTN'); return false; }
+  const l0 = W.limN; g.click(); await sleep(20000);
+  if (W.limN > l0) { W.log.push('LIMIT ' + j.id); return false; }
+  W.sent[j.id] = Date.now(); localStorage.WW7_SENT = JSON.stringify(W.sent); W.log.push('SENT ' + j.id + ' ' + new Date().toLocaleTimeString());
+  set.call(ta, ''); ta.dispatchEvent(new Event('input', { bubbles: true })); return true;
+};
+W.loop = async () => { const id = W.runId;
+  while (W.runId === id) {
+    scan();
+    for (const k of Object.keys(W.sent)) if (!W.got[k] && Date.now() - W.sent[k] > 25 * 60000) { W.log.push('TIMEOUT ' + k); delete W.sent[k]; }
+    if (J.every(j => W.got[j.id])) { W.log.push('ALL DONE ' + new Date().toLocaleTimeString()); break; }
+    const running = Object.keys(W.sent).filter(k => !W.got[k]).length;
+    const next = J.find(j => !W.got[j.id] && !W.sent[j.id]);
+    if (next && running < 2) { const okk = await send(next); await sleep(okk ? 3000 : 90000); continue; }
+    await sleep(30000);
+  } };
+W.loop();
+})();
