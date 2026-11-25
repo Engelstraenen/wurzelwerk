@@ -39,7 +39,7 @@
   var stops = $$('.stop'), N = stops.length, stage = $('.stage');
   var SC = stops.map(function (s) {
     var r = (s.dataset.r || '').split(',').map(Number);
-    return { img: (function () { var h = window.WW_IMGS || [], a = s.dataset.img, b = s.dataset.alt; return h.indexOf(a) >= 0 || !b ? a : b; })(), se: +s.dataset.se, tr: s.dataset.tr || 'veil', cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: +(s.dataset.clip || 0) };
+    return { img: (function () { var h = window.WW_IMGS || [], a = s.dataset.img, b = s.dataset.alt; return h.indexOf(a) >= 0 || !b ? a : b; })(), se: +s.dataset.se, tr: s.dataset.tr || 'veil', cx: +(s.dataset.cx || 50), cy: +(s.dataset.cy || 50), r: r.length === 4 ? r : null, side: s.dataset.side || '', clip: +(s.dataset.clip || 0), trf: s.dataset.trf || 'veil', rev: s.dataset.rev === '1' };
   });
   var pics = SC.map(function (o) { var d = document.createElement('div'); d.className = 'pic'; stage.insertBefore(d, $('.shade')); return d; });
   var have = [];
@@ -103,13 +103,13 @@
     var A = use(cur), B = use(cur + 1), o = SC[cur], tr = o.tr, mv = mob() ? 6 : 9;
     if (B === A) t = 0;
     var cl = clips[cur], film = tr === 'clip' && cl && cl.ok && t > 0 && t < 1;
-    if (tr === 'clip' && !film) tr = 'veil';
+    if (tr === 'clip' && !film) tr = o.trf;  /* Clip fehlt noch: Übergang aus dem Storyboard A */
     var drift = -q * 2;   // leichte Kamerabewegung in jeder Szene, damit nie Stillstand ist
 
     clips.forEach(function (c, i) {
       if (!c) return;
       if (film && i === cur) {
-        var d = c.v.duration || 5, want = t * (d - .05);
+        var d = c.v.duration || 5, want = (o.rev ? 1 - t : t) * (d - .05);  /* rev: Film endet genau auf dem Storyboard-Foto der nächsten Station */
         if (Math.abs(c.v.currentTime - want) > .02 && !c.v.seeking) c.v.currentTime = want;
         c.v.style.opacity = (seg(t, 0, .07) * (1 - seg(t, .93, 1))).toFixed(3);
         c.v.style.transform = 'translate3d(' + (drift * (1 - t)).toFixed(2) + '%,0,0) scale(1.05)';
