@@ -19,46 +19,42 @@
 </header>
 
 <nav class="menu" aria-label="Hauptmenü">
-  <a href="#s2" data-go="1"><small>Frühling</small>Neu anlegen</a>
-  <a href="#s3" data-go="2"><small>Frühling</small>Angebot per Foto</a>
-  <a href="#s4" data-go="3"><small>Sommer</small>Rasen &amp; Pflege</a>
-  <a href="#s5" data-go="4"><small>Sommer</small>Bewertungen</a>
-  <a href="#s6" data-go="5"><small>Herbst</small>Gehölzschnitt</a>
-  <a href="#s7" data-go="6"><small>Herbst</small>Ausbildung &amp; Jobs</a>
-  <a href="#s8" data-go="7"><small>Winter</small>Planung &amp; Kontakt</a>
+  <a href="#s2" data-goid="s2"><small>Frühling</small>Neu anlegen</a>
+  <a href="#s3" data-goid="s3"><small>Frühling</small>Angebot per Foto</a>
+  <a href="#s4" data-goid="s4"><small>Sommer</small>Rasen &amp; Pflege</a>
+  <a href="#s5" data-goid="s5"><small>Sommer</small>Bewertungen</a>
+  <a href="#s6" data-goid="s6"><small>Herbst</small>Gehölzschnitt</a>
+  <a href="#s7" data-goid="s7"><small>Herbst</small>Ausbildung &amp; Jobs</a>
+  <a href="#s8" data-goid="s8"><small>Winter</small>Planung &amp; Kontakt</a>
 </nav>
 
-<!-- Sonnenbahn = Navigation durch das Jahr -->
-<div class="sun" aria-label="Jahreszeiten">
-  <svg viewBox="0 0 1000 140" preserveAspectRatio="none" aria-hidden="true">
-    <path id="arc" d="M 40 138 Q 500 -30 960 138" fill="none" />
-    <path id="arcOn" d="M 40 138 Q 500 -30 960 138" fill="none" />
-  </svg>
-  <button class="sl" data-go="1" style="--x:18%;--y:62%">Frühling</button>
-  <button class="sl" data-go="3" style="--x:39%;--y:24%">Sommer</button>
-  <button class="sl" data-go="5" style="--x:61%;--y:24%">Herbst</button>
-  <button class="sl" data-go="7" style="--x:82%;--y:62%">Winter</button>
-  <i class="dot"></i>
-</div>
+<!-- Jahreszeiten-Schalter = Navigation durch das Jahr -->
+<nav class="seasons" aria-label="Jahreszeit wählen">
+  <i class="ind" aria-hidden="true"></i>
+  <button class="se" data-goid="s1" data-se="0"><span class="sym" aria-hidden="true">✿</span>Frühling</button>
+  <button class="se" data-goid="s4" data-se="1"><span class="sym" aria-hidden="true">☀</span>Sommer</button>
+  <button class="se" data-goid="s6" data-se="2"><span class="sym" aria-hidden="true">❦</span>Herbst</button>
+  <button class="se" data-goid="s8" data-se="3"><span class="sym" aria-hidden="true">❄</span>Winter</button>
+</nav>
 
 <main id="rund">
   <div class="stage" aria-hidden="true">
-    <div class="pic" data-i="0"></div><div class="pic" data-i="1"></div><div class="pic" data-i="2"></div><div class="pic" data-i="3"></div>
-    <div class="pic" data-i="4"></div><div class="pic" data-i="5"></div><div class="pic" data-i="6"></div><div class="pic" data-i="7"></div>
     <div class="shade"></div>
+    <div class="veil"></div>
+    <canvas class="fx"></canvas>
     <div class="compass"><b>N</b><span class="needle"></span></div>
   </div>
 
   <!-- 8 Haltepunkte; jeder ist eine Szene im Rundgang -->
-  <section class="stop" id="s1" data-side="Nordseite · März">
+  <section class="stop" id="s1" data-img="p1" data-se="0" data-tr="clip" data-clip="1" data-side="Nordseite · März">
     <div class="txt">
       <h1 class="h">Ein Baum.<br>Vier Seiten.<br>Ein Jahr.</h1>
       <p class="sub">Ein Garten. Echte Veränderung. Gehen Sie einmal um den Baum und sehen Sie, was entsteht.</p>
-      <a class="btn" href="#s2" data-go="1">Rundgang starten <span class="ar">↓</span></a>
+      <a class="btn" href="#s2" data-goid="s2">Rundgang starten <span class="ar">↓</span></a>
     </div>
   </section>
 
-  <section class="stop" id="s2" data-side="Ostseite · April">
+  <section class="stop" id="s2" data-img="p2" data-se="0" data-tr="iris" data-cx="36" data-cy="22" data-side="Ostseite · April">
     <div class="txt">
       <p class="eye">Frühling</p>
       <h2 class="h">Frühling.<br>Neu anlegen.</h2>
@@ -72,7 +68,9 @@
     </div>
   </section>
 
-  <section class="stop right" id="s3" data-side="Unter der Blüte · Mai">
+  <section class="stop bridge" id="b1" data-img="b1" data-se="0" data-tr="iris" data-cx="50" data-cy="50" data-side="Ganz nah · Mai"></section>
+
+  <section class="stop right" id="s3" data-img="p3" data-se="0" data-tr="rect" data-r="13.5,48,40.5,74" data-side="Unter der Blüte · Mai">
     <div class="card rose" id="angebot">
       <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
       <h2 class="ct">Foto schicken,<br>wir rechnen den Plan.</h2>
@@ -85,7 +83,7 @@
     </div>
   </section>
 
-  <section class="stop" id="s4" data-side="Südseite · Juli">
+  <section class="stop" id="s4" data-img="p4" data-se="1" data-tr="veil" data-side="Südseite · Juli">
     <div class="txt">
       <p class="eye">Sommer</p>
       <h2 class="h">Sommer.<br>Gepflegt,<br>nicht geplagt.</h2>
@@ -97,7 +95,9 @@
     </div>
   </section>
 
-  <section class="stop wide" id="s5" data-side="Unter dem Baum · August">
+  <section class="stop bridge" id="b2" data-img="b2" data-se="1" data-tr="fade" data-side="Im Sprühnebel · August"></section>
+
+  <section class="stop wide" id="s5" data-img="p5" data-se="1" data-tr="fade" data-side="Unter dem Baum · August">
     <div class="rev" id="bewertungen">
       <h2 class="ct">Google Bewertungen</h2>
       <div class="stars" aria-label="Sterne füllen sich"><i></i><i></i><i></i><i></i><i></i></div>
@@ -111,7 +111,9 @@
     </div>
   </section>
 
-  <section class="stop" id="s6" data-side="Westseite · Oktober">
+  <section class="stop bridge" id="b3" data-img="b3" data-se="2" data-tr="iris" data-cx="50" data-cy="50" data-side="Das erste Blatt · September"></section>
+
+  <section class="stop" id="s6" data-img="p6" data-se="2" data-tr="veil" data-side="Westseite · Oktober">
     <div class="txt">
       <p class="eye">Herbst</p>
       <h2 class="h">Herbst.<br>Komm ins Team.</h2>
@@ -120,7 +122,9 @@
     </div>
   </section>
 
-  <section class="stop" id="s7" data-side="Am Stamm · November">
+  <section class="stop bridge" id="b4" data-img="b4" data-se="2" data-tr="iris" data-cx="50" data-cy="72" data-side="Ernte · Oktober"></section>
+
+  <section class="stop" id="s7" data-img="p7" data-se="2" data-tr="fade" data-side="Am Stamm · November">
     <div class="txt">
       <p class="eye">Ausbildung &amp; Jobs</p>
       <ul class="big-kin" aria-label="Was wir bieten">
@@ -133,7 +137,9 @@
     </div>
   </section>
 
-  <section class="stop" id="s8" data-side="Nordseite · Januar">
+  <section class="stop bridge" id="b5" data-img="b5" data-se="3" data-tr="veil" data-side="Erster Frost · Dezember"></section>
+
+  <section class="stop" id="s8" data-img="p8" data-se="3" data-side="Nordseite · Januar">
     <div class="txt">
       <p class="eye">Winter</p>
       <h2 class="h">Winter.<br>Wir planen<br>Ihren Frühling.</h2>

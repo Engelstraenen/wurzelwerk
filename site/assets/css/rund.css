@@ -224,3 +224,34 @@ a { color: inherit; }
   .kontakt .ct { font-size: 22px; }
   .kontakt .row { min-height: 44px; }
 }
+
+/* ===== Jahreszeiten-Schalter (25.11.2026, Variante 1 + 2 kombiniert) ===== */
+.sun { display: none; }
+.seasons { position: fixed; z-index: 52; top: calc(var(--demo-h) + 12px); left: 50%; transform: translateX(-50%); display: flex; padding: 4px; border-radius: 999px; background: rgba(var(--bg-rgb), .55); border: 1px solid rgba(var(--tx-rgb), .18); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,.2); transition: opacity .4s; }
+.seasons .ind { position: absolute; top: 4px; bottom: 4px; left: 0; border-radius: 999px; background: var(--or); box-shadow: 0 0 22px rgba(var(--or-rgb), .5); will-change: transform, width; }
+.se { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: none; color: var(--tx); font: 600 14px/1 I, sans-serif; letter-spacing: .02em; cursor: pointer; transition: color .3s; }
+.se .sym { font-size: 15px; opacity: .85; }
+.se.on { color: var(--on-or); }
+.menu-open .seasons, .past .seasons { opacity: 0; pointer-events: none; }
+.stop.bridge { height: 125vh; }
+.stop.bridge .in { pointer-events: none; }
+/* Schleier: Kamera fährt durch Nebel (Frühling), Sprühnebel (Sommer), Herbstnebel, Schneetreiben */
+.veil { position: absolute; inset: 0; z-index: 3; opacity: 0; pointer-events: none; background:
+  radial-gradient(60% 50% at 30% 60%, rgba(255,255,255,.75), transparent 70%),
+  radial-gradient(50% 40% at 70% 40%, rgba(255,255,255,.6), transparent 70%),
+  linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.55)); }
+.veil[data-se="1"] { background: radial-gradient(55% 45% at 50% 55%, rgba(255,246,220,.8), transparent 70%), radial-gradient(40% 30% at 25% 35%, rgba(200,230,255,.45), transparent 70%), linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,240,210,.45)); }
+.veil[data-se="2"] { background: radial-gradient(60% 50% at 40% 55%, rgba(236,214,180,.75), transparent 70%), radial-gradient(45% 40% at 75% 35%, rgba(220,200,170,.55), transparent 70%), linear-gradient(180deg, rgba(210,190,160,.3), rgba(200,180,150,.5)); }
+.veil[data-se="3"] { background: radial-gradient(60% 50% at 50% 50%, rgba(240,246,255,.85), transparent 72%), linear-gradient(180deg, rgba(220,232,250,.45), rgba(255,255,255,.65)); }
+.fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; }
+@media (max-width: 900px) {
+  .seasons { top: calc(var(--demo-h) + var(--nav-h) + 6px); width: calc(100vw - 32px); justify-content: space-between; }
+  .se { flex: 1; justify-content: center; padding: 0 6px; font-size: 13px; gap: 4px; }
+  .se .sym { display: none; }
+}
+@media (max-width: 900px) and (max-height: 520px) {
+  .seasons { top: calc(var(--demo-h) + 6px); width: auto; }
+  .se { flex: none; padding: 0 12px; }
+}
+
+.past #s8 .in { opacity: 0 !important; transition: opacity .3s; }
