@@ -1,5 +1,5 @@
 // WURZELWERK: Storyboard-Panels als eigene 4K-Fotos, Storyboard-Blatt als Referenz (Masterfile V2.68).
-// sjinn GPT Image 2, 16:9, 2K (V2.73), Unlimited, max. 2 eigene Aufträge. Referenzen: localStorage.WW7_REF = {A:url, B:url}
+// sjinn GPT Image 2, 16:9, 4K vollflächig / 2K Rest (V2.74), Unlimited, max. 2 eigene Aufträge. Referenzen: localStorage.WW7_REF = {A:url, B:url}
 (() => {
 const REF = JSON.parse(localStorage.WW7_REF || '{}');
 const T = (n, title, extra) => `Recreate panel ${n} (titled "${title}") of the reference storyboard sheet as ONE standalone full-frame photograph. Keep exactly the composition, camera angle, subject, people, colors and light of that panel, the same old apple tree with a gnarled trunk forking into three limbs, the same modern white house and hornbeam hedge. ${extra || ''} Remove ALL user interface: no headline, no text, no letters, no captions, no buttons, no cards, no sun arc, no numbers, no logo, no grid lines, no panel borders. Photorealistic photograph, 16:9, natural light, ultra detailed, sharp, true-to-life colors, not CGI.`;
@@ -36,12 +36,23 @@ const J = [
  { id: 'WWX-P1', ref: 'U', p: T2('In the photorealistic style of panel 1 of the reference sheet: a museum-style cutaway photograph seen perfectly from the side, the ground cut open with a clean straight vertical section face, every layer evenly lit and clearly readable as horizontal bands, the old apple tree and the modern white house above ground. Cutaway through a planted perennial border: on top flowering perennials and ornamental grasses, a 5 cm bark mulch layer, 30 cm dark humus-rich topsoil with roots, a thin drip irrigation line, then subsoil; layers fill the lower half of the frame. NO text, NO labels, NO letters, NO numbers, NO arrows, NO user interface, no panel borders. Photorealistic, 16:9, natural daylight, ultra detailed, true-to-life colors, not CGI, no plastic look.') },
 ];
 for (const j of J) j.p = j.id + ' ' + j.p;
+// V2.74: 4K nur für Bilder, die vollflächig stehen oder gezoomt werden; Rest 2K (Vergleichskarten, Ablauf-Fotos)
+for (const j of J) j.res = /^WWX-(T7|D)/.test(j.id) ? '2K' : '4K';
 const W = window.WWQ7 = { sent: JSON.parse(localStorage.WW7_SENT || '{}'), got: JSON.parse(localStorage.WW7_GOT || '{}'), log: [], limN: 0, runId: Date.now() };
 new MutationObserver(ms => { for (const m of ms) for (const n of m.addedNodes) if (/maximum limit|concurrent task/i.test(n.textContent || '')) W.limN++; }).observe(document.body, { childList: true, subtree: true });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const bar = () => [...document.querySelectorAll('button')].map(b => b.innerText.trim()).filter(t => /GPT Image|16:9|4K|2K|1K|Unlimited/.test(t)).join(' | ') + ' | ' + (document.body.innerText.match(/\b\d+ credits/) || [''])[0];
 W.bar = bar;
-const ok = () => { const b = bar(); return /GPT Image 2/.test(b) && /Unlimited · On/.test(b) && /\b0 credits/.test(b) && /16:9/.test(b) && /2K/.test(b); };
+const ok = res => { const b = bar(); return /GPT Image 2/.test(b) && /Unlimited · On/.test(b) && /\b0 credits/.test(b) && /16:9/.test(b) && new RegExp('\\| ' + res + ' \\|').test(b); };
+const setRes = async res => {
+  const cur = [...document.querySelectorAll('button')].find(b => /^(1K|2K|4K)$/.test(b.innerText.trim()));
+  if (!cur) return false; if (cur.innerText.trim() === res) return true;
+  cur.click(); await sleep(800);
+  const o = [...document.querySelectorAll('[role=option],[role=menuitem],button,li,div')].filter(x => new RegExp('^' + res + '\\n' + res + ' resolution').test(x.innerText.trim())).pop();
+  if (o) o.click(); await sleep(800);
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await sleep(500);
+  const now = [...document.querySelectorAll('button')].find(b => /^(1K|2K|4K)$/.test(b.innerText.trim()));
+  return !!now && now.innerText.trim() === res; };
 const scan = () => { for (const im of document.querySelectorAll('img')) { const a = im.alt || ''; for (const j of J) if (a.startsWith(j.id + ' ') && !W.got[j.id] && im.src.includes('/result/')) W.got[j.id] = im.src.split('?')[0]; } localStorage.WW7_GOT = JSON.stringify(W.got); };
 const btn = t => [...document.querySelectorAll('button,[role=button]')].find(b => ((b.getAttribute('aria-label') || '') + '|' + b.innerText).toLowerCase().includes(t.toLowerCase()));
 const clearRefs = async () => { for (let k = 0; k < 6; k++) { const b = [...document.querySelectorAll('button')].find(b => /^Remove Image/.test(b.getAttribute('aria-label') || '')); if (!b) break; b.click(); await sleep(500); } };
@@ -63,7 +74,8 @@ const send = async j => {
   const ta = document.querySelector('textarea'); const set = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
   set.call(ta, ''); ta.dispatchEvent(new Event('input', { bubbles: true })); set.call(ta, j.p); ta.dispatchEvent(new Event('input', { bubbles: true }));
   await sleep(1000);
-  if (!ok()) { W.log.push('NOT-OK ' + bar()); return false; }
+  if (!(await setRes(j.res))) { W.log.push('RES ' + j.res + ' ' + j.id); return false; }
+  if (!ok(j.res)) { W.log.push('NOT-OK ' + bar()); return false; }
   const g = [...document.querySelectorAll('button')].find(b => b.textContent.trim() === 'Generate'); if (!g || g.disabled) { W.log.push('NOBTN'); return false; }
   const l0 = W.limN; g.click(); await sleep(20000);
   if (W.limN > l0) { W.log.push('LIMIT ' + j.id); return false; }
