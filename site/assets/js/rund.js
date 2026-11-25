@@ -102,17 +102,18 @@
 
     var A = use(cur), B = use(cur + 1), o = SC[cur], tr = o.tr, mv = mob() ? 6 : 9;
     if (B === A) t = 0;
-    var cl = clips[cur], film = tr === 'clip' && cl && cl.ok && t > 0 && t < 1;
+    var last = cur === N - 1, tt = last ? q : t;  /* letzte Station: Film läuft beim Lesen (Winter, Kontakt) */
+    var cl = clips[cur], film = tr === 'clip' && cl && cl.ok && tt > 0 && tt < 1;
     if (tr === 'clip' && !film) tr = o.trf;  /* Clip fehlt noch: Übergang aus dem Storyboard A */
     var drift = -q * 2;   // leichte Kamerabewegung in jeder Szene, damit nie Stillstand ist
 
     clips.forEach(function (c, i) {
       if (!c) return;
       if (film && i === cur) {
-        var d = c.v.duration || 5, want = (o.rev ? 1 - t : t) * (d - .05);  /* rev: Film endet genau auf dem Storyboard-Foto der nächsten Station */
+        var d = c.v.duration || 5, want = (o.rev ? 1 - tt : tt) * (d - .05);  /* rev: Film endet genau auf dem Storyboard-Foto der nächsten Station */
         if (Math.abs(c.v.currentTime - want) > .02 && !c.v.seeking) c.v.currentTime = want;
-        c.v.style.opacity = (seg(t, 0, .07) * (1 - seg(t, .93, 1))).toFixed(3);
-        c.v.style.transform = 'translate3d(' + (drift * (1 - t)).toFixed(2) + '%,0,0) scale(1.05)';
+        c.v.style.opacity = (last ? seg(tt, 0, .07) : seg(t, 0, .07) * (1 - seg(t, .93, 1))).toFixed(3);
+        c.v.style.transform = 'translate3d(' + (drift * (1 - tt)).toFixed(2) + '%,0,0) scale(1.05)';
       } else c.v.style.opacity = 0;
     });
 
