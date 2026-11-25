@@ -15,7 +15,7 @@ CACHE = os.path.join(R, "assets-roh", "rund_cache.json")
 CX = {1: .50, 2: .42, 3: .36, 4: .44, 5: .50, 6: .50, 7: .58, 8: .50}
 os.makedirs(OUT, exist_ok=True)
 cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
-JOBS = [(n, "WWR-P%d" % n, "p%d" % n, CX[n]) for n in range(1, 9)] + [(10 + n, "WWB-%d" % n, "b%d" % n, .5) for n in range(1, 7)]
+JOBS = [(n, "WWR-P%d" % n, "p%d" % n, CX[n]) for n in range(1, 9)] + [(10 + n, "WWB-%d" % n, "b%d" % n, .5) for n in range(1, 7)] + [(20 + n, "WWS-B%d" % n, "sb%d" % n, .5) for n in range(1, 9)] + [(30 + n, "WWS-A%d" % n, "sa%d" % n, .5) for n in range(2, 9)]
 for n, raw, out, cxx in JOBS:
     src = os.path.join(SRC, raw + ".png")
     if not os.path.exists(src):
@@ -32,3 +32,7 @@ for n, raw, out, cxx in JOBS:
     cache[str(n)] = key
     print(out, w, "x", h, "->", os.path.getsize(d) // 1024, "KB,", "m", cw, "x", h, os.path.getsize(m) // 1024, "KB")
 json.dump(cache, open(CACHE, "w"))
+
+# Liste der vorhandenen Bilder für die Seiten (keine 404-Anfragen auf noch fehlende Storyboard-Fotos)
+have = sorted(f[:-5] for f in os.listdir(OUT) if f.endswith(".webp") and not f.endswith("-m.webp"))
+open(os.path.join(R, "site", "assets", "js", "imgs.js"), "w").write("window.WW_IMGS=%s;\n" % json.dumps(have))
