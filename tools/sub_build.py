@@ -343,7 +343,7 @@ def page(p):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>%(eye)s · WURZELWERK</title>
 <meta name="description" content="%(lead)s">
-<meta name="theme-color" content="#2f3a24">
+<meta name="theme-color" content="#1d1915">
 <link rel="preload" href="../assets/fonts/serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/sub.css">
 </head>
