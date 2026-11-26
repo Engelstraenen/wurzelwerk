@@ -359,7 +359,7 @@ a { color: inherit; }
   .beat.num b { font-size: 44px; }
   .stop.right.story .in { justify-content: flex-end; }
   .stop.right.story .rcard, .stop.right.story .rev { display: none; }
-  .stop.right.story.cards .rcard, .stop.right.story.cards .rev { display: block; }
+  .stop.right.story.mcards .rcard, .stop.right.story.mcards .rev { display: block; }
   .bars { height: 100px; }
 }
 
@@ -369,3 +369,11 @@ a { color: inherit; }
 @media (max-width: 760px) { .bars { height: 80px; margin-top: 30px; } .story-txt .kick { margin-bottom: 6px; } }
 /* One-Take: an Station 7 kniet der Azubi links unten, Text darüber statt auf ihm */
 @media (min-width: 901px) { #s7 .txt { align-self: flex-start; } }
+/* Handy: erst Text, dann Karte (nie beides übereinander unter die Kopfzeile) */
+@media (max-width: 760px) { .stop.right.story.mcards .txt { display: none; } }
+/* Handy quer / sehr flache Fenster: Diagramme weglassen, Karte kompakter */
+@media (max-height: 500px) {
+  .stop.story .bars, .stop.story .stack, .stop.story .cal, .stop.story .bars + .src { display: none; }
+  .rcard { transform: scale(.86); transform-origin: right bottom; }
+}
+@media (max-height: 500px) { .stop .sh { font-size: clamp(26px, 6.5vh, 34px); } .stop .in { padding-top: calc(var(--demo-h) + var(--nav-h) + 30px); } }

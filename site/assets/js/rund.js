@@ -209,7 +209,7 @@
           $$('[data-h]', b).forEach(function (e, n) { e.style.height = (+e.dataset.h * eout(seg(aa[k], n * .1, n * .1 + .5))) + '%'; });
           $$('.cal i.y', b).forEach(function (e, n) { e.style.setProperty('--a', eout(seg(aa[k], n * .12, n * .12 + .4)).toFixed(3)); });
         });
-        if (mob() && sec.classList.contains('right')) sec.classList.toggle('cards', aa[nb - 1] > .95 && p > span + .02);
+        if (mob() && sec.classList.contains('right')) sec.classList.toggle('mcards', aa[nb - 1] > .95 && p > span + .02);
       }
       var qq = $$('.q', sec);
       if (qq.length) {

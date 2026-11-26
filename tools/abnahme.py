@@ -9,11 +9,9 @@ URL = sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:4430/"
 OUT = os.path.join(R, "abnahme", "img"); os.makedirs(OUT, exist_ok=True)
 SHEETS = {"B": "vorschau/43-uebergang-B-kamerafahrt.jpg", "A": "vorschau/42-uebergang-A-naturbruecken.jpg"}
 # Reihenfolge = Scroll-Reihenfolge der Seite
-CH = [("s1", "B", 1, "Nordseite · Frühling"), ("s2", "B", 2, "Frühlingsnebel"), ("s3", "B", 3, "Ostseite · Garten neu gestalten"),
-      ("b1", "A", 2, "Brücke: Blüte wird Handy"), ("b2a", "A", 3, "Brücke: Foto wird Garten"), ("s4", "B", 4, "Südseite · Sommer"),
-      ("b2", "A", 4, "Brücke: Tropfen werden Lichter"), ("s5", "B", 5, "Sommerabend · Bewertungen"), ("b3", "A", 6, "Brücke: Blatt färbt sich"),
-      ("s6", "B", 6, "Westseite · Herbst"), ("b4", "A", 7, "Brücke: Apfel fällt in die Kiste"), ("s7", "B", 7, "Karriere am Stamm"),
-      ("b5", "A", 8, "Brücke: Atem wird Schnee"), ("s8", "B", 8, "Nordseite · Winter · Kontakt")]
+CH = [("s1", "B", 1, "Nordseite · März"), ("s2", "B", 2, "Ostseite · April · Schnurgerüst"), ("s3", "B", 3, "Blüte · Mai · Garten neu gestalten"),
+      ("s4", "B", 4, "Sommer · Juli · Angebot per Foto"), ("s5", "B", 5, "Abendlicht · August · Bewertungen"), ("s6", "B", 6, "Herbstnebel · Oktober"),
+      ("s7", "B", 7, "Am Stamm · November · Ausbildung"), ("s8", "B", 8, "Winter · Januar · Kontakt")]
 
 
 def panel(sheet, n):
@@ -34,7 +32,7 @@ with sync_playwright() as pw:
         pg.add_style_tag(content="html{scroll-behavior:auto!important}")
         for cid, sh, n, name in CH:
             pg.evaluate("""id => { const s = document.getElementById(id); scrollTo(0, s.offsetTop + (s.offsetHeight - innerHeight) * .3); }""", cid)
-            pg.wait_for_timeout(1400)
+            pg.wait_for_timeout(3500)
             fn = os.path.join(OUT, "%s-%s.jpg" % (cid, tag))
             pg.screenshot(path=fn, type="jpeg", quality=80)
         pg.close()

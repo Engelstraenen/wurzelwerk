@@ -2,71 +2,41 @@
  {
   "id": "s1",
   "panel": "B1",
-  "name": "Nordseite · Frühling"
+  "name": "Nordseite · März"
  },
  {
   "id": "s2",
   "panel": "B2",
-  "name": "Frühlingsnebel"
+  "name": "Ostseite · April · Schnurgerüst"
  },
  {
   "id": "s3",
   "panel": "B3",
-  "name": "Ostseite · Garten neu gestalten"
- },
- {
-  "id": "b1",
-  "panel": "A2",
-  "name": "Brücke: Blüte wird Handy"
- },
- {
-  "id": "b2a",
-  "panel": "A3",
-  "name": "Brücke: Foto wird Garten"
+  "name": "Blüte · Mai · Garten neu gestalten"
  },
  {
   "id": "s4",
   "panel": "B4",
-  "name": "Südseite · Sommer"
- },
- {
-  "id": "b2",
-  "panel": "A4",
-  "name": "Brücke: Tropfen werden Lichter"
+  "name": "Sommer · Juli · Angebot per Foto"
  },
  {
   "id": "s5",
   "panel": "B5",
-  "name": "Sommerabend · Bewertungen"
- },
- {
-  "id": "b3",
-  "panel": "A6",
-  "name": "Brücke: Blatt färbt sich"
+  "name": "Abendlicht · August · Bewertungen"
  },
  {
   "id": "s6",
   "panel": "B6",
-  "name": "Westseite · Herbst"
- },
- {
-  "id": "b4",
-  "panel": "A7",
-  "name": "Brücke: Apfel fällt in die Kiste"
+  "name": "Herbstnebel · Oktober"
  },
  {
   "id": "s7",
   "panel": "B7",
-  "name": "Karriere am Stamm"
- },
- {
-  "id": "b5",
-  "panel": "A8",
-  "name": "Brücke: Atem wird Schnee"
+  "name": "Am Stamm · November · Ausbildung"
  },
  {
   "id": "s8",
   "panel": "B8",
-  "name": "Nordseite · Winter · Kontakt"
+  "name": "Winter · Januar · Kontakt"
  }
 ]
