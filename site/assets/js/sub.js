@@ -55,6 +55,7 @@
       $$('[data-r]', C).forEach(function (o) {
         var f = k.res[o.dataset.r], v = f.fix ? M[f.fix] : (f.m2 == null ? m2 : f.m2 * a * b * (f.mat ? M[f.mat] : 1));
         if (k.hedge && f.m2 != null) v = f.m2 * m2;
+        if (k.wall && f.m2 == null) v = b * 12;
         o.textContent = fmt(f.ceil ? Math.ceil(v) : v, f.d);
       });
       $('[data-area]', C).textContent = fmt(m2, 1);

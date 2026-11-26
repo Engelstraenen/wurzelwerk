@@ -62,10 +62,14 @@
   function use(i) { for (var d = 0; d < N; d++) { if (have[i - d]) return i - d; if (have[i + d]) return i + d; } return -1; }
 
   var clips = [];
-  function loadClips() {
+  /* Ladezeit: nur die aktuelle Station und die nächsten zwei laden (nicht alle Filme auf einmal) */
+  var near = 0;
+  function loadClips(at) {
+    if (at !== undefined) near = at;
     var m = mob() && innerHeight > innerWidth, list = window.WW_CLIPS || [];
     SC.forEach(function (o, i) {
       if (!o.clip || list.indexOf(o.clip) < 0) return;
+      if (i < near - 1 || i > near + 1) return;
       var src = 'assets/vid/rund/c' + o.clip + (m ? '-p' : '') + '.mp4', c = clips[i];
       if (c && c.src === src) return;
       if (!c) { var v = document.createElement('video'); v.className = 'clip'; v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; stage.insertBefore(v, $('.shade')); c = clips[i] = { v: v, ok: false }; }
@@ -100,6 +104,7 @@
     tick = false;
     var cur = 0, qs2 = stops.map(qOf);
     qs2.forEach(function (o, i) { if (o.top <= 1) cur = i; });
+    if (cur !== near) loadClips(cur);
     var q = qs2[cur].q, t = cur < N - 1 ? eio(seg(q, .5, 1)) : 0;
     intro = eout(clamp((now - t0) / 2200, 0, 1));
     vel = vel * .85 + Math.abs(scrollY - lastY) * .15; lastY = scrollY;

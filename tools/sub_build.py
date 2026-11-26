@@ -10,6 +10,45 @@ os.makedirs(OUT, exist_ok=True)
 E = html.escape
 
 PAGES = [
+ dict(slug="planung", back="s1", eye="Planung & Bodenarbeiten", title="Bevor der erste<br>Stein liegt.",
+  lead="Jeder Garten beginnt mit Erde, die bewegt wird. Was hier im Frühjahr sauber geplant ist, muss später niemand wieder aufreißen.",
+  hero="sb1", hero_alt="p1", hero_desc="Der alte Apfelbaum im Morgennebel über aufgegrabenem Boden, dahinter ein Minibagger",
+  layers=[
+   dict(y=86, h=28, t="Ebene 1 · Boden: <em>erst prüfen, dann graben</em>", c="Spatenprobe · Fingerprobe",
+        p="Mit Spaten und Fingerprobe sehen wir, ob Sand, Lehm oder Ton ansteht. Das entscheidet über Aushubtiefe, Drainage und die Pflanzen, die später gut wachsen."),
+   dict(y=74, h=10, t="Ebene 2 · Oberboden: <em>getrennt lagern</em>", c="Mutterboden in Mieten, nicht befahren",
+        p="Der humose Oberboden ist wertvoll. Er wird nach DIN 18915 vor den Bauarbeiten abgetragen, locker in Mieten gelagert und später wieder eingebaut, nie mit Unterboden vermischt."),
+   dict(y=62, h=18, t="Ebene 3 · Wurzelraum: <em>Schutzzaun um den Baum</em>", c="DIN 18920 · Krone + 1,5 m",
+        p="Der alte Apfelbaum bleibt. Ein fester Zaun schützt den Bereich unter der Krone plus 1,5 m. Dort fährt kein Bagger, dort lagert kein Material."),
+   dict(y=55, h=14, t="Ebene 4 · Maschinen: <em>klein genug für den Garten</em>", c="Minibagger ab ca. 1 m Durchgang",
+        p="Minibagger und Raddumper passen durch Gartentore ab etwa einem Meter Breite. Baggermatten verteilen das Gewicht, damit der Rasen nebenan nicht leidet."),
+   dict(y=40, h=60, t="Ebene 5 · Plan: <em>Schnurgerüst und Laser</em>", c="Höhen auf den Zentimeter",
+        p="Mit Pflöcken und Schnur stecken wir Kanten und Flächen ab, die Höhen kommen vom Rotationslaser. Vor jedem Aushub fragen wir bei den Versorgern nach Leitungen."),
+  ],
+  why=dict(badt="Erst graben, dann merken, was im Weg ist.", goodt="Erst planen, dann einmal richtig bauen.",
+           badl=["Oberboden mit Bauschutt vermischt", "Wurzeln des alten Baums gekappt", "Leitung beim Aushub getroffen"],
+           goodl=["Boden geprüft und getrennt gelagert", "Baum nach DIN 18920 geschützt", "Leitungen vorher erfragt"]),
+  chart=dict(h="Wie viel Erde bewegt wird", src="Rechenbeispiele: Fläche × Aushubtiefe als festes Volumen. Beim Ausheben lockert der Boden um etwa 20–30 % auf, die Lkw-Ladung ist entsprechend größer.",
+             max=20, rows=[("Terrasse 30 m² · 45 cm", 13.5, [13.5]), ("Rasen 150 m² · 10 cm", 15, [15]), ("Staudenbeet 20 m² · 30 cm", 6, [6]), ("Weg 25 m² · 30 cm", 7.5, [7.5])],
+             legend=[], unit="m³", one=True),
+  calc=dict(h="Was Ihr Aushub bedeutet", lead="Fläche einstellen und Bodenart wählen. Sie sehen, wie viel Erde bewegt wird, ohne Preise.",
+            ins=[("Länge", 2, 20, 8), ("Breite", 2, 12, 5)], unit="m",
+            mats=[("Sandboden", dict(per=1.15, txt="<b>Sandboden:</b> lässt Wasser schnell durch, lockert beim Aushub um etwa 10–20 % auf.")),
+                  ("Lehmboden", dict(per=1.25, txt="<b>Lehmboden:</b> hält Wasser und Nährstoffe, lockert um etwa 20–30 % auf. Häufigster Gartenboden.")),
+                  ("Tonboden", dict(per=1.35, txt="<b>Tonboden:</b> schwer und nass, lockert um etwa 30–40 % auf. Hier planen wir eine Drainage mit ein."))],
+            res=[("fest", "m³ Aushub fest (45 cm tief)", dict(m2=.45, d=1)),
+                 ("lose", "m³ Aushub lose", dict(m2=.45, mat="per", d=1)),
+                 ("lkw", "Lkw-Fahrten (ca. 10 m³ lose)", dict(m2=.045, mat="per", d=0, ceil=1)),
+                 ("ober", "m³ Oberboden zum Aufheben (20 cm)", dict(m2=.2, d=1))],
+            note="Richtwerte: Auflockerung je nach Bodenart, Lkw mit rund 10 m³ Ladung."),
+  days=[("Tag 1", "Vermessen & abstecken", None), ("Tag 2", "Baum schützen, Oberboden abtragen", None), ("Tag 3", "Aushub & Abfuhr", None),
+        ("Tag 4", "Planum & Gefälle", None), ("Tag 5", "Leitungen & Drainage", None)],
+  days_note="Richtwert für einen Garten von ca. 200 m² mit Terrasse und Rasen.",
+  faq=[("Muss der Garten komplett aufgegraben werden?", "Nein. Wir graben nur dort, wo gebaut wird. Bäume, gute Rasenflächen und Beete bleiben, wo es geht."),
+       ("Was passiert mit dem Aushub?", "Guter Oberboden bleibt im Garten und kommt wieder drauf. Unterboden und Steine fahren wir ab oder bauen sie als Hügel oder Unterbau ein."),
+       ("Wann ist die beste Zeit für Bodenarbeiten?", "Wenn der Boden abgetrocknet ist, meist ab März oder April. Nasser Boden verschmiert und verdichtet."),
+       ("Was ist mit Leitungen im Garten?", "Vor dem Aushub holen wir die Pläne der Versorger ein und fragen Sie nach eigenen Leitungen wie Gartenstrom oder Bewässerung.")]),
+
  dict(slug="neuanlage", back="s3", eye="Terrasse & Pflaster", title="Was unter Ihrer<br>Terrasse liegt.",
   lead="Eine Terrasse sieht man nur von oben. Ob sie in zehn Jahren noch gerade liegt, entscheidet sich darunter: fünf Schichten, rund 40 Zentimeter tief.",
   hero="x-t1", hero_alt="p3", hero_desc="Schnitt durch eine fertige Terrasse am alten Apfelbaum: alle Schichten von der Platte bis zum gewachsenen Boden",
@@ -187,6 +226,71 @@ PAGES = [
   faq=[("Darf ich meine Hecke im Sommer schneiden?", "Schonende Form- und Pflegeschnitte ja. Starke Rückschnitte und Roden nur vom 1. Oktober bis Ende Februar, und nie, wenn Vögel darin brüten."),
        ("Wann schneidet man Apfelbäume?", "Hauptschnitt im Winter an frostfreien Tagen, ein leichter Sommerschnitt nach der Ernte."),
        ("Kann man unter einem alten Baum pflastern?", "Nur mit Vorsicht: wurzelschonende Bauweise, kein tiefer Aushub im Wurzelraum. Oft ist eine Holzterrasse auf Punktfundamenten die bessere Wahl.")]),
+ dict(slug="ausbildung", back="s7", eye="Ausbildung & Jobs", title="Drei Jahre.<br>Dann kannst du Gärten.",
+  lead="Gärtner/in in der Fachrichtung Garten- und Landschaftsbau: drei Jahre dual, Betrieb und Berufsschule, jeden Tag draußen und am Ende ein Garten, den du selbst gebaut hast.",
+  hero="sb7", hero_alt="p7", hero_desc="Ein Azubi setzt Granitsteine als Einfassung um den alten Apfelbaum und lächelt in die Kamera",
+  layers=[
+   dict(y=50, h=100, t="Jahr 1 · Grundlagen: <em>Material, Maschinen, Pflanzen</em>", c="Werkzeug, Sicherheit, erste Pflanzen",
+        p="Du lernst Steine, Erden und Pflanzen kennen, fährst Rüttelplatte und Raddumper und setzt deine ersten Kanten. Immer mit jemandem aus der Crew an deiner Seite."),
+   dict(y=50, h=100, t="Jahr 2 · Bauen: <em>Wege, Terrassen, Mauern</em>", c="Unterbau, Pflaster, Naturstein",
+        p="Jetzt baust du selbst: Frostschutz einbauen, verdichten, abziehen, pflastern. Dazu Rasen, Pflanzungen und die ersten Trockenmauern."),
+   dict(y=50, h=100, t="Jahr 3 · Verantwortung: <em>eigene Abschnitte</em>", c="Prüfung vor der Kammer",
+        p="Du übernimmst Teile einer Baustelle, liest Pläne und misst mit dem Laser. Am Ende steht die Abschlussprüfung vor der Landwirtschaftskammer bzw. der zuständigen Stelle."),
+   dict(y=50, h=100, t="Berufsschule: <em>Theorie im Block</em>", c="meist Blockunterricht",
+        p="Pflanzenkunde, Bautechnik, Vermessung, Betriebswirtschaft. Die Berufsschule läuft meist im Block, also mehrere Wochen am Stück, dazwischen bist du auf der Baustelle."),
+   dict(y=50, h=100, t="Danach: <em>Vorarbeiter, Meister, Techniker</em>", c="viele Wege nach oben",
+        p="Nach der Ausbildung kannst du Vorarbeiter werden, die Meisterprüfung machen, Techniker/in werden oder Landschaftsarchitektur studieren."),
+  ],
+  why=dict(labs=["Im Büro", "Im GaLaBau"], badt="Acht Stunden Bildschirm.", goodt="Acht Stunden draußen, abends siehst du, was du gebaut hast.",
+           badl=["jeden Tag derselbe Raum", "Ergebnis nur als Datei", "Bewegung erst nach Feierabend"],
+           goodl=["jede Woche ein anderer Garten", "Ergebnis zum Anfassen", "Maschinen, Pflanzen, Team"]),
+  chart=dict(h="Wie lange die Ausbildung dauert", src="Regulär drei Jahre. Mit Abitur oder Fachhochschulreife kann die Ausbildung auf Antrag verkürzt werden, bei guten Leistungen ist eine vorzeitige Prüfung möglich (Berufsbildungsgesetz §§ 8 und 45).",
+             max=36, rows=[("Regulär", 36, [36]), ("Bei guten Leistungen, vorzeitige Prüfung", 30, [30]), ("Mit Abitur, auf Antrag verkürzt", 24, [24])],
+             legend=[], unit="Monate", one=True),
+  days=[("Tag 1", "Werkzeug, Sicherheit, Crew kennenlernen", None), ("Woche 1", "Mitfahren, mitbauen, mitmessen", None), ("Monat 1", "Erste eigene Kante setzen", None),
+        ("Jahr 1", "Rüttelplatte, Pflanzen, Rasen", None), ("Jahr 3", "Prüfung und eigener Abschnitt", None)],
+  days_note="So sieht der Einstieg typischerweise aus. In dieser Demo als Beispiel.", days_h="Dein Weg in die Crew",
+  faq=[("Welchen Schulabschluss brauche ich?", "Rechtlich ist keiner vorgeschrieben. Die meisten Azubis haben einen Haupt- oder Realschulabschluss, Abitur geht natürlich auch."),
+       ("Muss ich schwer heben?", "Teilweise, aber vieles erledigen Maschinen: Minibagger, Raddumper, Vakuum-Verlegegerät. Du lernst, wie man richtig hebt."),
+       ("Was ist mit dem Führerschein?", "Viele Betriebe unterstützen den Führerschein, oft auch Klasse BE für den Anhänger. In dieser Demo als Beispiel genannt."),
+       ("Kann ich ein Praktikum machen?", "Ja, ein paar Tage mitfahren ist der beste Test. Die 60-Sekunden-Bewerbung auf der Startseite reicht als erster Schritt."),
+       ("Was kommt nach der Ausbildung?", "Geselle, Vorarbeiter, Meister, Techniker oder ein Studium. Der GaLaBau sucht Fachkräfte, die Chancen sind gut.")]),
+
+ dict(slug="winter", back="s8", eye="Mauer, Licht & Winter", title="Was im Winter<br>leuchtet und hält.",
+  lead="Im Winter sieht man, was gut gebaut ist: Mauern, die nicht wandern, Licht, das den Garten in der blauen Stunde öffnet, und ein Baum, der in Ruhe überwintert.",
+  hero="sb8", hero_alt="p8", hero_desc="Der verschneite Apfelbaum zur blauen Stunde vor einer beleuchteten Natursteinmauer und dem hell erleuchteten Haus",
+  layers=[
+   dict(y=88, h=24, t="Ebene 1 · Frost: <em>der Boden arbeitet</em>", c="Frosttiefe ca. 80 cm",
+        p="Gefrierendes Wasser dehnt sich aus und hebt alles an, was zu flach gegründet ist. Darum bekommen Mauern und Wege eine frostsichere, wasserdurchlässige Tragschicht."),
+   dict(y=66, h=18, t="Ebene 2 · Trockenmauer: <em>10–15 % Anlauf</em>", c="ohne Mörtel · 10–15 % Neigung",
+        p="Eine Trockenmauer hält durch Gewicht und Neigung: Sie lehnt sich mit 10–15 % gegen den Hang, die Steine binden nach hinten ein. Fugen bleiben offen für Eidechsen und Insekten."),
+   dict(y=70, h=5, t="Ebene 3 · Licht: <em>warmweiß, wasserdicht</em>", c="2700–3000 K · IP67 im Boden",
+        p="Warmweißes Licht um 2700 Kelvin wirkt ruhig und hält Insekten weniger an. Bodenleuchten brauchen Schutzart IP67, Kabel liegen tief genug und mit Warnband im Boden."),
+   dict(y=50, h=22, t="Ebene 4 · Stamm: <em>Schutz vor Frostrissen</em>", c="weißer Stammanstrich",
+        p="Wintersonne erwärmt die Rinde tagsüber, nachts friert sie. Ein weißer Anstrich reflektiert das Licht und schützt junge und alte Obstbäume vor Frostrissen."),
+   dict(y=22, h=36, t="Ebene 5 · Krone: <em>Winterschnitt Jan–März</em>", c="an frostfreien Tagen",
+        p="Der Hauptschnitt des Apfelbaums kommt im Winter an frostfreien Tagen. Schwerer Nassschnee wird von Ästen und Immergrünen vorsichtig abgeschüttelt."),
+  ],
+  why=dict(badt="Im Frühjahr kippt die Mauer, die Leuchte ist voll Wasser.", goodt="Gebaut für Frost, Schnee und lange Abende.",
+           badl=["Mauer ohne Anlauf und Fundament", "Leuchten ohne passende Schutzart", "Stamm ungeschützt in der Wintersonne"],
+           goodl=["Trockenmauer mit 10–15 % Neigung", "Licht warmweiß und wasserdicht", "Baum mit Winterschutz und Winterschnitt"]),
+  chart=dict(h="Was im Winter im Garten passiert", src="Übliche Zeitfenster. Der Winter ist die beste Zeit, um Neuanlagen für das Frühjahr zu planen.",
+             max=12, rows=[("Obstbaum Winterschnitt", 0, [0, 3]), ("Planung Neuanlage", 0, [0, 3, 7, 2]), ("Winterschutz & Laub", 0, [10, 2]),
+                           ("Trockenmauer bauen (frostfrei)", 0, [2, 9]), ("Bewässerung entleert", 0, [0, 3, 7, 2])],
+             legend=[], unit="", gantt=True),
+  calc=dict(h="Ihre Trockenmauer in Zahlen", lead="Länge und Höhe einstellen, Stein wählen.",
+            ins=[("Länge", 2, 30, 8), ("Höhe", .4, 1.5, .8)], unit="m",
+            mats=[("Muschelkalk", dict(per=1, txt="<b>Muschelkalk:</b> warmer, heller Kalkstein, lässt sich gut zu lagerhaften Steinen spalten.")),
+                  ("Grauwacke", dict(per=1, txt="<b>Grauwacke:</b> sehr hart und frostfest, grau bis braun, wirkt ruhig neben modernen Häusern.")),
+                  ("Sandstein", dict(per=1, txt="<b>Sandstein:</b> weich in der Farbe, warm im Licht, auf Frostfestigkeit achten."))],
+            res=[("flaeche", "m² Ansichtsfläche", dict(m2=1, d=1)),
+                 ("stein", "t Naturstein (ca. 1,2 t/m²)", dict(m2=1.2, d=1)),
+                 ("anlauf", "cm Anlauf oben (12 %)", dict(m2=None, d=0))],
+            note="Richtwerte für eine Mauer mit ca. 40–50 cm Tiefe. Anlauf: Rücksprung der Mauerfront je Meter Höhe.", wall=True),
+  faq=[("Kann man im Winter bauen?", "Bei Frost ruhen Erd- und Pflasterarbeiten. Gehölzschnitt, Planung und Materialauswahl laufen weiter, damit im Frühjahr sofort gebaut werden kann."),
+       ("Wie hoch darf eine Trockenmauer sein?", "Im Garten meist bis etwa 1,2 m ohne besonderen Nachweis. Bei höheren Mauern oder Hanglasten wird gerechnet."),
+       ("Welches Licht passt in den Garten?", "Wenige, gezielt gesetzte Leuchten: den Baum von unten, die Mauer streifend, Wege am Boden. Warmweiß und abschaltbar."),
+       ("Wann sollte ich meinen Garten planen?", "Im Winter. Dann sind die Termine fürs Frühjahr noch frei und wir haben Zeit, alles in Ruhe durchzugehen.")]),
 ]
 
 def img(k, alt, desc, cls="", hide=True, wide=False, lens=None):
@@ -217,6 +321,7 @@ def calc(c):
     for rid, _, f in c["res"]:
         k["res"][rid] = f
     if c.get("hedge"): k["hedge"] = 1
+    if c.get("wall"): k["wall"] = 1
     if c.get("area_mat"): k["area_mat"] = c["area_mat"]
     ins = "".join('<label for="in%d">%s</label><input type="range" id="in%d" min="%s" max="%s" step="%s" value="%s"><output for="in%d"></output>' % (
         i, E(n), i, lo, hi, .1 if hi <= 5 else (.5 if c["unit"] == "m" else 1), v, i) for i, (n, lo, hi, v) in enumerate(c["ins"]))
@@ -282,14 +387,14 @@ def page(p):
         fig = '<figure data-hide>%s</figure>' % img(k, None, w["goodt" if ok else "badt"]) if k else ""
         lst = "".join("<li>%s</li>" % E(x) for x in w["goodl" if ok else "badl"])
         return '<div class="rv"><div class="lab"><i>%s</i>%s</div>%s<p>%s</p><ul>%s</ul></div>' % (
-            "✓" if ok else "✕", "Mit WURZELWERK-Aufbau" if ok else "Ohne fachgerechten Aufbau", fig, E(w["goodt" if ok else "badt"]), lst)
+            "✓" if ok else "✕", (w.get("labs") or ["Ohne fachgerechten Aufbau", "Mit WURZELWERK-Aufbau"])[1 if ok else 0], fig, E(w["goodt" if ok else "badt"]), lst)
     out.append('<section class="why"><h2 class="up">Warum das zählt</h2><div class="vs">%s%s</div>%s</section>\n' % (side(False), side(True), chart(p["chart"]) if p.get("chart") else ""))
-    out.append(calc(p["calc"]) + "\n")
+    if p.get("calc"): out.append(calc(p["calc"]) + "\n")
     if p.get("days"):
         ds = "".join('<div class="day" style="--i:%d"><div class="t">%s</div><p>%s</p>%s<div class="dot"></div></div>' % (
             i, E(t), E(d), '<figure data-hide>%s</figure>' % img(k, None, d) if k else "") for i, (t, d, k) in enumerate(p["days"]))
-        out.append('<section class="flow"><h2 class="up">Ablauf in %d Tagen</h2><div class="days" style="--n:%d">%s</div><p class="note" style="text-align:center;margin-top:26px">%s</p></section>\n' % (
-            len(p["days"]), len(p["days"]), ds, E(p["days_note"])))
+        out.append('<section class="flow"><h2 class="up">%s</h2><div class="days" style="--n:%d">%s</div><p class="note" style="text-align:center;margin-top:26px">%s</p></section>\n' % (
+            E(p.get("days_h") or "Ablauf in %d Tagen" % len(p["days"])), len(p["days"]), ds, E(p["days_note"])))
     fq = "".join("<details><summary>%s</summary><p>%s</p></details>" % (E(q), E(a)) for q, a in p["faq"])
     others = "".join('<a href="%s.html">%s</a>' % (o["slug"], E(o["eye"])) for o in PAGES if o["slug"] != p["slug"])
     out.append('''<section class="faq"><h2 class="up">Häufige Fragen</h2>%s</section>
