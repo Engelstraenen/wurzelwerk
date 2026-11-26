@@ -55,7 +55,7 @@ a { color: inherit; }
 
 /* Haltepunkte */
 #rund { position: relative; z-index: 2; }
-.stop { position: relative; height: 165vh; }
+.stop { position: relative; height: 150vh; }
 .stop:first-of-type { height: 130vh; }
 .in { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: calc(var(--demo-h) + var(--nav-h) + 70px) var(--gut) 90px; }
 .stop.right .in { justify-content: flex-end; }
@@ -321,7 +321,7 @@ a { color: inherit; }
 @media (max-width: 900px) { .shade { background: linear-gradient(180deg, rgba(22, 18, 14,.5) 0%, rgba(0,0,0,0) 22%, rgba(22, 18, 14,0) 45%, rgba(22, 18, 14,.55) 70%, rgba(22, 18, 14,.85) 100%) !important; } }
 
 /* Erzähl-Ebene: Beats laufen beim Scrollen ein, Zahlen zählen mit, Grafiken wachsen (story.js-Teil in rund.js) */
-.stop.story { height: 250vh; }
+.stop.story { height: 195vh; }
 .stop.bridge.story { height: 210vh; }
 .story-txt { display: grid; gap: 18px; max-width: 520px; }
 .kick { margin: 0; font: 600 12px/1 I, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--or); text-shadow: 0 1px 12px rgba(0,0,0,.5); }
@@ -351,7 +351,7 @@ a { color: inherit; }
 .sc-res b { font: 400 26px/1 S, Georgia, serif; }
 .sc-res small { opacity: .75; }
 @media (max-width: 760px) {
-  .stop.story { height: 230vh; }
+  .stop.story { height: 185vh; }
   .story-txt { display: grid; gap: 10px; max-width: none; }
   .story-txt .beat { grid-area: 2 / 1; align-self: end; }
   .story-txt .kick { grid-area: 1 / 1; }
@@ -364,6 +364,8 @@ a { color: inherit; }
 }
 
 /* Film-Stationen brauchen Scrollweg, damit der Clip sichtbar spult */
-.stop[data-tr="clip"] { height: 280vh; }
+.stop[data-tr="clip"] { height: 200vh; }
 .bars { margin-top: 28px; }
 @media (max-width: 760px) { .bars { height: 80px; margin-top: 30px; } .story-txt .kick { margin-bottom: 6px; } }
+/* One-Take: an Station 7 kniet der Azubi links unten, Text darüber statt auf ihm */
+@media (min-width: 901px) { #s7 .txt { align-self: flex-start; } }

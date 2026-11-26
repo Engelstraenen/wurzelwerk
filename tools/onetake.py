@@ -18,3 +18,9 @@ for i in range(8):
                            "fps=%d,trim=start_frame=%d:end_frame=%d,setpts=PTS-STARTPTS" % (fps, sf, min(ef + 1, round(dur * fps))),
                            "-c:v", "libx264", "-preset", "slow", "-crf", "12", "-pix_fmt", "yuv420p", dst])
     print("WWC%d" % (41 + i), "%.2f–%.2f s" % (a, e))
+
+# Stationsbild = erstes Bild des Abschnitts (Film endet genau darauf, Übergang ohne Sprung) -> assets-roh/4k/WWO-<n>.png, dann rund_img.py
+for i in range(8):
+    subprocess.check_call(["ffmpeg", "-y", "-v", "error", "-i", os.path.join(R, "assets-roh", "vid", "WWC%d.mp4" % (41 + i)),
+                           "-frames:v", "1", os.path.join(R, "assets-roh", "4k", "WWO-%d.png" % (i + 1))])
+print("WWO-1..8.png")

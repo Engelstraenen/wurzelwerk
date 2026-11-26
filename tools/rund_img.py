@@ -15,7 +15,7 @@ CACHE = os.path.join(R, "assets-roh", "rund_cache.json")
 CX = {1: .50, 2: .42, 3: .36, 4: .44, 5: .50, 6: .50, 7: .58, 8: .50}
 os.makedirs(OUT, exist_ok=True)
 cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
-JOBS = [(n, "WWR-P%d" % n, "p%d" % n, CX[n]) for n in range(1, 9)] + [(10 + n, "WWB-%d" % n, "b%d" % n, .5) for n in range(1, 7)] + [(20 + n, "WWS-B7A" if n == 7 else "WWS-B%d" % n, "sb%d" % n, .4 if n == 7 else .5) for n in range(1, 9)] + [(30 + n, "WWS-A%d" % n, "sa%d" % n, {6: .72}.get(n, .5)) for n in range(2, 9)] + [(40 + i, "WWX-" + k, "x-" + k.lower(), .5) for i, k in enumerate(["T1", "T7A", "T7B", "T6", "D1", "D2", "D3", "D4", "D5", "R1", "G1", "P1"])]
+JOBS = [(n, "WWR-P%d" % n, "p%d" % n, CX[n]) for n in range(1, 9)] + [(10 + n, "WWB-%d" % n, "b%d" % n, .5) for n in range(1, 7)] + [(20 + n, "WWS-B7A" if n == 7 else "WWS-B%d" % n, "sb%d" % n, .4 if n == 7 else .5) for n in range(1, 9)] + [(30 + n, "WWS-A%d" % n, "sa%d" % n, {6: .72}.get(n, .5)) for n in range(2, 9)] + [(60 + n, "WWO-%d" % n, "o%d" % n, .5) for n in range(1, 9)] + [(40 + i, "WWX-" + k, "x-" + k.lower(), .5) for i, k in enumerate(["T1", "T7A", "T7B", "T6", "D1", "D2", "D3", "D4", "D5", "R1", "G1", "P1"])]
 for n, raw, out, cxx in JOBS:
     src = os.path.join(SRC, raw + ".png")
     if not os.path.exists(src):
