@@ -101,7 +101,7 @@
   }
 
   function frame(now) {
-    tick = false;
+    tick = false; filmTick();
     var cur = 0, qs2 = stops.map(qOf);
     qs2.forEach(function (o, i) { if (o.top <= 1) cur = i; });
     if (cur !== near) loadClips(cur);
@@ -257,10 +257,37 @@
   })();
 
   var tick = false;
+
+  /* EIN Film über die ganze Seite (Eugen 26.11.2026): der 30-s-One-Take spult durchgehend mit dem Scrollen,
+     ohne Stopps an den Stationen. Ankerpunkte: Station n beginnt bei Filmzeit T[n], Seitenende = Filmende. */
+  var T = [0, 4.5, 9, 12.5, 16.8, 20.4, 24.3, 27.6];
+  var film = document.createElement('video'); film.className = 'clip film'; film.muted = true; film.playsInline = true;
+  film.setAttribute('playsinline', ''); film.setAttribute('muted', ''); film.preload = 'auto';
+  stage.insertBefore(film, $('.shade'));
+  var filmOk = false, filmSrc = '';
+  function loadFilm() {
+    var src = 'assets/vid/rund/one' + (mob() && innerHeight > innerWidth ? '-p' : '') + '.mp4';
+    if (src === filmSrc) return; filmSrc = src; filmOk = false;
+    film.onloadeddata = function () { filmOk = true; stage.classList.add('filmon'); filmTick(); };
+    film.src = src; film.load();
+    var pr = film.play && film.play(); if (pr && pr.then) pr.then(function () { film.pause(); }).catch(function () {});
+  }
+  function filmTick() {
+    if (!filmOk) return;
+    var d = film.duration || 30, y = scrollY, end = root.scrollHeight - innerHeight, t;
+    var a = stops.map(function (s) { return s.offsetTop; });
+    if (y <= a[0]) t = 0;
+    else { var i = a.length - 1; while (i > 0 && y < a[i]) i--;
+      var y0 = a[i], y1 = i < a.length - 1 ? a[i + 1] : end, t0 = T[i] || 0, t1 = i < a.length - 1 ? T[i + 1] : d;
+      t = t0 + (t1 - t0) * clamp((y - y0) / Math.max(1, y1 - y0), 0, 1); }
+    t = clamp(t, 0, d - .05);
+    if (Math.abs(film.currentTime - t) > .015 && !film.seeking) film.currentTime = t;
+    film.style.opacity = 1; film.style.transform = 'scale(1.02)';
+  }
   function req() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', function () { loadPics(); loadClips(); req(); });
-  loadPics(); loadClips(); req();
+  addEventListener('resize', function () { loadPics(); loadClips(); loadFilm(); req(); });
+  loadPics(); loadClips(); loadFilm(); req();
 
   /* Sprünge: Jahreszeiten-Schalter, Menü, Knöpfe */
   function goEl(s) { if (!s) return; scrollTo({ top: s.offsetTop + (s === stops[0] ? 0 : innerHeight * .05), behavior: 'smooth' }); }

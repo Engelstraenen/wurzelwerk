@@ -377,3 +377,7 @@ a { color: inherit; }
   .rcard { transform: scale(.86); transform-origin: right bottom; }
 }
 @media (max-height: 500px) { .stop .sh { font-size: clamp(26px, 6.5vh, 34px); } .stop .in { padding-top: calc(var(--demo-h) + var(--nav-h) + 30px); } }
+/* Ein Film über die ganze Seite: liegt über den Stationsbildern, die nur bis zum Laden zu sehen sind */
+.stage video.film { z-index: 2; opacity: 0; transition: opacity .4s; }
+.stage.filmon .pic { visibility: hidden; }
+.stage.filmon .veil { display: none; }

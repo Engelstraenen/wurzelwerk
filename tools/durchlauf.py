@@ -13,7 +13,7 @@ with sync_playwright() as p:
     steps = int(dur * 20)
     for i in range(steps + 1):
         pg.evaluate("y => scrollTo(0, y)", H * i / steps); pg.wait_for_timeout(50)
-        if i % 40 == 0: pg.wait_for_function("() => [...document.querySelectorAll('video.clip')].every(v => v.readyState >= 2 || !v.src)", timeout=15000)
+        if i % 40 == 0: pg.wait_for_function("() => !document.querySelector('video.film') || !document.querySelector('video.film').seeking", timeout=15000)
     pg.wait_for_timeout(1500); ctx.close(); b.close()
 v = glob.glob(os.path.join(tmp, "*.webm"))[0]
 subprocess.check_call(["ffmpeg", "-y", "-v", "error", "-i", v, "-c:v", "libx264", "-crf", "22", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out])
