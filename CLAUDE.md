@@ -29,7 +29,7 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 - Vorschau: `python3 tools/serve.py 4430` → http://127.0.0.1:4430/ (Port 4430, vorher `<title>` per curl prüfen)
 - Bilder bauen: `python3 tools/rund_img.py` (Quellen assets-roh/4k/WWR-P*.png, Cache; Handy = Hochformat-Ausschnitt)
 - Prüfen: `python3 tools/check.py http://127.0.0.1:4430/ <ordner> 1440x900 s1:0,s3:.2,s7:.3` (+ 390x844, 360x740, 430x932, 844x390)
-- Veröffentlichen: `git subtree split --prefix site -b gh-pages-tmp && git push -f origin gh-pages-tmp:gh-pages`
+- Veröffentlichen: `tools/publish.sh` (gh-pages als ein Commit aus main:site, V2.77; in zsh `${C}:refs` schreiben, sonst schneidet `:r` den Hash ab)
 
 ## 8. Offene Fragen
 - (keine, Bauplan steht 23.11.2026)
