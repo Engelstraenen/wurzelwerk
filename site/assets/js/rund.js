@@ -260,7 +260,7 @@
 
   /* EIN Film über die ganze Seite (Eugen 26.11.2026): der 30-s-One-Take spult durchgehend mit dem Scrollen,
      ohne Stopps an den Stationen. Ankerpunkte: Station n beginnt bei Filmzeit T[n], Seitenende = Filmende. */
-  var T = [0, 4.5, 9, 12.5, 16.8, 20.4, 24.3, 27.6];
+  var T = [0, 4.5, 9.6, 13.6, 16.6, 20.6, 24.4, 28.0];
   var film = document.createElement('video'); film.className = 'clip film'; film.muted = true; film.playsInline = true;
   film.setAttribute('playsinline', ''); film.setAttribute('muted', ''); film.preload = 'auto';
   stage.insertBefore(film, $('.shade'));

@@ -103,3 +103,16 @@
     return JSON.stringify({ id, file: fs[0].name, lastBox: !!box('Last frame'), sw: document.querySelector('[role=switch]').getAttribute('aria-checked'), price: DW.price() });
   };
 })();
+// One-Take 2 (Eugen 26.11.2026 13:10): Baum darf nie größer/kleiner werden, keine Überblendungen, Leute laufen sichtbar ins Bild und wieder hinaus.
+(() => {
+  WWK.P.ONE2 = "WWONE2 One single continuous 30-second time-lapse one-take, no cuts, no dissolves, no fades. The camera is mounted on a slow motorized slider at a fixed distance and fixed height: it glides very slowly and steadily sideways in one direction the entire time while staying aimed at the old apple tree. The old apple tree stays exactly the same size in frame, exactly in the center, with exactly the same thick gnarled trunk forking into three main limbs and the same branch shape in every single frame; it never grows, shrinks, moves, morphs or gets replaced. The white modern flat-roofed house behind it stays identical. Only light, weather, leaves and the garden around the tree change gradually as one whole year passes. " +
+    "0-5 s: early spring morning mist over churned soil, a yellow mini excavator levels the ground behind the tree. " +
+    "5-9 s: two landscapers in dark olive-green work clothes walk in from the right edge of the frame, stretch a white string line between wooden stakes beside the tree, then walk back out of frame to the right; the excavator drives slowly out of frame to the left. " +
+    "9-13 s: fresh lawn and a perennial bed grow on the soil, the branches of the same tree fill with white and pink blossom. " +
+    "13-17 s: summer, dense green leaves on the same tree, low pop-up sprinklers spray arcs of water over the lawn. " +
+    "17-21 s: evening falls, warm string lights in the branches switch on, friends walk in from the left and sit at a long table on a stone terrace beside the tree. " +
+    "21-25 s: the friends walk out of frame, autumn mist, the leaves of the same tree turn orange and fall, a landscaper walks in and blows the leaves with a backpack leaf blower, then walks out. " +
+    "25-28 s: a young apprentice walks in, kneels and sets grey granite blocks as a round edging around the trunk, then stands up and walks out of frame. " +
+    "28-30 s: winter at blue hour, snow falls and covers the lawn, the granite edging and the bare branches, warm garden lights and the house windows glow. " +
+    "People never appear or disappear suddenly, they always walk in and out across the frame edge. Photorealistic, natural light, true-to-life colors, stable geometry. No text, no cuts, no zoom, no change of tree size, no different tree, no morphing faces, no apples, no flicker, no clichés.";
+})();
