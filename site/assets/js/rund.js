@@ -266,7 +266,8 @@
   stage.insertBefore(film, $('.shade'));
   var filmOk = false, filmSrc = '';
   function loadFilm() {
-    var src = 'assets/vid/rund/one' + (mob() && innerHeight > innerWidth ? '-p' : '') + '.mp4';
+    var big = !mob() && innerWidth * (window.devicePixelRatio || 1) > 2000;
+    var src = 'assets/vid/rund/one' + (mob() && innerHeight > innerWidth ? '-p' : (big ? '-2560' : '')) + '.mp4';
     if (src === filmSrc) return; filmSrc = src; filmOk = false;
     film.onloadeddata = function () { filmOk = true; stage.classList.add('filmon'); filmTick(); };
     film.src = src; film.load();
