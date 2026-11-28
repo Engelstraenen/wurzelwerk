@@ -259,31 +259,48 @@
   var tick = false;
 
   /* EIN Film über die ganze Seite (Eugen 26.11.2026): der 30-s-One-Take spult durchgehend mit dem Scrollen,
-     ohne Stopps an den Stationen. Ankerpunkte: Station n beginnt bei Filmzeit T[n], Seitenende = Filmende. */
-  var T = [0, 4.5, 9.6, 13.6, 16.6, 20.6, 24.4, 28.0];
-  var film = document.createElement('video'); film.className = 'clip film'; film.muted = true; film.playsInline = true;
-  film.setAttribute('playsinline', ''); film.setAttribute('muted', ''); film.preload = 'auto';
-  stage.insertBefore(film, $('.shade'));
-  var filmOk = false, filmSrc = '';
-  function loadFilm() {
-    var big = !mob() && innerWidth * (window.devicePixelRatio || 1) > 2000;
-    var src = 'assets/vid/rund/one' + (mob() && innerHeight > innerWidth ? '-p' : (big ? '-2560' : '')) + '.mp4';
-    if (src === filmSrc) return; filmSrc = src; filmOk = false;
-    film.onloadeddata = function () { filmOk = true; stage.classList.add('filmon'); filmTick(); };
-    film.src = src; film.load();
-    var pr = film.play && film.play(); if (pr && pr.then) pr.then(function () { film.pause(); }).catch(function () {});
+     ohne Stopps an den Stationen. Ankerpunkte: Station n beginnt bei Filmzeit T[n], Seitenende = Filmende.
+     Masterfile V2.85/V2.87: Desktop 4K, all-intra (kein Blockflimmern beim Spulen), deshalb je Station eine Datei
+     f1…f8 (< 100 MB); die Dateien schließen bildgenau aneinander an, gezeigt wird immer genau eine. */
+  var T = [0, 4.5, 9.6, 13.6, 16.6, 20.6, 24.4, 28.0, 30.04], VER = 3;
+  var segs = [], filmOn = false, port = false;
+  for (var q = 0; q < 8; q++) {
+    var fv = document.createElement('video'); fv.className = 'clip film'; fv.muted = true; fv.playsInline = true;
+    fv.setAttribute('playsinline', ''); fv.setAttribute('muted', ''); fv.preload = 'auto';
+    stage.insertBefore(fv, $('.shade')); segs.push({ v: fv, ok: false, src: '' });
   }
-  function filmTick() {
-    if (!filmOk) return;
-    var d = film.duration || 30, y = scrollY, end = root.scrollHeight - innerHeight, t;
-    var a = stops.map(function (s) { return s.offsetTop; });
-    if (y <= a[0]) t = 0;
-    else { var i = a.length - 1; while (i > 0 && y < a[i]) i--;
-      var y0 = a[i], y1 = i < a.length - 1 ? a[i + 1] : end, t0 = T[i] || 0, t1 = i < a.length - 1 ? T[i + 1] : d;
-      t = t0 + (t1 - t0) * clamp((y - y0) / Math.max(1, y1 - y0), 0, 1); }
-    t = clamp(t, 0, d - .05);
-    if (Math.abs(film.currentTime - t) > .015 && !film.seeking) film.currentTime = t;
-    film.style.opacity = 1; film.style.transform = 'scale(1.02)';
+  function loadSeg(j) {  /* ganze Datei als Blob in den Speicher: Spulen ohne Nachladen aus dem Netz */
+    var g = segs[j]; if (!g) return;
+    var src = 'assets/vid/rund/f' + (j + 1) + (port ? '-p' : '') + '.mp4?v=' + VER;
+    if (g.src === src) return; g.src = src; g.ok = false;
+    g.v.onseeked = function () { filmTick(); };
+    g.v.onloadeddata = function () { g.ok = true; if (j < curSeg) g.v.currentTime = Math.max(0, g.v.duration - .034); if (!filmOn) { filmOn = true; stage.classList.add('filmon'); } filmTick(); };
+    fetch(src).then(function (r) { return r.blob(); }).then(function (bl) {
+      if (g.src !== src) return;
+      if (g.url) URL.revokeObjectURL(g.url); g.url = URL.createObjectURL(bl);
+      g.v.src = g.url; g.v.load();
+      var pr = g.v.play && g.v.play(); if (pr && pr.then) pr.then(function () { g.v.pause(); }).catch(function () {});
+    }).catch(function () { g.src = ''; });
+  }
+  function dropFar(i) {  /* Speicher frei halten: nur Station i-1 … i+2 im Speicher */
+    segs.forEach(function (g, j) { if ((j < i - 1 || j > i + 2) && g.url) { g.v.removeAttribute('src'); g.v.load(); URL.revokeObjectURL(g.url); g.url = null; g.src = ''; g.ok = false; } });
+  }
+  function loadFilm() {
+    var p2 = mob() && innerHeight > innerWidth;
+    if (p2 !== port) { port = p2; segs.forEach(function (g) { g.src = ''; g.ok = false; }); }
+    filmTick(true);
+  }
+  var shown = -1, curSeg = 0;
+  function filmTick(force) {
+    var y = scrollY, end = root.scrollHeight - innerHeight, a = stops.map(function (s) { return s.offsetTop; }), i = 0, x = 0;
+    if (y > a[0]) { i = a.length - 1; while (i > 0 && y < a[i]) i--; var y1 = i < a.length - 1 ? a[i + 1] : end; x = clamp((y - a[i]) / Math.max(1, y1 - a[i]), 0, 1); }
+    if (curSeg !== i) dropFar(i);
+    curSeg = i; loadSeg(i); loadSeg(i + 1); loadSeg(i + 2); if (i > 0) loadSeg(i - 1);
+    var g = segs[i]; if (!g.ok) return;  /* Datei noch nicht da: bisheriges Bild bleibt stehen */
+    var d = g.v.duration || (T[i + 1] - T[i]), t = clamp(x * d, 0, d - .034);
+    if (Math.abs(g.v.currentTime - t) > .015 && !g.v.seeking) g.v.currentTime = t;
+    if (shown !== i && g.v.seeking) return;  /* erst umschalten, wenn das neue Bild steht */
+    if (shown !== i) { segs.forEach(function (h, j) { h.v.style.opacity = j === i ? 1 : 0; }); shown = i; }
   }
   function req() { if (!tick) { tick = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true });

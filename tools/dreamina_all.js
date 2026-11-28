@@ -116,3 +116,24 @@
     "28-30 s: winter at blue hour, snow falls and covers the lawn, the granite edging and the bare branches, warm garden lights and the house windows glow. " +
     "People never appear or disappear suddenly, they always walk in and out across the frame edge. Photorealistic, natural light, true-to-life colors, stable geometry. No text, no cuts, no zoom, no change of tree size, no different tree, no morphing faces, no apples, no flicker, no clichés.";
 })();
+// Leistungs-Kapitel (Storyboard 1, Eugen 28.11.2026): je Film 15 s, nur First Frame. Startbild per Drop auf [class*=reference-upload] der ersten .reference-group (Masterfile V2.87).
+(() => {
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const drop = (el, f) => { const dt = new DataTransfer(); dt.items.add(f); for (const ev of ['dragenter', 'dragover', 'drop']) el.dispatchEvent(new DragEvent(ev, { bubbles: true, cancelable: true, dataTransfer: dt })); };
+  const END = " Photorealistic, natural light, true-to-life colors, stable geometry, the old apple tree and the white modern house stay exactly in place. No text, no cuts, no morphing hands, no flicker, no still moment, no clichés.";
+  WWK.P.KV1 = "WWKV1 One single continuous 15-second shot without any cut, low camera close to the ground. Action starts immediately in the very first frame: the landscaper's two gloved hands push the large roll of fresh turf forward and it unrolls smoothly and slowly across the finely raked brown soil toward the camera, the fresh green strip of lawn grows longer and longer, the roll gets thinner as it unrolls, the hands stay on the roll the whole time and press the turf flat. The camera glides slowly backward with the unrolling turf so the roll stays in frame. At the end the long fresh strip lies straight and flat, tight against the existing lawn on the right, and one gloved hand presses the seam closed. One roll only, no new rolls appear, the hands never leave the frame." + END;
+  WWK.P.KV1B = WWK.P.KV1.replace('WWKV1 ', 'WWKV1B ') + " The roll is real rolled turf: on the outside of the roll you always see only the brown soil and root side, the green grass side is rolled inward and only visible on the flat unrolled strip; this never changes. The roll moves toward the camera and gets visibly smaller as the strip grows.";
+  WWK.P.KV2 = "WWKV2 One single continuous 15-second shot without any cut, the camera drifts very slowly to the left around the floating block. Action starts immediately in the very first frame: the floating rectangular block of ground slowly separates into its layers like an exploded view: the green turf layer lifts up first, then the dark topsoil layer rises, then the light sand layer, the black irrigation pipe stays in its thin layer, the brown subsoil stays at the bottom. The layers spread apart vertically with even gaps until they float above each other, every layer stays perfectly flat and horizontal with the same size and shape, they never merge, bend or morph. A few small crumbs of soil fall from the edges. The garden, the lawn, the tree and the house behind stay still." + END;
+  WWK.P.KV3 = "WWKV3 One single continuous 15-second shot without any cut, close-up, the camera stays locked on the branch collar. Action starts immediately in the very first frame: the gloved hand saws with steady professional strokes exactly at the branch collar of the old apple tree, fine sawdust falls and glows in the backlight, the blade sinks deeper stroke by stroke, the side branch tilts and falls away out of frame, then the gloved hand lowers the saw and the fresh clean round cut with the intact bark ring around it stays sharp in the center of the frame. One saw, one hand, the hand never leaves the frame, the trunk keeps its exact shape." + END;
+  WWK.prepK = async id => {
+    const fs = document.getElementById('wwin').files; if (fs.length < 1) return 'NOFILES';
+    for (let k = 0; k < 4; k++) { const r = document.querySelector('div[aria-label="Remove · Reference"]'); if (!r) break; r.click(); await sleep(700); }
+    const g = document.querySelector('.reference-group'); const up = g && g.querySelector('[class*=reference-upload]'); if (!up) return 'NOUPLOAD';
+    drop(up, fs[0]); await sleep(6000);
+    const rm = [...document.querySelectorAll('div[aria-label="Remove · Reference"]')];
+    const ta = document.querySelector('textarea.lv-textarea'); ta.focus();
+    Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set.call(ta, WWK.P[id]); ta.dispatchEvent(new Event('input', { bubbles: true }));
+    await sleep(800);
+    return JSON.stringify({ id, file: fs[0].name, removeBtns: rm.length, inFirst: rm.length === 1 && g.contains(rm[0]), sw: document.querySelector('[role=switch]').getAttribute('aria-checked'), price: DW.price() });
+  };
+})();

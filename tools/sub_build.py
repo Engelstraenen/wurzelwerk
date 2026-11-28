@@ -4,6 +4,9 @@ Aufbau 1:1 nach U2: 1 Hero-Schnitt · 2–5 Ebenen mit Leuchtlinie + Callout · 
 7 Warum das zählt · 8 Ablauf in 5 Tagen · (9 Handy = mobile Fassung). Dazu V2.69: Diagramm, Rechner/Auswahl, FAQ.
 Daten = übliche GaLaBau-Richtwerte, keine Firmenzahlen, keine Preise."""
 import json, os, html
+import sys, os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from story_cfg import story_html
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(R, "site", "leistungen")
 os.makedirs(OUT, exist_ok=True)
@@ -327,7 +330,7 @@ def calc(c):
         i, E(n), i, lo, hi, .1 if hi <= 5 else (.5 if c["unit"] == "m" else 1), v, i) for i, (n, lo, hi, v) in enumerate(c["ins"]))
     chips = "".join('<button type="button" aria-pressed="%s"%s>%s</button>' % ("true" if i == 0 else "false", ' class="on"' if i == 0 else "", E(n)) for i, (n, _) in enumerate(c["mats"]))
     res = "".join('<div><b data-r="%s">0</b><small>%s</small></div>' % (rid, E(lab)) for rid, lab, _ in c["res"])
-    return ('<section class="calc" data-calc=\'%s\'><div class="wrap"><div><p class="eye">Rechner · ohne Preise</p><h2>%s</h2><p class="lead">%s</p>%s'
+    return ('<section class="calc" id="rechner" data-calc=\'%s\'><div class="wrap"><div><p class="eye">Rechner · ohne Preise</p><h2>%s</h2><p class="lead">%s</p>%s'
             '<label>Auswahl</label><div class="chips">%s</div></div><div><p class="eye" style="margin-bottom:10px">Fläche <b data-area>0</b> m²</p><div class="res">%s</div><div class="mat"></div><p class="note">%s</p></div></div></section>') % (
         E(json.dumps(k)), E(c["h"]), E(c["lead"]), ins, chips, res, E(c["note"]))
 
@@ -364,7 +367,7 @@ def page(p):
   </div>
   <span class="hint">Scrollen · Ebene für Ebene</span>
 </section>
-<section class="layers" aria-label="Die Ebenen im Schnitt">
+%(story)s<section class="layers" aria-label="Die Ebenen im Schnitt">
   <script type="application/json" id="layers-data">%(ldata)s</script>
   <div class="stage">
     <div class="cut">%(cutimg)s<div class="dim"></div><div class="glow"></div><div class="call"><span></span></div><div class="rail">%(rail)s</div></div>
@@ -374,7 +377,7 @@ def page(p):
 </section>
 ''' % dict(eye=E(p["eye"]), lead=E(p["lead"]), back=p["back"], title=p["title"],
            heroimg=img(p["hero"], p["hero_alt"], p["hero_desc"], hide=False).replace(' loading="lazy"', ' fetchpriority="high"'),
-           cutimg=img(p["hero"], p["hero_alt"], p["hero_desc"]), rail=rail, steps=steps,
+           cutimg=img(p["hero"], p["hero_alt"], p["hero_desc"]), rail=rail, steps=steps, story=story_html(p["slug"]),
            ldata=json.dumps([dict(y=l["y"], h=l["h"], t=l["t"], c=E(l["c"]), p=E(l["p"])) for l in L], ensure_ascii=False)))
     m = p.get("macro")
     if m:
@@ -398,13 +401,15 @@ def page(p):
     fq = "".join("<details><summary>%s</summary><p>%s</p></details>" % (E(q), E(a)) for q, a in p["faq"])
     others = "".join('<a href="%s.html">%s</a>' % (o["slug"], E(o["eye"])) for o in PAGES if o["slug"] != p["slug"])
     out.append('''<section class="faq"><h2 class="up">Häufige Fragen</h2>%s</section>
-<section class="cta"><p class="eye">Winter ist Planungszeit</p><h2>Lassen Sie uns<br>über Ihren Garten sprechen.</h2>
+<section class="cta" id="kontakt"><p class="eye">Winter ist Planungszeit</p><h2>Lassen Sie uns<br>über Ihren Garten sprechen.</h2>
 <div class="btns"><a class="btn p" href="../index.html#s8">Projekt anfragen →</a><a class="btn" href="../index.html#%s">Zurück zum Rundgang</a></div>
 <nav class="more" aria-label="Weitere Leistungen">%s</nav></section>
 </main>
 <footer>WURZELWERK ist ein erfundener Betrieb. Demo-Webseite, Formulare senden nichts. Alle Angaben sind übliche Richtwerte.</footer>
 <script src="../assets/js/imgs.js"></script>
+<script src="../assets/js/vids.js"></script>
 <script src="../assets/js/sub.js"></script>
+<script src="../assets/js/story.js"></script>
 </body>
 </html>
 ''' % (fq, p["back"], others))
