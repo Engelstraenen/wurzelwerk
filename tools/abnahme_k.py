@@ -55,6 +55,7 @@ def build():
       <span class="pill">3 Unterseiten · je 3 Stationen</span>
       <span class="pill">Geprüft: Laptop + Handy · 0 Fehler · kein Querscroll</span>
       <span class="pill">{dev} Abweichungen markiert</span>
+      <span class="pill">3 Filme · aus 720p auf 4K hochgerechnet</span>
     </div>
     <div class="actions">
       <a class="btn" href="https://engelstraenen.github.io/wurzelwerk/leistungen/rasen.html" target="_blank" rel="noopener">Rasen</a>

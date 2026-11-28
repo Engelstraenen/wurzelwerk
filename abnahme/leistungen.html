@@ -1,0 +1,109 @@
+<title>WURZELWERK Leistungen Abnahme</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: eine Spalte, je Kapitel ein Band: Storyboard | Seite Laptop | Seite Handy. Farbwelt der Seite: Erdbraun + Salbei */
+:root{
+  --bg:#f2efe9; --panel:#e6e9df; --line:#cdd3c3; --fg:#1d1915; --mut:#5a5a4c; --acc:#5e7a4c; --acc-bg:#b7c9a4; --on-acc:#1d1915;
+  --f-d:"DM Serif Display",Georgia,serif; --f-b:Inter,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15120f;--panel:#1d1915;--line:#3a332b;--fg:#efe9df;--mut:#b3ab9e;--acc:#b7c9a4;--acc-bg:#b7c9a4;--on-acc:#1d1915;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15120f;--panel:#1d1915;--line:#3a332b;--fg:#efe9df;--mut:#b3ab9e;--acc:#b7c9a4;--acc-bg:#b7c9a4;--on-acc:#1d1915;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b);margin:0}
+.wrap{max-width:1500px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2{font-family:var(--f-d);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:clamp(36px,5vw,64px);line-height:1}
+h2{font-size:clamp(22px,2.4vw,32px);line-height:1.1}
+.top{display:grid;gap:18px}
+.status{display:flex;flex-wrap:wrap;gap:10px}
+.pill{border:1px solid var(--line);background:var(--panel);padding:8px 12px;font-size:14px;font-weight:500;border-radius:999px}
+.pill b{color:var(--acc);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:var(--acc-bg);color:var(--on-acc);font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font-size:14px;border:0;border-radius:6px;cursor:pointer;font-family:var(--f-b)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+code.url{font-size:14px;color:var(--mut);word-break:break-all}
+.ch{display:grid;gap:14px;padding-top:28px;border-top:1px solid var(--line)}
+.ch-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ch-h .n{font-family:var(--f-d);font-size:clamp(28px,3vw,40px);color:var(--acc);line-height:1;font-variant-numeric:tabular-nums}
+.tag{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.grid{display:grid;grid-template-columns:1fr 1fr .3fr;gap:14px;align-items:start}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--line);cursor:zoom-in;background:var(--panel);border-radius:4px}
+figcaption{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+.note{font-size:15px;color:var(--fg);background:var(--panel);border-left:3px solid var(--acc);padding:10px 14px;max-width:80ch;margin:0}
+.note.ok{border-left-color:var(--line);color:var(--mut)}
+pre{background:var(--panel);border:1px solid var(--line);padding:14px;overflow-x:auto;font-size:13.5px;margin:0;white-space:pre-wrap;word-break:break-all}
+.box{display:grid;gap:12px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:80ch}
+.lb{position:fixed;inset:0;background:rgba(10,12,8,.94);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));z-index:20;cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;object-fit:contain}
+@media (max-width:900px){.grid{grid-template-columns:1fr 1fr}.grid figure:nth-child(3){grid-column:span 2;max-width:260px}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.grid figure:nth-child(3){grid-column:auto}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>WURZELWERK · Leistungs-Kapitel</h1>
+    <div class="status">
+      <span class="pill"><b>Online</b> · GitHub Pages</span>
+      <span class="pill">Storyboard 1 „Schicht für Schicht“</span>
+      <span class="pill">3 Unterseiten · je 3 Stationen</span>
+      <span class="pill">Geprüft: Laptop + Handy · 0 Fehler · kein Querscroll</span>
+      <span class="pill">5 Abweichungen markiert</span>
+      <span class="pill">3 Filme · aus 720p auf 4K hochgerechnet</span>
+    </div>
+    <div class="actions">
+      <a class="btn" href="https://engelstraenen.github.io/wurzelwerk/leistungen/rasen.html" target="_blank" rel="noopener">Rasen</a>
+      <a class="btn" href="https://engelstraenen.github.io/wurzelwerk/leistungen/angebot.html" target="_blank" rel="noopener">Angebot per Foto</a>
+      <a class="btn" href="https://engelstraenen.github.io/wurzelwerk/leistungen/gehoelzschnitt.html" target="_blank" rel="noopener">Gehölzschnitt</a>
+    </div>
+    <p class="note ok">Je Panel: links das Storyboard, Mitte die Seite am Laptop, rechts am Handy. Bild antippen = groß. Grüne Linie = Abweichung.</p>
+  </header>
+  <section class="ch"><div class="ch-h"><span class="n">1</span><h2>Über Nacht grün</h2><span class="tag">rasen · Station 1</span></div>
+    <div class="grid"><figure><img src="img/k1-sb.jpg" alt="Storyboard Über Nacht grün" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k1-lap.jpg" alt="Seite Über Nacht grün Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k1-mob.jpg" alt="Seite Über Nacht grün Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie im Storyboard: Handschuhe rollen den Rollrasen auf Erde aus, Baum und Haus dahinter. Im Film rollt die Rolle beim Scrollen aus.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">2</span><h2>Schicht für Schicht</h2><span class="tag">rasen · Station 2</span></div>
+    <div class="grid"><figure><img src="img/k2-sb.jpg" alt="Storyboard Schicht für Schicht" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k2-lap.jpg" alt="Seite Schicht für Schicht Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k2-mob.jpg" alt="Seite Schicht für Schicht Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie im Storyboard: Boden schwebt in Schichten (Rasen, Oberboden, Sand, Rohr, Unterboden), Haarlinien mit Etiketten. Handy: Schichten als Chips statt Haarlinien (zu schmal).</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">3</span><h2>Wasser, wenn es zählt</h2><span class="tag">rasen · Station 3</span></div>
+    <div class="grid"><figure><img src="img/k3-sb.jpg" alt="Storyboard Wasser, wenn es zählt" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k3-lap.jpg" alt="Seite Wasser, wenn es zählt Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k3-mob.jpg" alt="Seite Wasser, wenn es zählt Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie im Storyboard: Versenkregner im Gegenlicht, Balkendiagramm. Laptop: Diagramm neben dem Text statt oben links (überlappte sonst bei 800 px Höhe). Werte sind Richtwerte pro m² und Woche, nicht 0–200 Liter.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">4</span><h2>Ein Foto. Mehr nicht.</h2><span class="tag">angebot · Station 1</span></div>
+    <div class="grid"><figure><img src="img/k4-sb.jpg" alt="Storyboard Ein Foto. Mehr nicht." loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k4-lap.jpg" alt="Seite Ein Foto. Mehr nicht. Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k4-mob.jpg" alt="Seite Ein Foto. Mehr nicht. Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie im Storyboard: Hand mit Handy, das Display zeigt dieselbe Gartenecke. Beim Scrollen wächst das Display zum ganzen Bild.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">5</span><h2>36 m²</h2><span class="tag">angebot · Station 2</span></div>
+    <div class="grid"><figure><img src="img/k5-sb.jpg" alt="Storyboard 36 m²" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k5-lap.jpg" alt="Seite 36 m² Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k5-mob.jpg" alt="Seite 36 m² Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie im Storyboard: Messraster auf dem Boden, Felder leuchten nacheinander, Zahl zählt auf 36 m² hoch. Die Zahl steht als Überschrift statt frei im Bild.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">6</span><h2>Ihre Skizze</h2><span class="tag">angebot · Station 3</span></div>
+    <div class="grid"><figure><img src="img/k6-sb.jpg" alt="Storyboard Ihre Skizze" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k6-lap.jpg" alt="Seite Ihre Skizze Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k6-mob.jpg" alt="Seite Ihre Skizze Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie im Storyboard: Draufsicht mit Terrasse, Rasen, Beeten, Maßlinien 8,50 m und 4,25 m, Knopf „Skizze anfordern“. Maßlinie unten statt oben (Kopfzeile).</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">7</span><h2>Drei Schnitte</h2><span class="tag">gehoelzschnitt · Station 1</span></div>
+    <div class="grid"><figure><img src="img/k7-sb.jpg" alt="Storyboard Drei Schnitte" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k7-lap.jpg" alt="Seite Drei Schnitte Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k7-mob.jpg" alt="Seite Drei Schnitte Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note">Wie im Storyboard: Apfelbaum im Winterlicht, drei Ringe auf den Ästen. Handy: nur der mittlere Ring passt ins Hochformat.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">8</span><h2>Schnitt am Astring</h2><span class="tag">gehoelzschnitt · Station 2</span></div>
+    <div class="grid"><figure><img src="img/k8-sb.jpg" alt="Storyboard Schnitt am Astring" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k8-lap.jpg" alt="Seite Schnitt am Astring Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k8-mob.jpg" alt="Seite Schnitt am Astring Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie im Storyboard: Säge am Astring, Haarlinie mit „Schnitt am Astring“. Im Film sägt die Hand, der Ast fällt.</p>
+  </section>
+  <section class="ch"><div class="ch-h"><span class="n">9</span><h2>Januar bis März</h2><span class="tag">gehoelzschnitt · Station 3</span></div>
+    <div class="grid"><figure><img src="img/k9-sb.jpg" alt="Storyboard Januar bis März" loading="lazy"><figcaption>Storyboard</figcaption></figure><figure><img src="img/k9-lap.jpg" alt="Seite Januar bis März Laptop" loading="lazy"><figcaption>Seite · Laptop</figcaption></figure><figure><img src="img/k9-mob.jpg" alt="Seite Januar bis März Handy" loading="lazy"><figcaption>Handy</figcaption></figure></div>
+    <p class="note ok">Wie im Storyboard: ausgelichtete Krone mit Sonne, Kalender Januar–März rechts. Handy: Kalender oben, Text unten.</p>
+  </section>
+</div>
+
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""></div>
+<script>
+const lb=document.getElementById('lb'),li=document.getElementById('lbImg');
+document.querySelectorAll('figure img').forEach(i=>i.addEventListener('click',()=>{li.src=i.src;li.alt=i.alt;lb.hidden=false;}));
+lb.addEventListener('click',()=>{lb.hidden=true;});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true;});
+</script>
