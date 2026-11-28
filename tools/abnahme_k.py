@@ -10,7 +10,7 @@ E = html.escape
 PAN = [  # (Seite, Station, Name, Abweichung, ok)
  ("rasen", 1, "Über Nacht grün", "Wie im Storyboard: Handschuhe rollen den Rollrasen auf Erde aus, Baum und Haus dahinter. Im Film rollt die Rolle beim Scrollen aus.", True),
  ("rasen", 2, "Schicht für Schicht", "Wie im Storyboard: Boden schwebt in Schichten (Rasen, Oberboden, Sand, Rohr, Unterboden), Haarlinien mit Etiketten. Handy: Schichten als Chips statt Haarlinien (zu schmal).", False),
- ("rasen", 3, "Wasser, wenn es zählt", "Wie im Storyboard: Versenkregner im Gegenlicht, Balkendiagramm links. Werte sind Richtwerte pro m² und Woche, nicht 0–200 Liter.", False),
+ ("rasen", 3, "Wasser, wenn es zählt", "Wie im Storyboard: Versenkregner im Gegenlicht, Balkendiagramm. Laptop: Diagramm neben dem Text statt oben links (überlappte sonst bei 800 px Höhe). Werte sind Richtwerte pro m² und Woche, nicht 0–200 Liter.", False),
  ("angebot", 1, "Ein Foto. Mehr nicht.", "Wie im Storyboard: Hand mit Handy, das Display zeigt dieselbe Gartenecke. Beim Scrollen wächst das Display zum ganzen Bild.", True),
  ("angebot", 2, "36 m²", "Wie im Storyboard: Messraster auf dem Boden, Felder leuchten nacheinander, Zahl zählt auf 36 m² hoch. Die Zahl steht als Überschrift statt frei im Bild.", False),
  ("angebot", 3, "Ihre Skizze", "Wie im Storyboard: Draufsicht mit Terrasse, Rasen, Beeten, Maßlinien 8,50 m und 4,25 m, Knopf „Skizze anfordern“. Maßlinie unten statt oben (Kopfzeile).", False),
