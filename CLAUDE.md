@@ -49,5 +49,8 @@ gh (Engelstraenen), sjinn in Chrome eingeloggt (Unlimited).
 
 - 26.11.2026 (Eugen): Farbwelt Erdbraun #1d1915 + Salbei #b7c9a4 (Olive + Rosé abgelöst). Statt Clip-Kette EIN One-Take (30 s, Dreamina, nur First Frame), an den Stationen geteilt (tools/onetake.py), kürzere Scrollstrecke. Jede Station hat eine Unterseite (8).
 
+- 28.11.2026 (Eugen): Leistungs-Kapitel = Storyboard 1 „Schicht für Schicht“ (vorschau/113): rasen, angebot, gehoelzschnitt je 3 Stationen nach dem Hero (tools/story_cfg.py, site/assets/js/story.js). Gegenläufige Clips c4/c6 im Rundgang entfernt (nur One-Take). Rundgang-Film 4K all-intra als Stationsdateien f1–f8 (+ -p fürs Handy), Seite lädt als Blob (Masterfile V2.85/V2.87/V2.88).
+- 28.11.2026 (Eugen): Kapitel-Filme Rollrasen (kv1), Schichten (kv2), Astring (kv3) abgenommen, 4K all-intra eingebaut (site/assets/js/vids.js, tools/kv4k.sh). Abnahme tools/abnahme_k.py → Artifact NhKw67bPjtgGCwnhY8Yuos.
+
 ## 10. Ablage
 Code: Dropbox/CLAUDE/Projekte/WURZELWERK · Storyboards: konzepte/
