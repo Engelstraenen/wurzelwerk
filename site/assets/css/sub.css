@@ -271,3 +271,7 @@ footer { padding: 28px var(--gut) 40px; color: var(--mute); font-size: 13px; tex
 }
 @media (max-height: 500px) { .sst-t h2 { font-size: 34px; } .sst-t p { display: none; } .sbars .cols { height: 60px; } .cal3 { display: none; } }
 @media (prefers-reduced-motion: reduce) { .sst-t > *, .hl, .ring { transition: none; } .ring.on { animation: none; } }
+@media (min-width: 761px) { /* Diagramm neben dem Text statt darüber (kollidierte bei 800 px Höhe) */
+  .sst-o:has(.sbars) .sst-t { max-width: min(440px, 38vw); }
+  .sbars { top: auto; bottom: clamp(70px, 12vh, 140px); left: calc(var(--gut) + min(440px, 38vw) + 32px); }
+}
