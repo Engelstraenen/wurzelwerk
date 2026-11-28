@@ -7,7 +7,8 @@ zmodload zsh/mathfunc
 cd "${0:A:h}/.."
 SRC=assets-roh/vid/$1.mp4; NAME=$2; PX=$3
 UP=~/Library/Caches/video-upscale; W=$UP/work/wurzelwerk; mkdir -p $W site/assets/vid/sub
-while pgrep -f upscale_vid.py >/dev/null; do sleep 60; done
+# GPU frei = 3 Prüfungen in Folge ohne Upscale (sonst starten zwei Sitzungen gleichzeitig, 28.11.2026)
+frei=0; while [ $frei -lt 3 ]; do if pgrep -f upscale_vid.py >/dev/null; then frei=0; else frei=$((frei+1)); fi; sleep $((20 + RANDOM % 25)); done
 ffmpeg -v error -y -i $SRC -vf fps=30 -c:v libx264 -crf 12 -pix_fmt yuv420p -an $W/$1-30.mp4
 $UP/venv/bin/python $UP/upscale_vid.py --gewichte $UP/RealESRGAN_x2plus.pth --in $W/$1-30.mp4 --out $W/$1-4k.mp4 --breite 3840
 # Desktop: 4K, nachgeschärft, all-intra (Scroll-Spulen ohne Blockfehler)

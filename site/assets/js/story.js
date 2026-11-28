@@ -18,7 +18,9 @@
     if (vid && V.indexOf(vid) >= 0) {
       v.preload = 'auto'; v.muted = true; v.playsInline = true;
       v.addEventListener('loadeddata', function () { m.classList.add('vok'); tick(); });
-      v.src = '../assets/vid/sub/' + vid + (port ? '-p' : '') + '.mp4?v=' + (window.WW_VER || 1);
+      var u = '../assets/vid/sub/' + vid + (port ? '-p' : '') + '.mp4?v=' + (window.WW_VER || 1);
+      /* 4K all-intra als Blob laden: Spulen springt sonst beim Nachladen einzelner Bereiche (Masterfile V2.88) */
+      fetch(u).then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { v.src = URL.createObjectURL(b); }).catch(function () { v.src = u; });
     } else v.remove();
   });
 
